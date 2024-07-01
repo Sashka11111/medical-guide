@@ -1,4 +1,4 @@
-package com.liamtseva.persistence.config;
+package com.kudelych.medicalguide.persistence.connection;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 public class DatabaseConnection {
 
-  private static final String JDBC_URL = "jdbc:sqlite:db/GoalTrackerDb.sqlite";
+  private static final String JDBC_URL = "jdbc:sqlite:db/MedicalGuideDB.sqlite";
   private static DatabaseConnection instance;
   private static HikariDataSource dataSource;
 

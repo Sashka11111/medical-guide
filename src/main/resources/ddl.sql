@@ -1,57 +1,47 @@
+DROP TABLE IF EXISTS Medicines;
+DROP TABLE IF EXISTS Categories;
+DROP TABLE IF EXISTS MedicineCategories;
 DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Goals;
-DROP TABLE IF EXISTS Category;
-DROP TABLE IF EXISTS Steps;
-DROP TABLE IF EXISTS Tips;
-DROP TABLE IF EXISTS CategoryGoals;
+DROP TABLE IF EXISTS Bookmarks;
 
--- Створення таблиці "Users"
+-- Таблиця лікарських засобів
+CREATE TABLE Medicines (
+    medicine_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,-- Назва лікарського засобу
+    manufacturer TEXT NOT NULL,-- Виробник
+    form TEXT NOT NULL,-- Форма випуску
+    purpose TEXT NOT NULL,-- Призначення
+    image BYTEA -- Шлях до зображення
+);
+
+-- Таблиця категорій
+CREATE TABLE Categories (
+    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name TEXT NOT NULL  -- Назва категорії
+);
+
+-- Таблиця для зв'язку багато до багатьох між Medicines і Categories
+CREATE TABLE MedicineCategories (
+    medicine_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    PRIMARY KEY (medicine_id, category_id),
+    FOREIGN KEY (medicine_id) REFERENCES Medicines(medicine_id),-- Зовнішній ключ до Medicines
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id)-- Зовнішній ключ до Categories
+);
+
+-- Таблиця користувачів
 CREATE TABLE Users (
-    id_user       INTEGER PRIMARY KEY AUTOINCREMENT,
-    username      VARCHAR (50)    NOT NULL UNIQUE,
-    password      VARCHAR (50)    NOT NULL,
-    profile_image BYTEA           NOT NULL
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,-- Ім'я користувача, унікальне
+    password TEXT NOT NULL,-- Пароль
+    role TEXT DEFAULT 'USER' NOT NULL CHECK(role IN ('USER', 'ADMIN')) -- Роль користувача: 'user' або 'admin', за замовчуванням 'user'
 );
 
--- Створення таблиці "Goals"
-CREATE TABLE Goals (
-    id_goal     INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_user     INTEGER,
-    name_goal   VARCHAR (100),
-    description VARCHAR (255) NOT NULL,
-    start_date  DATE          NOT NULL,
-    end_date    DATE          NOT NULL,
-    status      VARCHAR (100) CHECK (status IN ('Активна', 'Завершена', 'Відкладена')),
-    FOREIGN KEY (id_user) REFERENCES Users (id_user) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
--- Створення таблиці "Category"
-CREATE TABLE Category (
-    id_category INTEGER PRIMARY KEY AUTOINCREMENT,
-    name        VARCHAR (50)    NOT NULL
-);
-
--- Створення таблиці "Steps"
-CREATE TABLE Steps (
-    id_step     INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_goal     INTEGER,
-    goal_name   VARCHAR (100),
-    description TEXT,
-    status      VARCHAR (100) CHECK (status IN ('Активний', 'Завершений')),
-    FOREIGN KEY (id_goal) REFERENCES Goals (id_goal) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
--- Створення таблиці "Tips"
-CREATE TABLE Tips (
-    id_tip   INTEGER PRIMARY KEY AUTOINCREMENT,
-    tip_text TEXT NOT NULL
-);
-
--- Створення таблиці "CategoryGoals"
-CREATE TABLE CategoryGoals (
-    id_category INTEGER,
-    id_goal     INTEGER,
-    PRIMARY KEY (id_category, id_goal),
-    FOREIGN KEY (id_category) REFERENCES Category (id_category) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_goal) REFERENCES Goals (id_goal) ON DELETE CASCADE ON UPDATE CASCADE
+-- Таблиця закладок
+CREATE TABLE Bookmarks (
+    bookmark_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,-- ID користувача, зовнішній ключ до Users
+    medicine_id INTEGER NOT NULL,-- ID лікарського засобу, зовнішній ключ до Medicines
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),-- Зовнішній ключ до Users
+    FOREIGN KEY (medicine_id) REFERENCES Medicines(medicine_id)-- Зовнішній ключ до Medicines
 );

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.AuthorizationController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #006666;">
+         <children>
+            <Label layoutX="53.0" layoutY="191.0" text="Медичний посібник" textFill="#f2f2f2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="223.0" prefHeight="14.0" prefWidth="187.0" text="лікарських засобів" textFill="#f2f2f2">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="117.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/drugs.png" />
+               </image></ImageView>
+            <Line endX="100.0" layoutX="155.0" layoutY="177.0" startX="-100.0" startY="-1.52587890625E-5" stroke="#f2f2f2" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F2F2F2;">
+         <children>
+            <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="200.0" prefHeight="34.0" prefWidth="222.0" promptText="Пароль" styleClass="textfield" stylesheets="@../design/style.css" />
+            <TextField fx:id="loginField" layoutX="39.0" layoutY="150.0" prefHeight="34.0" prefWidth="222.0" promptText="Логін" styleClass="textfield" stylesheets="@../design/style.css" />
+            <Button fx:id="authSingUpButton" layoutX="81.0" layoutY="258.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Вхід" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Label layoutX="50.0" layoutY="50.0" prefHeight="54.0" prefWidth="210.0" text="Авторизація">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="105.0" prefHeight="34.0" prefWidth="294.0" textAlignment="CENTER" textFill="#f20e0e" textOverrun="CENTER_WORD_ELLIPSIS">
+               <font>
+                  <Font size="12.0" />
+               </font></Label>
+            <Label layoutX="22.0" layoutY="325.0" prefHeight="27.0" prefWidth="146.0" text="Ще не зареєстровані?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="authSignInHyperlink" layoutX="161.0" layoutY="325.0" prefHeight="1.0" prefWidth="116.0" text="Зареєструватися" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Button fx:id="btn_close" layoutX="246.0" layoutY="8.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="32.0" styleClass="close-button" stylesheets="@../design/style.css">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
