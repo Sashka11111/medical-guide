@@ -35,8 +35,14 @@
       </AnchorPane>
     <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F2F2F2;">
       <children>
-        <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="200.0" prefHeight="34.0" prefWidth="222.0" promptText="Пароль" styleClass="textfield" stylesheets="@../design/style.css" />
-        <TextField fx:id="loginField" layoutX="40.0" layoutY="150.0" prefHeight="34.0" prefWidth="222.0" promptText="Логін" styleClass="textfield" stylesheets="@../design/style.css" />
+        <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="200.0" prefHeight="34.0" prefWidth="222.0" promptText="Пароль" styleClass="textfield" stylesheets="@../design/style.css">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+        <TextField fx:id="loginField" layoutX="40.0" layoutY="150.0" prefHeight="34.0" prefWidth="222.0" promptText="Логін" styleClass="textfield" stylesheets="@../design/style.css">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
         <Button fx:id="SignInButton" layoutX="69.0" layoutY="258.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="161.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Зареєструватися" textFill="WHITE" />
         <Label layoutX="62.0" layoutY="51.0" prefHeight="54.0" prefWidth="178.0" text="Реєстрація">
           <font>
@@ -45,14 +51,14 @@
         </Label>
             <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="106.0" prefHeight="34.0" prefWidth="293.0" textAlignment="CENTER" textFill="#f20e0e" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
-                  <Font size="12.0" />
+                  <Font size="11.0" />
                </font></Label>
             <Label layoutX="40.0" layoutY="326.0" prefHeight="27.0" prefWidth="133.0" text="Вже зареєстровані?">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="SignUpHyperlink" layoutX="164.0" layoutY="326.0" text="Авторизуватися" textFill="RED">
+            <Hyperlink fx:id="SignUpHyperlink" layoutX="173.0" layoutY="326.0" prefHeight="27.0" prefWidth="114.0" text="Авторизуватися" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>

@@ -96,7 +96,7 @@ public class RegistrationController {
           userLoginAnim.playAnim();
         }
       } else {
-        errorMessageLabel.setText("Пароль має мати велику, маленьку букву та цифру.\n" + "Мінімальна довжина паролю: 6 символів");
+        errorMessageLabel.setText("Пароль має мати велику, маленьку букву та цифру.\n" + "Мінімальна довжина: 6 символів. Максимальна: 20.");
         Shake userLoginAnim = new Shake(loginField);
         Shake userPassAnim = new Shake(passwordField);
         userLoginAnim.playAnim();

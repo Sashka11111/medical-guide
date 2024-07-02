@@ -9,12 +9,12 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MainMenuController">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MainMenuController">
    <children>
-      <AnchorPane fx:id="sidebar" layoutY="45.0" prefHeight="662.0" prefWidth="182.0" style="-fx-background-color: #006666;">
+      <AnchorPane fx:id="sidebar" layoutY="45.0" prefHeight="663.0" prefWidth="186.0" style="-fx-background-color: #006666;">
          <children>
             <Line endX="78.40000915527344" endY="-1.0" layoutX="81.0" layoutY="115.0" startX="-67.0" startY="-1" stroke="WHITE" />
-            <Button fx:id="MedicinesButton" layoutX="-2.0" layoutY="214.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="178.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Лікарські засоби" textFill="WHITE">
+            <Button fx:id="medicinesButton" layoutX="-2.0" layoutY="214.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Лікарські засоби" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -30,16 +30,26 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="bookmarksButton" layoutX="2.0" layoutY="272.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Збережені ліки" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="categoryButton" layoutX="-2.0" layoutY="331.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Категорії" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="37.0" prefWidth="1100.0" style="-fx-background-color: #006666;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutY="38.4" prefHeight="2.0" prefWidth="1100.0" style="-fx-background-color: #006666;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="386.0" layoutY="5.0" prefHeight="35.0" prefWidth="399.0" text="Медичний посібник лікарських засобів" textFill="WHITE" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="315.60000000000014" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="btn_close" layoutX="666.0" layoutY="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="21.0" styleClass="close-button" stylesheets="@../design/style.css" AnchorPane.rightAnchor="1.2" AnchorPane.topAnchor="5.0">
+            <Button fx:id="closeButton" layoutX="1054.0" layoutY="2.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="21.0" styleClass="close-button" stylesheets="@../design/style.css" AnchorPane.rightAnchor="1.2000000000000455" AnchorPane.topAnchor="2.0">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_minimize" layoutX="1010.0" layoutY="4.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="21.0" styleClass="minimize-button" stylesheets="@../design/style.css" AnchorPane.rightAnchor="46.799999999999955" AnchorPane.topAnchor="4.0">
+            <Button fx:id="minimazeButton" layoutX="1010.0" layoutY="2.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="21.0" styleClass="minimize-button" stylesheets="@../design/style.css" AnchorPane.rightAnchor="46.799999999999955" AnchorPane.topAnchor="2.0">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,10 +73,11 @@
                </image></ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="contentContainer" layoutX="182.4" layoutY="44.8" prefHeight="662.0" prefWidth="918.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <AnchorPane fx:id="contentContainer" layoutX="182.4" layoutY="44.8" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
          <children>
-            <StackPane fx:id="contentArea" prefHeight="657.0" prefWidth="918.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <StackPane fx:id="contentArea" prefHeight="663.0" prefWidth="924.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
+      <Line endX="1100.0" layoutX="2.0" layoutY="45.0" startX="3.051757857974735E-6" />
    </children>
 </AnchorPane>

@@ -7,17 +7,18 @@ DROP TABLE IF EXISTS Bookmarks;
 -- Таблиця лікарських засобів
 CREATE TABLE Medicines (
     medicine_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,-- Назва лікарського засобу
-    manufacturer TEXT NOT NULL,-- Виробник
-    form TEXT NOT NULL,-- Форма випуску
-    purpose TEXT NOT NULL,-- Призначення
+    name VARCHAR(100) NOT NULL,-- Назва лікарського засобу
+    description TEXT, -- Опис
+    manufacturer VARCHAR(200) NOT NULL,-- Виробник
+    form VARCHAR(100) NOT NULL,-- Форма випуску
+    purpose VARCHAR(200) NOT NULL,-- Призначення
     image BYTEA -- Шлях до зображення
 );
 
 -- Таблиця категорій
 CREATE TABLE Categories (
     category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category_name TEXT NOT NULL  -- Назва категорії
+    category_name VARCHAR(50) NOT NULL  -- Назва категорії
 );
 
 -- Таблиця для зв'язку багато до багатьох між Medicines і Categories
@@ -32,8 +33,8 @@ CREATE TABLE MedicineCategories (
 -- Таблиця користувачів
 CREATE TABLE Users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,-- Ім'я користувача, унікальне
-    password TEXT NOT NULL,-- Пароль
+    username VARCHAR(100) UNIQUE NOT NULL,-- Ім'я користувача, унікальне
+    password VARCHAR(20) NOT NULL,-- Пароль
     role TEXT DEFAULT 'USER' NOT NULL CHECK(role IN ('USER', 'ADMIN')) -- Роль користувача: 'user' або 'admin', за замовчуванням 'user'
 );
 

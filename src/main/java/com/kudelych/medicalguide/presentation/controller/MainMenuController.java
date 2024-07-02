@@ -2,7 +2,7 @@ package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.persistence.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.entity.User;
-import java.io.ByteArrayInputStream;
+import com.kudelych.medicalguide.persistence.entity.UserRole;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -23,18 +22,20 @@ import javafx.util.Duration;
 public class MainMenuController {
 
   @FXML
-  private Button MedicinesButton;
+  private Button medicinesButton;
+  @FXML
+  private Button bookmarksButton;
+  @FXML
+  private Button categoryButton;
+  @FXML
+  private Button closeButton;
+  @FXML
+  private Button minimazeButton;
 
-  @FXML
-  private Button btn_close;
-  @FXML
-  private Button btn_minimize;
   @FXML
   private StackPane stackPane;
   @FXML
   private StackPane contentArea;
-
-
   @FXML
   private Label userName;
 
@@ -44,11 +45,20 @@ public class MainMenuController {
 
   @FXML
   void initialize() {
-    btn_close.setOnAction(event -> System.exit(0));
-    btn_minimize.setOnAction(event -> minimizeWindow());
-
+    closeButton.setOnAction(event -> System.exit(0));
+    minimazeButton.setOnAction(event -> minimizeWindow());
+    Medicines();
+    medicinesButton.setOnAction(event -> showMedicinesPage());
+    categoryButton.setOnAction(event -> showCategoryPage());
+    bookmarksButton.setOnAction(event -> showBookmarksPage());
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
-      userName.setText(currentUser.username());
+    userName.setText(currentUser.username());
+
+    // Перевіряє роль користувача та приховує кнопку категорії, якщо це не адміністратор
+    if (currentUser.role() != UserRole.ADMIN) {
+      categoryButton.setVisible(false);
+    }
+
     // Platform.runLater для додавання обробників після ініціалізації сцени
     Platform.runLater(() -> {
       Stage primaryStage = (Stage) contentArea.getScene().getWindow();
@@ -63,40 +73,20 @@ public class MainMenuController {
     transition.setToX(buttonX);
     stackPane.setLayoutY(buttonY);
   }
-/*
-  private void showMyActivityPage() {
-    moveStackPane(btn_myActivity);
-    loadFXML("/view/myActivity.fxml");
+
+  private void showMedicinesPage() {
+    moveStackPane(medicinesButton);
+    loadFXML("/view/medicines.fxml");
   }
 
-  private void showMyGoalPage() {
-    moveStackPane(btn_myGoals);
-    loadFXML("/view/myGoals.fxml");
-  }
-
-  private void showCompleteGoalsPage() {
-    moveStackPane(btn_completeGoal);
-    loadFXML("/view/completeGoals.fxml");
+  private void showBookmarksPage() {
+    moveStackPane(bookmarksButton);
+    loadFXML("/view/bookmarks.fxml");
   }
 
   private void showCategoryPage() {
-    moveStackPane(btn_category);
+    moveStackPane(categoryButton);
     loadFXML("/view/category.fxml");
-  }
-
-  private void showStepsToGoalPage() {
-    moveStackPane(btn_steps);
-    loadFXML("/view/stepsToGoal.fxml");
-  }
-
-  private void showTipsPage() {
-    moveStackPane(btn_tips);
-    loadFXML("/view/tips.fxml");
-  }
-
-  private void showCompleteStepsPage() {
-    moveStackPane(btn_completeSteps);
-    loadFXML("/view/completeSteps.fxml");
   }
 
   private void loadFXML(String fxmlFileName) {
@@ -109,26 +99,24 @@ public class MainMenuController {
     }
   }
 
-  private void myActivity() {
+  private void Medicines() {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/myActivity.fxml"));
-      AnchorPane myActivityPane = loader.load();
-      //MyActivityController myActivityController = loader.getController();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicines.fxml"));
+      AnchorPane medicinesAnchorPane = loader.load();
+      MedicinesController medicinesController = loader.getController();
       contentArea.getChildren().clear();
-      contentArea.getChildren().add(myActivityPane);
+      contentArea.getChildren().add(medicinesAnchorPane);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-*/
 
   private void minimizeWindow() {
     if (stage == null) {
-      stage = (Stage) btn_minimize.getScene().getWindow();
+      stage = (Stage) minimazeButton.getScene().getWindow();
     }
     stage.setIconified(true);
   }
-
   private void addDragListeners(Parent root) {
     root.setOnMousePressed(event -> {
       xOffset = event.getSceneX();

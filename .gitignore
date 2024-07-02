@@ -1,3 +1,5 @@
+# Ігнорування папки db
+db/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

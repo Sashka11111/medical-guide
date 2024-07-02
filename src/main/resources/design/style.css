@@ -45,3 +45,30 @@
 .minimize-button:hover {
   -fx-background-color: rgba(255, 255, 255, 0.2); /* Прозорий колір фону при наведенні */
 }
+
+
+.border{
+  -fx-border-color:linear-gradient(to bottom, #004C4C, #006666);
+  -fx-border-radius: 8px;
+  -fx-border-width: 2px;
+}
+
+.table-view {
+  -fx-background-color: transparent; /* Встановлення прозорого фону */
+  -fx-border-color: linear-gradient(to bottom, #004C4C, #006666);
+  -fx-border-width: 2px;
+  -fx-border-radius: 8px;
+  -fx-padding: 0;
+  -fx-text-fill: #ffffff;
+}
+
+.table-view .column-header-background {
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+  -fx-background-radius: 8px 8px 0 0;
+  -fx-background-insets: 0 0 0 0;
+}
+
+.table-view .column-header, .filter {
+  -fx-background-color: linear-gradient(to bottom, #004C4C, #006666);
+  -fx-size: 50px;
+}
