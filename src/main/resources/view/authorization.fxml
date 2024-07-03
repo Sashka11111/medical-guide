@@ -53,7 +53,7 @@
             </Label>
             <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="105.0" prefHeight="34.0" prefWidth="294.0" textAlignment="CENTER" textFill="#f20e0e" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
-                  <Font size="11.0" />
+                  <Font size="13.0" />
                </font></Label>
             <Label layoutX="22.0" layoutY="325.0" prefHeight="27.0" prefWidth="146.0" text="Ще не зареєстровані?">
                <font>

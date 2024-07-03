@@ -19,7 +19,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <StackPane fx:id="stackPane" layoutY="214.0" prefHeight="58.0" prefWidth="9.0" style="-fx-background-color: #004C4C;" />
+            <StackPane fx:id="stackPane" layoutY="214.0" prefHeight="58.0" prefWidth="6.0" style="-fx-background-color: #004C4C;" />
             <Label fx:id="userName" alignment="CENTER" layoutX="15.0" layoutY="66.0" prefHeight="30.0" prefWidth="140.0" textFill="WHITE">
                <font>
                   <Font size="20.0" />

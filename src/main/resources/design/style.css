@@ -47,14 +47,20 @@
 }
 
 
-.border{
-  -fx-border-color:linear-gradient(to bottom, #004C4C, #006666);
-  -fx-border-radius: 8px;
+.card {
+  -fx-background-color: white;
+  -fx-border-color: white;
+  -fx-background-radius: 16px;
+  -fx-border-radius: 16px;
   -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+  -fx-wrap-text: true; /* Автоматичне перенесення тексту */
+  -fx-cursor: hand;
 }
 
 .table-view {
-  -fx-background-color: transparent; /* Встановлення прозорого фону */
+  -fx-background-color: transparent;
   -fx-border-color: linear-gradient(to bottom, #004C4C, #006666);
   -fx-border-width: 2px;
   -fx-border-radius: 8px;
@@ -71,4 +77,17 @@
 .table-view .column-header, .filter {
   -fx-background-color: linear-gradient(to bottom, #004C4C, #006666);
   -fx-size: 50px;
+}
+
+.label-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 0; /* Додає відстань між заголовком і текстом */
+}
+
+.info-pane {
+  -fx-background-color: #E0E0E0;
+  -fx-border-color: #E0E0E0;
+  -fx-background-radius: 16;
+  -fx-border-radius: 16;
 }

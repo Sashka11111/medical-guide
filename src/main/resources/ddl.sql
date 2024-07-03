@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Medicines;
 DROP TABLE IF EXISTS Categories;
 DROP TABLE IF EXISTS MedicineCategories;
 DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Bookmarks;
+DROP TABLE IF EXISTS SavedMedicine;
 
 -- Таблиця лікарських засобів
 CREATE TABLE Medicines (
@@ -38,9 +38,9 @@ CREATE TABLE Users (
     role TEXT DEFAULT 'USER' NOT NULL CHECK(role IN ('USER', 'ADMIN')) -- Роль користувача: 'user' або 'admin', за замовчуванням 'user'
 );
 
--- Таблиця закладок
-CREATE TABLE Bookmarks (
-    bookmark_id INTEGER PRIMARY KEY AUTOINCREMENT,
+-- Таблиця збережених ліків
+CREATE TABLE SavedMedicine (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,-- ID користувача, зовнішній ключ до Users
     medicine_id INTEGER NOT NULL,-- ID лікарського засобу, зовнішній ключ до Medicines
     FOREIGN KEY (user_id) REFERENCES Users(user_id),-- Зовнішній ключ до Users

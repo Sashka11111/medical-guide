@@ -4,23 +4,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="338" maxWidth="568" minHeight="-Infinity" minWidth="-Infinity" prefHeight="223.0" prefWidth="510.0" styleClass="border" stylesheets="@../design/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MedicineCardController">
+<AnchorPane maxHeight="338" maxWidth="568" minHeight="-Infinity" minWidth="-Infinity" prefHeight="187.0" prefWidth="180.0" styleClass="card" stylesheets="@../design/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MedicineCardController">
    <children>
-      <VBox layoutX="152.0" layoutY="4.0" prefHeight="214.0" prefWidth="352.0" spacing="20.0">
-         <children>
-            <Label fx:id="medicineName" prefHeight="26.0" prefWidth="352.0" styleClass="border" stylesheets="@../design/style.css" />
-            <Label fx:id="medicineDescription" prefHeight="38.0" prefWidth="352.0" styleClass="border" stylesheets="@../design/style.css" />
-            <Label fx:id="medicineManufacturer" prefHeight="22.0" prefWidth="352.0" styleClass="border" stylesheets="@../design/style.css" />
-            <Label fx:id="medicineForm" prefHeight="22.0" prefWidth="350.0" styleClass="border" stylesheets="@../design/style.css" />
-            <Label fx:id="medicinePurpose" prefHeight="22.0" prefWidth="354.0" styleClass="border" stylesheets="@../design/style.css" />
-         </children>
-      </VBox>
-      <ImageView fx:id="medicineImage" fitHeight="116.0" fitWidth="113.0" layoutX="14.0" layoutY="41.0" preserveRatio="true">
+      <ImageView fx:id="medicineImage" fitHeight="118.0" fitWidth="128.0" layoutX="29.0" layoutY="7.0" preserveRatio="true">
          <image>
             <Image url="@../data/icon.png" />
          </image>
       </ImageView>
+      <Label fx:id="medicineName" alignment="CENTER" layoutX="4.0" layoutY="128.0" prefHeight="50.0" prefWidth="174.0" style="-fx-wrap-text: true;" textAlignment="CENTER" />
    </children>
 </AnchorPane>

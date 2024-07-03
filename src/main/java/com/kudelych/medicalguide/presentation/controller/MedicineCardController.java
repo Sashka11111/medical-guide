@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.ByteArrayInputStream;
+import javafx.scene.input.MouseEvent;
 
 public class MedicineCardController {
 
@@ -16,31 +17,21 @@ public class MedicineCardController {
   @FXML
   private Label medicineName;
 
-  @FXML
-  private Label medicineDescription;
-
-  @FXML
-  private Label medicineManufacturer;
-
-  @FXML
-  private Label medicineForm;
-
-  @FXML
-  private Label medicinePurpose;
-
+  private MedicinesController parentController;
+  private Medicine medicine;
   public void setMedicine(Medicine medicine) {
     medicineName.setText(medicine.name());
-    medicineDescription.setText(medicine.description());
-    medicineManufacturer.setText(medicine.manufacturer());
-    medicineForm.setText(medicine.form());
-    medicinePurpose.setText(medicine.purpose());
 
     if (medicine.image() != null && medicine.image().length > 0) {
       ByteArrayInputStream bis = new ByteArrayInputStream(medicine.image());
       medicineImage.setImage(new Image(bis));
     } else {
       // Встановити зображення за замовчуванням, якщо зображення не надано
-      medicineImage.setImage(new Image(getClass().getResourceAsStream("/data/drugs.png")));
+      medicineImage.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
     }
   }
+  public void setParentController(MedicinesController parentController) {
+    this.parentController = parentController;
+  }
+
 }
