@@ -40,6 +40,11 @@
                   <Font size="16.0" />
                </font>
             </Button>
+            <Button fx:id="changeAccountButton" layoutX="10.0" layoutY="608.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="166.0" style="-fx-border-color: white;" styleClass="side-btn" stylesheets="@../design/style.css" text="Змінити акаунт" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="38.4" prefHeight="2.0" prefWidth="1100.0" style="-fx-background-color: #006666;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

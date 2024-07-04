@@ -6,17 +6,20 @@ import com.kudelych.medicalguide.persistence.entity.UserRole;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class MainMenuController {
@@ -31,6 +34,9 @@ public class MainMenuController {
   private Button closeButton;
   @FXML
   private Button minimazeButton;
+
+  @FXML
+  private Button changeAccountButton;
 
   @FXML
   private StackPane stackPane;
@@ -50,7 +56,9 @@ public class MainMenuController {
     Medicines();
     medicinesButton.setOnAction(event -> showMedicinesPage());
     categoryButton.setOnAction(event -> showCategoryPage());
-    bookmarksButton.setOnAction(event -> showBookmarksPage());
+    bookmarksButton.setOnAction(event -> showSavedMedicinePage());
+    changeAccountButton.setOnAction(event -> handleChangeAccountAction());
+
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     userName.setText(currentUser.username());
 
@@ -79,9 +87,9 @@ public class MainMenuController {
     loadFXML("/view/medicines.fxml");
   }
 
-  private void showBookmarksPage() {
+  private void showSavedMedicinePage() {
     moveStackPane(bookmarksButton);
-    loadFXML("/view/bookmarks.fxml");
+    loadFXML("/view/savedMedicine.fxml");
   }
 
   private void showCategoryPage() {
@@ -117,6 +125,7 @@ public class MainMenuController {
     }
     stage.setIconified(true);
   }
+
   private void addDragListeners(Parent root) {
     root.setOnMousePressed(event -> {
       xOffset = event.getSceneX();
@@ -128,5 +137,43 @@ public class MainMenuController {
       stage.setX(event.getScreenX() - xOffset);
       stage.setY(event.getScreenY() - yOffset);
     });
+  }
+
+  private void handleChangeAccountAction() {
+    try {
+      // Анімація для поточного вікна
+      Stage currentStage = (Stage) changeAccountButton.getScene().getWindow();
+      FadeTransition fadeOut = new FadeTransition(Duration.millis(500), currentStage.getScene().getRoot());
+      fadeOut.setFromValue(1.0);
+      fadeOut.setToValue(0.0);
+      fadeOut.setOnFinished(event -> {
+        try {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/authorization.fxml"));
+          Parent root = loader.load();
+
+          // Анімація для нового вікна
+          Stage loginStage = new Stage();
+          loginStage.getIcons().add(new Image(getClass().getResourceAsStream("/data/icon.png")));
+          loginStage.initStyle(StageStyle.UNDECORATED);
+          Scene scene = new Scene(root);
+          scene.getRoot().setOpacity(0.0);
+          loginStage.setScene(scene);
+          loginStage.show();
+
+          FadeTransition fadeIn = new FadeTransition(Duration.millis(500), scene.getRoot());
+          fadeIn.setFromValue(0.0);
+          fadeIn.setToValue(1.0);
+          fadeIn.play();
+
+          // Закриття поточного вікна
+          currentStage.close();
+        } catch (IOException ex) {
+          Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      });
+      fadeOut.play();
+    } catch (Exception ex) {
+      Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 }

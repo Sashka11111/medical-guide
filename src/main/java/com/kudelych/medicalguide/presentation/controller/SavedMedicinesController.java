@@ -1,5 +1,6 @@
 package com.kudelych.medicalguide.presentation.controller;
 
+import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.persistence.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
@@ -9,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -19,13 +18,11 @@ import javafx.scene.layout.RowConstraints;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
-import javafx.scene.text.Text;
 
-public class MedicinesController {
+public class SavedMedicinesController {
 
   @FXML
-  private GridPane medicinesGridPane;
+  private GridPane savedMedicinesGridPane;
   @FXML
   private Label medicineName;
   @FXML
@@ -36,69 +33,58 @@ public class MedicinesController {
   private Label medicineForm;
   @FXML
   private Label medicinePurpose;
-  @FXML
-  private TextField searchTextField;
-  @FXML
-  private Button saveMedicineButton;
+
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
-  private List<Medicine> savedMedicines;
 
-  public MedicinesController() {
+  public SavedMedicinesController() {
     this.medicinesRepository = new MedicinesRepositoryImpl(new DatabaseConnection().getDataSource());
   }
 
   @FXML
   public void initialize() {
-    searchTextField.setOnKeyReleased(event -> searchMedicines());
-    loadMedicines();
+    loadSavedMedicines();
   }
 
-  private void loadMedicines() {
+  private void loadSavedMedicines() {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
-    savedMedicines = medicinesRepository.findSavedMedicinesByUserId(currentUser.id());
-    List<Medicine> medicines = medicinesRepository.findAll();
-    displayMedicineCards(medicines);
+    List<Medicine> savedMedicines = medicinesRepository.findSavedMedicinesByUserId(currentUser.id());
+    displaySavedMedicineCards(savedMedicines);
   }
 
-  private void displayMedicineCards(List<Medicine> medicines) {
-    medicinesGridPane.getChildren().clear();
-    if (medicines.isEmpty()) {
-      Text noResults = new Text("На жаль, таких ліків немає");
-      medicinesGridPane.add(noResults, 0, 0);
-      return;
-    }
+  private void displaySavedMedicineCards(List<Medicine> medicines) {
+    savedMedicinesGridPane.getChildren().clear();
     int column = 0;
     int row = 0;
     int cardsPerRow = 3;
 
-    medicinesGridPane.getColumnConstraints().clear();
-    medicinesGridPane.getRowConstraints().clear();
+    savedMedicinesGridPane.getColumnConstraints().clear();
+    savedMedicinesGridPane.getRowConstraints().clear();
 
     for (int i = 0; i < cardsPerRow; i++) {
       ColumnConstraints columnConstraints = new ColumnConstraints();
       columnConstraints.setPercentWidth(100.0 / cardsPerRow);
-      medicinesGridPane.getColumnConstraints().add(columnConstraints);
+      savedMedicinesGridPane.getColumnConstraints().add(columnConstraints);
     }
 
     for (int i = 0; i < (int) Math.ceil((double) medicines.size() / cardsPerRow); i++) {
       RowConstraints rowConstraints = new RowConstraints();
       rowConstraints.setMinHeight(200);
-      medicinesGridPane.getRowConstraints().add(rowConstraints);
+      savedMedicinesGridPane.getRowConstraints().add(rowConstraints);
     }
 
     for (Medicine medicine : medicines) {
       AnchorPane card = loadMedicineCard(medicine);
       if (card != null) {
         card.setOnMouseClicked(event -> displayMedicineDetails(medicine));
-        medicinesGridPane.add(card, column, row);
+        savedMedicinesGridPane.add(card, column, row);
         column++;
         if (column == cardsPerRow) {
           column = 0;
           row++;
         }
       } else {
-        System.err.println("Помилка завантаження карточки для лікарського засобу: " + medicine.name());
+        System.err.println("Error loading card for medicine: " + medicine.name());
       }
     }
   }
@@ -110,58 +96,60 @@ public class MedicinesController {
       MedicineCardController controller = loader.getController();
       if (controller != null) {
         controller.setMedicine(medicine);
-        controller.setParentController(this); // Set parent controller
         return card;
       } else {
-        System.err.println("Контролер MedicineCardController є null");
+        System.err.println("MedicineCardController is null");
         return null;
       }
     } catch (IOException e) {
       e.printStackTrace();
-      System.err.println("Помилка завантаження medicine_card.fxml");
+      System.err.println("Error loading medicine_card.fxml");
       return null;
     }
   }
 
-  private void searchMedicines() {
-    String query = searchTextField.getText().toLowerCase().trim();
-    List<Medicine> allMedicines = medicinesRepository.findAll();
-    List<Medicine> result = allMedicines.stream()
-        .filter(medicine -> medicine.name().toLowerCase().contains(query))
-        .collect(Collectors.toList());
-    displayMedicineCards(result);
-  }
-
   @FXML
-  private void handleSaveAction() {
+  private void handleDeleteAction() {
     if (selectedMedicine != null) {
-      saveMedicine(selectedMedicine);
+      deleteMedicine(selectedMedicine);
     } else {
       Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
+      alert.setTitle("Видалення лікарського засобу");
       alert.setHeaderText(null);
       alert.setContentText("Ви не вибрали лікарський засіб.");
       alert.showAndWait();
     }
   }
 
-  public void saveMedicine(Medicine medicine) {
+  public void deleteMedicine(Medicine medicine) {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
-    if (savedMedicines.stream().anyMatch(savedMedicine -> savedMedicine.id() == medicine.id())) {
+    try {
+      medicinesRepository.removeSavedMedicine(currentUser.id(), medicine.id());
       Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
+      alert.setTitle("Видалення лікарського засобу");
       alert.setHeaderText(null);
-      alert.setContentText("Цей лікарський засіб вже збережено.");
+      alert.setContentText("Лікарський засіб: " + medicine.name() + " успішно видалено");
       alert.showAndWait();
-    } else {
-      medicinesRepository.addSavedMedicine(currentUser.id(), medicine.id());
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
+      // Після видалення оновлюємо відображення збережених ліків
+      loadSavedMedicines();
+      // Очищуємо інформаційні поля
+      clearMedicineDetails();
+    } catch (EntityNotFoundException e) {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Помилка видалення");
       alert.setHeaderText(null);
-      alert.setContentText("Лікарський засіб збережено: " + medicine.name());
+      alert.setContentText("Не вдалося знайти лікарський засіб для видалення.");
       alert.showAndWait();
-      loadMedicines(); // Оновлення списку збережених ліків
     }
+  }
+
+  private void clearMedicineDetails() {
+    selectedMedicine = null;
+    medicineName.setText("");
+    medicineDescription.setText("");
+    medicineManufacturer.setText("");
+    medicineForm.setText("");
+    medicinePurpose.setText("");
   }
 
   private void displayMedicineDetails(Medicine medicine) {

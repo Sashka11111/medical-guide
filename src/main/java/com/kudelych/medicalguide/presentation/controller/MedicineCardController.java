@@ -33,5 +33,4 @@ public class MedicineCardController {
   public void setParentController(MedicinesController parentController) {
     this.parentController = parentController;
   }
-
 }

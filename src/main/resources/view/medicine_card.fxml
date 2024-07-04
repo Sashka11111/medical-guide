@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="338" maxWidth="568" minHeight="-Infinity" minWidth="-Infinity" prefHeight="187.0" prefWidth="180.0" styleClass="card" stylesheets="@../design/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MedicineCardController">
    <children>
-      <ImageView fx:id="medicineImage" fitHeight="118.0" fitWidth="128.0" layoutX="29.0" layoutY="7.0" preserveRatio="true">
+      <ImageView fx:id="medicineImage" fitHeight="118.0" fitWidth="128.0" layoutX="32.0" layoutY="10.0" preserveRatio="true">
          <image>
             <Image url="@../data/icon.png" />
          </image>

@@ -104,6 +104,54 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     return medicines;
   }
 
+  // Method to add a saved medicine for a user
+  public void addSavedMedicine(int userId, int medicineId) {
+    String query = "INSERT INTO SavedMedicine (user_id, medicine_id) VALUES (?, ?)";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, userId);
+      preparedStatement.setInt(2, medicineId);
+      preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  // Method to find all saved medicines for a user
+  public List<Medicine> findSavedMedicinesByUserId(int userId) {
+    String query = "SELECT m.* FROM Medicines m " +
+        "JOIN SavedMedicine sm ON m.medicine_id = sm.medicine_id " +
+        "WHERE sm.user_id = ?";
+    List<Medicine> medicines = new ArrayList<>();
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, userId);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        medicines.add(mapMedicine(resultSet));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return medicines;
+  }
+
+  // Method to remove a saved medicine for a user
+  public void removeSavedMedicine(int userId, int medicineId) throws EntityNotFoundException {
+    String query = "DELETE FROM SavedMedicine WHERE user_id = ? AND medicine_id = ?";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, userId);
+      preparedStatement.setInt(2, medicineId);
+      int affectedRows = preparedStatement.executeUpdate();
+      if (affectedRows == 0) {
+        throw new EntityNotFoundException("Saved medicine not found for user_id: " + userId + " and medicine_id: " + medicineId);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   private Medicine mapMedicine(ResultSet resultSet) throws SQLException {
     int id = resultSet.getInt("medicine_id");
     String name = resultSet.getString("name");
