@@ -14,12 +14,12 @@
       <AnchorPane fx:id="sidebar" layoutY="45.0" prefHeight="663.0" prefWidth="186.0" style="-fx-background-color: #006666;">
          <children>
             <Line endX="78.40000915527344" endY="-1.0" layoutX="81.0" layoutY="115.0" startX="-67.0" startY="-1" stroke="WHITE" />
-            <Button fx:id="medicinesButton" layoutX="-2.0" layoutY="214.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Лікарські засоби" textFill="WHITE">
+            <Button fx:id="medicinesButton" layoutX="-1.0" layoutY="185.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Лікарські засоби" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <StackPane fx:id="stackPane" layoutY="214.0" prefHeight="58.0" prefWidth="6.0" style="-fx-background-color: #004C4C;" />
+            <StackPane fx:id="stackPane" layoutY="185.0" prefHeight="58.0" prefWidth="6.0" style="-fx-background-color: #004C4C;" />
             <Label fx:id="userName" alignment="CENTER" layoutX="15.0" layoutY="66.0" prefHeight="30.0" prefWidth="140.0" textFill="WHITE">
                <font>
                   <Font size="20.0" />
@@ -30,17 +30,22 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="bookmarksButton" layoutX="2.0" layoutY="272.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Збережені ліки" textFill="WHITE">
+            <Button fx:id="savedMedicineButton" layoutX="3.0" layoutY="243.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Збережені ліки" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="categoryButton" layoutX="-2.0" layoutY="331.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Категорії" textFill="WHITE">
+            <Button fx:id="categoryButton" layoutX="2.0" layoutY="359.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Категорії" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
             <Button fx:id="changeAccountButton" layoutX="10.0" layoutY="608.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="166.0" style="-fx-border-color: white;" styleClass="side-btn" stylesheets="@../design/style.css" text="Змінити акаунт" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageMedicinesButton" layoutX="2.0" layoutY="301.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Керувати ліками" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

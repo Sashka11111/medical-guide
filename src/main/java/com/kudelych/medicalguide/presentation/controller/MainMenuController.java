@@ -27,9 +27,11 @@ public class MainMenuController {
   @FXML
   private Button medicinesButton;
   @FXML
-  private Button bookmarksButton;
+  private Button savedMedicineButton;
   @FXML
   private Button categoryButton;
+  @FXML
+  private Button manageMedicinesButton;
   @FXML
   private Button closeButton;
   @FXML
@@ -56,7 +58,8 @@ public class MainMenuController {
     Medicines();
     medicinesButton.setOnAction(event -> showMedicinesPage());
     categoryButton.setOnAction(event -> showCategoryPage());
-    bookmarksButton.setOnAction(event -> showSavedMedicinePage());
+    savedMedicineButton.setOnAction(event -> showSavedMedicinePage());
+    manageMedicinesButton.setOnAction(event -> showManageMedicinesPage());
     changeAccountButton.setOnAction(event -> handleChangeAccountAction());
 
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
@@ -65,6 +68,7 @@ public class MainMenuController {
     // Перевіряє роль користувача та приховує кнопку категорії, якщо це не адміністратор
     if (currentUser.role() != UserRole.ADMIN) {
       categoryButton.setVisible(false);
+      manageMedicinesButton.setVisible(false);
     }
 
     // Platform.runLater для додавання обробників після ініціалізації сцени
@@ -88,10 +92,13 @@ public class MainMenuController {
   }
 
   private void showSavedMedicinePage() {
-    moveStackPane(bookmarksButton);
+    moveStackPane(savedMedicineButton);
     loadFXML("/view/savedMedicine.fxml");
   }
-
+  private void showManageMedicinesPage() {
+    moveStackPane(manageMedicinesButton);
+    loadFXML("/view/medicineManagement.fxml");
+  }
   private void showCategoryPage() {
     moveStackPane(categoryButton);
     loadFXML("/view/category.fxml");

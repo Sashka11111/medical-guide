@@ -7,7 +7,7 @@ import java.util.List;
 public interface MedicinesRepository {
 
   // Додати новий медикамент
-  void addMedicine(Medicine medicine);
+  int addMedicine(Medicine medicine);
 
   // Оновити існуючий медикамент
   void updateMedicine(Medicine medicine) throws EntityNotFoundException;

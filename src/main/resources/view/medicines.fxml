@@ -24,19 +24,19 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <HBox layoutX="54.0" layoutY="14.0" prefHeight="62.0" prefWidth="526.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-padding: 10;">
+      <HBox layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="526.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-padding: 8;">
          <children>
-            <TextField fx:id="searchTextField" prefHeight="38.0" prefWidth="458.0" promptText="Натисніть тут для пошуку" style="-fx-background-color: transparent;">
+            <TextField fx:id="searchTextField" prefHeight="35.0" prefWidth="458.0" promptText="Натисніть тут для пошуку" style="-fx-background-color: transparent;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="30.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="43.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../data/search.png" />
                      </image>
@@ -73,5 +73,6 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="16.0" layoutY="73.0" prefHeight="18.0" prefWidth="601.0" textAlignment="CENTER" textFill="RED" />
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package com.kudelych.medicalguide.persistence.repository.impl;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
+import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.repository.contract.MedicinesRepository;
 
@@ -18,7 +19,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
   }
 
   @Override
-  public void addMedicine(Medicine medicine) {
+  public int addMedicine(Medicine medicine) {
     String query = "INSERT INTO Medicines (name, description, manufacturer, form, purpose, image) VALUES (?, ?, ?, ?, ?, ?)";
     try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -29,8 +30,16 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
       preparedStatement.setString(5, medicine.purpose());
       preparedStatement.setBytes(6, medicine.image());
       preparedStatement.executeUpdate();
+      try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+        if (generatedKeys.next()) {
+          return generatedKeys.getInt(1);
+        } else {
+          throw new SQLException("Creating goal failed, no ID obtained.");
+        }
+      }
     } catch (SQLException e) {
       e.printStackTrace();
+      return -1;
     }
   }
 
@@ -150,6 +159,57 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  // Methods to manage the many-to-many relationship with categories
+  public void addCategoryToMedicine(int medicineId, int categoryId) throws EntityNotFoundException {
+    String query = "INSERT INTO MedicineCategories (medicine_id, category_id) VALUES (?, ?)";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, medicineId);
+      preparedStatement.setInt(2, categoryId);
+      preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      if (e.getErrorCode() == 19) { // SQLite constraint violation
+        throw new EntityNotFoundException("Унікальний constraint порушено для medicine_id: " + medicineId + " та category_id: " + categoryId, e);
+      }
+      e.printStackTrace();
+    }
+  }
+
+  public void removeCategoryFromMedicine(int medicineId, int categoryId) throws EntityNotFoundException {
+    String query = "DELETE FROM MedicineCategories WHERE medicine_id = ? AND category_id = ?";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, medicineId);
+      preparedStatement.setInt(2, categoryId);
+      int affectedRows = preparedStatement.executeUpdate();
+      if (affectedRows == 0) {
+        throw new EntityNotFoundException("Зв'язок між medicine_id: " + medicineId + " та category_id: " + categoryId + " не знайдено");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public List<Category> getCategoriesByMedicineId(int medicineId) {
+    String query = "SELECT c.* FROM Categories c " +
+        "JOIN MedicineCategories mc ON c.category_id = mc.category_id " +
+        "WHERE mc.medicine_id = ?";
+    List<Category> categories = new ArrayList<>();
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, medicineId);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        int id = resultSet.getInt("category_id");
+        String name = resultSet.getString("name");
+        categories.add(new Category(id, name));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return categories;
   }
 
   private Medicine mapMedicine(ResultSet resultSet) throws SQLException {

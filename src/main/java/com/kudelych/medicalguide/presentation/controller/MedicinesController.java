@@ -7,10 +7,8 @@ import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -20,7 +18,6 @@ import javafx.scene.layout.RowConstraints;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import javafx.scene.text.Text;
 
 public class MedicinesController {
 
@@ -39,7 +36,10 @@ public class MedicinesController {
   @FXML
   private TextField searchTextField;
   @FXML
-  private Button saveMedicineButton;
+  private Label errorLabel;
+  @FXML
+  private ScrollPane medicinesScrollPane;
+
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
   private List<Medicine> savedMedicines;
@@ -64,10 +64,14 @@ public class MedicinesController {
   private void displayMedicineCards(List<Medicine> medicines) {
     medicinesGridPane.getChildren().clear();
     if (medicines.isEmpty()) {
-      Text noResults = new Text("На жаль, таких ліків немає");
-      medicinesGridPane.add(noResults, 0, 0);
+      errorLabel.setText("На жаль, таких ліків немає");
+      medicinesScrollPane.setVisible(false);
       return;
+    } else {
+      errorLabel.setText("");
+      medicinesScrollPane.setVisible(true);
     }
+
     int column = 0;
     int row = 0;
     int cardsPerRow = 3;
@@ -105,7 +109,7 @@ public class MedicinesController {
 
   private AnchorPane loadMedicineCard(Medicine medicine) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicine_card.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicineCard.fxml"));
       AnchorPane card = loader.load();
       MedicineCardController controller = loader.getController();
       if (controller != null) {
@@ -118,7 +122,7 @@ public class MedicinesController {
       }
     } catch (IOException e) {
       e.printStackTrace();
-      System.err.println("Помилка завантаження medicine_card.fxml");
+      System.err.println("Помилка завантаження medicineCard.fxml");
       return null;
     }
   }
@@ -137,29 +141,17 @@ public class MedicinesController {
     if (selectedMedicine != null) {
       saveMedicine(selectedMedicine);
     } else {
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
-      alert.setHeaderText(null);
-      alert.setContentText("Ви не вибрали лікарський засіб.");
-      alert.showAndWait();
+      AlertController.showAlert("Збереження лікарського засобу", "Ви не вибрали лікарський засіб.");
     }
   }
 
   public void saveMedicine(Medicine medicine) {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     if (savedMedicines.stream().anyMatch(savedMedicine -> savedMedicine.id() == medicine.id())) {
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
-      alert.setHeaderText(null);
-      alert.setContentText("Цей лікарський засіб вже збережено.");
-      alert.showAndWait();
+      AlertController.showAlert("Збереження лікарського засобу", "Цей лікарський засіб збережено.");
     } else {
       medicinesRepository.addSavedMedicine(currentUser.id(), medicine.id());
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Збереження лікарського засобу");
-      alert.setHeaderText(null);
-      alert.setContentText("Лікарський засіб збережено: " + medicine.name());
-      alert.showAndWait();
+      AlertController.showAlert("Збереження лікарського засобу", "Лікарський засіб " + medicine.name()+" збережено.");
       loadMedicines(); // Оновлення списку збережених ліків
     }
   }

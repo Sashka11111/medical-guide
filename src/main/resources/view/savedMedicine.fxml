@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.SavedMedicinesController">
   <children>
-    <ScrollPane layoutX="7.0" layoutY="8.0" prefHeight="646.0" prefWidth="631.0" style="-fx-background-color: transparent;">
+    <ScrollPane layoutX="7.0" layoutY="24.0" prefHeight="630.0" prefWidth="631.0" style="-fx-background-color: transparent;">
       <content>
         <GridPane fx:id="savedMedicinesGridPane" hgap="20.0" prefHeight="0.0" prefWidth="45.0" style="-fx-padding: 20;" vgap="20.0">
           <columnConstraints>
@@ -24,7 +24,7 @@
     </ScrollPane>
     <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" styleClass="info-pane" stylesheets="@../design/style.css">
       <children>
-        <Button fx:id="deleteSaveMedicineButton" layoutX="33.0" layoutY="596.0" prefHeight="42.0" prefWidth="202.0" onAction="#handleDeleteAction" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
+        <Button fx:id="deleteSaveMedicineButton" layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
           <font>
             <Font size="16.0" />
           </font>
@@ -50,5 +50,6 @@
         </ImageView>
       </children>
     </AnchorPane>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="29.0" layoutY="5.0" prefHeight="18.0" prefWidth="601.0" textAlignment="CENTER" textFill="RED" />
   </children>
 </AnchorPane>

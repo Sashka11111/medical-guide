@@ -8,8 +8,6 @@ import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -33,7 +31,8 @@ public class SavedMedicinesController {
   private Label medicineForm;
   @FXML
   private Label medicinePurpose;
-
+  @FXML
+  private Label errorLabel;
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
 
@@ -54,6 +53,10 @@ public class SavedMedicinesController {
 
   private void displaySavedMedicineCards(List<Medicine> medicines) {
     savedMedicinesGridPane.getChildren().clear();
+    if (medicines.isEmpty()) {
+      errorLabel.setText("Поки у Вас немає збережених ліків");
+      return;
+    }
     int column = 0;
     int row = 0;
     int cardsPerRow = 3;
@@ -91,7 +94,7 @@ public class SavedMedicinesController {
 
   private AnchorPane loadMedicineCard(Medicine medicine) {
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicine_card.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicineCard.fxml"));
       AnchorPane card = loader.load();
       MedicineCardController controller = loader.getController();
       if (controller != null) {
@@ -103,7 +106,7 @@ public class SavedMedicinesController {
       }
     } catch (IOException e) {
       e.printStackTrace();
-      System.err.println("Error loading medicine_card.fxml");
+      System.err.println("Error loading medicineCard.fxml");
       return null;
     }
   }
@@ -113,11 +116,7 @@ public class SavedMedicinesController {
     if (selectedMedicine != null) {
       deleteMedicine(selectedMedicine);
     } else {
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Видалення лікарського засобу");
-      alert.setHeaderText(null);
-      alert.setContentText("Ви не вибрали лікарський засіб.");
-      alert.showAndWait();
+      AlertController.showAlert("Видалення лікарського засобу", "Ви не вибрали лікарський засіб.");
     }
   }
 
@@ -125,21 +124,12 @@ public class SavedMedicinesController {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     try {
       medicinesRepository.removeSavedMedicine(currentUser.id(), medicine.id());
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Видалення лікарського засобу");
-      alert.setHeaderText(null);
-      alert.setContentText("Лікарський засіб: " + medicine.name() + " успішно видалено");
-      alert.showAndWait();
-      // Після видалення оновлюємо відображення збережених ліків
+      AlertController.showAlert("Видалення лікарського засобу", "Лікарський засіб: "+ medicine.name() + " успішно видалено");
       loadSavedMedicines();
       // Очищуємо інформаційні поля
       clearMedicineDetails();
     } catch (EntityNotFoundException e) {
-      Alert alert = new Alert(AlertType.ERROR);
-      alert.setTitle("Помилка видалення");
-      alert.setHeaderText(null);
-      alert.setContentText("Не вдалося знайти лікарський засіб для видалення.");
-      alert.showAndWait();
+      AlertController.showAlert("Помилка видалення", "Не вдалося знайти лікарський засіб для видалення.");
     }
   }
 

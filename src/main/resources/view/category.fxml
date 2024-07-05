@@ -10,25 +10,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="669.0" prefWidth="918.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.CategoryController">
+<AnchorPane prefHeight="669.0" prefWidth="918.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.CategoryController">
   <children>
-    <AnchorPane layoutX="14.0" layoutY="31.0" prefHeight="75.0" prefWidth="898.0" style="-fx-background-color: WHITE;" styleClass="border" stylesheets="@../design/style.css" AnchorPane.rightAnchor="7.0">
+    <AnchorPane layoutX="520.0" layoutY="184.0" prefHeight="237.0" prefWidth="346.0" style="-fx-background-color: transparent; -fx-border-color: #004C4C; -fx-border-radius: 8; -fx-border-width: 2;">
       <children>
-        <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="120.0" text="Категорія:">
+        <Label layoutX="114.0" layoutY="27.0" prefHeight="38.0" prefWidth="117.0" text="Категорія">
           <font>
-            <Font size="24.0" />
+            <Font size="26.0" />
           </font>
         </Label>
-        <TextField fx:id="addCategory" layoutX="134.0" layoutY="14.0" prefHeight="42.0" prefWidth="251.0" style="-fx-border-color: #004C4C; -fx-border-radius: 5;">
-          <font>
-            <Font size="18.0" />
-          </font></TextField>
-        <Button fx:id="btn_add" layoutX="463.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Додати" textFill="WHITE">
+        <Button fx:id="btn_add" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="151.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Додати" textFill="WHITE">
           <font>
             <Font size="18.0" />
           </font>
         </Button>
-        <Button fx:id="btn_clear" layoutX="396.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #004C4C;" textFill="WHITE">
+        <Button fx:id="btn_clear" layoutX="282.0" layoutY="73.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="46.0" style="-fx-background-color: #004C4C;" textFill="WHITE">
           <font>
             <Font size="18.0" />
           </font>
@@ -40,22 +36,27 @@
             </ImageView>
           </graphic>
         </Button>
-        <Button fx:id="btn_edit" layoutX="606.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Редагувати" textFill="WHITE">
+        <Button fx:id="btn_edit" layoutX="90.0" layoutY="189.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Редагувати" textFill="WHITE">
           <font>
             <Font size="18.0" />
           </font>
         </Button>
-        <Button fx:id="btn_delete" layoutX="745.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Видалити" textFill="WHITE">
+        <Button fx:id="btn_delete" layoutX="186.0" layoutY="137.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="151.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Видалити" textFill="WHITE">
           <font>
             <Font size="18.0" />
           </font>
         </Button>
+        <TextField fx:id="addCategory" layoutX="24.0" layoutY="73.0" prefHeight="42.0" prefWidth="251.0" style="-fx-border-color: #004C4C; -fx-border-radius: 5;" styleClass="textfield" stylesheets="@../design/style.css">
+          <font>
+            <Font size="18.0" />
+          </font>
+            </TextField>
       </children>
     </AnchorPane>
-    <TableView fx:id="Category_tableView" layoutX="126.4" layoutY="134.4" prefHeight="519.0" prefWidth="679.0" stylesheets="@../design/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="134.0">
+    <TableView fx:id="Category_tableView" layoutX="15.2" layoutY="32.0" prefHeight="627.0" prefWidth="481.0" stylesheets="@../design/style.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="422.0" AnchorPane.topAnchor="32.0">
       <columns>
-        <TableColumn fx:id="Category_col_IdCategory" prefWidth="106" text="ID категорії" />
-        <TableColumn fx:id="Category_col_NameCategory" prefWidth="119" text="Категорія" />
+        <TableColumn fx:id="Category_col_IdCategory" prefWidth="251.20006036758423" text="ID категорії" />
+        <TableColumn fx:id="Category_col_NameCategory" prefWidth="215.199951171875" text="Категорія" />
       </columns>
       <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
