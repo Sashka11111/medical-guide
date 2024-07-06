@@ -60,7 +60,7 @@
 }
 
 .table-view {
-  -fx-background-color: transparent;
+  -fx-background-color: white;
   -fx-border-color: linear-gradient(to bottom, #004C4C, #006666);
   -fx-border-width: 2px;
   -fx-border-radius: 8px;

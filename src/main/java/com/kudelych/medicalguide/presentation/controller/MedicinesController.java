@@ -2,8 +2,10 @@ package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.persistence.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
+import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
+import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.scene.layout.RowConstraints;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class MedicinesController {
 
@@ -39,13 +43,16 @@ public class MedicinesController {
   private Label errorLabel;
   @FXML
   private ScrollPane medicinesScrollPane;
-
+  @FXML
+  private TextFlow medicineCategoriesTextFlow;
   private MedicinesRepositoryImpl medicinesRepository;
+  private CategoryRepositoryImpl categoryRepository;
   private Medicine selectedMedicine;
   private List<Medicine> savedMedicines;
 
   public MedicinesController() {
     this.medicinesRepository = new MedicinesRepositoryImpl(new DatabaseConnection().getDataSource());
+    this.categoryRepository = new CategoryRepositoryImpl(new DatabaseConnection().getDataSource());  // Initialize the CategoryRepository
   }
 
   @FXML
@@ -163,5 +170,13 @@ public class MedicinesController {
     medicineManufacturer.setText(medicine.manufacturer());
     medicineForm.setText(medicine.form());
     medicinePurpose.setText(medicine.purpose());
+
+    List<Category> categories = medicinesRepository.getCategoriesByMedicineId(medicine.id());
+    String categoriesText = categories.stream()
+        .map(Category::name)
+        .collect(Collectors.joining(", "));
+    Text categoriesTextElement = new Text(categoriesText);
+    medicineCategoriesTextFlow.getChildren().clear();
+    medicineCategoriesTextFlow.getChildren().add(categoriesTextElement);
   }
 }

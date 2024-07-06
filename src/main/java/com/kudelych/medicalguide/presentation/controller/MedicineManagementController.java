@@ -6,28 +6,19 @@ import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
-import java.io.IOException;
-import java.util.Arrays;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.FileChooser;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import org.controlsfx.control.CheckComboBox;
 import javafx.util.StringConverter;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.List;
 
 public class MedicineManagementController {
@@ -116,6 +107,13 @@ public class MedicineManagementController {
       manufacturerField.setText(medicine.manufacturer());
       formField.setText(medicine.form());
       purposeField.setText(medicine.purpose());
+      if (medicine.image() != null) {
+        imageView.setImage(new Image(new ByteArrayInputStream(medicine.image())));
+        selectedImageBytes = medicine.image(); // Ensure the selected image is the current one
+      } else {
+          imageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
+          selectedImageBytes = null; // Зображення не вибрано
+      }
       // Set selected categories
       categoryComboBox.getCheckModel().clearChecks();
       List<Category> medicineCategories = medicinesRepository.getCategoriesByMedicineId(medicine.id());
@@ -140,18 +138,14 @@ public class MedicineManagementController {
     );
     List<Category> selectedCategories = categoryComboBox.getCheckModel().getCheckedItems();
     try {
-      // Додаємо лік до репозиторію і отримуємо його ID
       int newMedicineId = medicinesRepository.addMedicine(newMedicine);
 
-      // Перевіряємо, чи вдалося додати лік і отримати його ID
       if (newMedicineId != -1) {
-        // Додаємо вибрані категорії до ліку за отриманим ID
         for (Category category : selectedCategories) {
           medicinesRepository.addCategoryToMedicine(newMedicineId, category.id());
         }
       }
 
-      // Оновлюємо таблицю ліків та очищаємо поля введення
       loadMedicines();
       clearFields();
 
@@ -160,26 +154,28 @@ public class MedicineManagementController {
     }
   }
 
-
   @FXML
   private void handleEditAction() {
     Medicine selectedMedicine = medicineTable.getSelectionModel().getSelectedItem();
     if (selectedMedicine != null) {
-      selectedMedicine.name();
-      selectedMedicine.description();
-      selectedMedicine.manufacturer();
-      selectedMedicine.form();
-      selectedMedicine.purpose();
-      selectedMedicine.image();
+      Medicine updatedMedicine = new Medicine(
+          selectedMedicine.id(),
+          nameField.getText(),
+          descriptionArea.getText(),
+          manufacturerField.getText(),
+          formField.getText(),
+          purposeField.getText(),
+          selectedImageBytes != null ? selectedImageBytes : selectedMedicine.image()
+      );
 
       try {
-        medicinesRepository.updateMedicine(selectedMedicine);
-        List<Integer> categoryIds = categoryRepository.getCategoriesByMedicineId(selectedMedicine.id());
+        medicinesRepository.updateMedicine(updatedMedicine);
+        List<Integer> categoryIds = categoryRepository.getCategoriesByMedicineId(updatedMedicine.id());
         for (int categoryId : categoryIds) {
-          categoryRepository.removeCategoryFromMedicine(categoryId, selectedMedicine.id());
+          categoryRepository.removeCategoryFromMedicine(updatedMedicine.id(), categoryId);
         }
         for (Category category : categoryComboBox.getCheckModel().getCheckedItems()) {
-          categoryRepository.addCategoryToMedicine(selectedMedicine.id(), category.id());
+          categoryRepository.addCategoryToMedicine(updatedMedicine.id(), category.id());
         }
         loadMedicines();
       } catch (EntityNotFoundException e) {

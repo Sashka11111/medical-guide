@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.SavedMedicinesController">
   <children>
@@ -29,7 +30,7 @@
             <Font size="16.0" />
           </font>
         </Button>
-        <VBox fx:id="medicineDetailsBox" layoutY="200.0" prefHeight="396.0" prefWidth="260.0" spacing="10.0">
+        <VBox fx:id="medicineDetailsBox" layoutY="145.0" prefHeight="451.0" prefWidth="260.0" spacing="10.0">
           <children>
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="271.0" style="-fx-font-weight: bold;" text="Назва" />
             <Label fx:id="medicineName" alignment="CENTER" prefHeight="51.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
@@ -41,9 +42,11 @@
             <Label fx:id="medicineForm" alignment="CENTER" prefHeight="57.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Призначення" />
             <Label fx:id="medicinePurpose" alignment="CENTER" prefHeight="54.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Категорії" />
+            <TextFlow fx:id="medicineCategoriesTextFlow" prefHeight="46.0" prefWidth="260.0" textAlignment="CENTER" />
           </children>
         </VBox>
-        <ImageView fx:id="medicineImage" fitHeight="177.0" fitWidth="155.0" layoutX="53.0" layoutY="14.0" preserveRatio="true">
+        <ImageView fx:id="medicineImage" fitHeight="113.0" fitWidth="184.0" layoutX="75.0" layoutY="14.0" preserveRatio="true">
           <image>
             <Image url="@../data/icon.png" />
           </image>

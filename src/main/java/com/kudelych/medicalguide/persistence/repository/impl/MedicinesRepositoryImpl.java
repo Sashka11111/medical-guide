@@ -203,7 +203,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
       ResultSet resultSet = preparedStatement.executeQuery();
       while (resultSet.next()) {
         int id = resultSet.getInt("category_id");
-        String name = resultSet.getString("name");
+        String name = resultSet.getString("category_name");
         categories.add(new Category(id, name));
       }
     } catch (SQLException e) {
