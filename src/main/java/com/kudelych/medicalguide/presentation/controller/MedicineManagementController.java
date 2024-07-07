@@ -1,6 +1,7 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
+import com.kudelych.medicalguide.domain.validation.MedicinesValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.Category;
@@ -11,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -25,31 +25,43 @@ public class MedicineManagementController {
 
   @FXML
   private TextField nameField;
+
   @FXML
   private TextArea descriptionArea;
+
   @FXML
   private TextField manufacturerField;
+
   @FXML
   private TextField formField;
+
   @FXML
   private TextField purposeField;
+
   @FXML
   private Button clearFieldsButton;
+
   @FXML
   private TableView<Medicine> medicineTable;
+
   @FXML
   private TableColumn<Medicine, String> nameColumn;
+
   @FXML
   private TableColumn<Medicine, String> descriptionColumn;
+
   @FXML
   private TableColumn<Medicine, String> manufacturerColumn;
+
   @FXML
   private TableColumn<Medicine, String> formColumn;
+
   @FXML
   private TableColumn<Medicine, String> purposeColumn;
 
   @FXML
   private ImageView imageView;
+
   @FXML
   private CheckComboBox<Category> categoryComboBox;
 
@@ -65,25 +77,29 @@ public class MedicineManagementController {
 
   @FXML
   private void initialize() {
+    // Налаштування властивостей для колонок таблиці
     nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
     descriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().description()));
     manufacturerColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().manufacturer()));
     formColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().form()));
     purposeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().purpose()));
 
-    loadMedicines();
-    loadCategories();
+    loadMedicines(); // Завантаження списку лікарських засобів
+    loadCategories(); // Завантаження списку категорій
 
+    // Обробник вибору рядка в таблиці
     medicineTable.getSelectionModel().selectedItemProperty().addListener(
         (observable, oldValue, newValue) -> showMedicineDetails(newValue));
-    clearFieldsButton.setOnAction(event -> clearFields());
+    clearFieldsButton.setOnAction(event -> clearFields()); // Обробник кнопки очищення полів
   }
 
+  // Метод для завантаження лікарських засобів
   private void loadMedicines() {
     medicineData.setAll(medicinesRepository.findAll());
     medicineTable.setItems(medicineData);
   }
 
+  // Метод для завантаження категорій
   private void loadCategories() {
     List<Category> categories = categoryRepository.getAllCategories();
     categoryComboBox.getItems().addAll(categories);
@@ -100,6 +116,7 @@ public class MedicineManagementController {
     });
   }
 
+  // Метод для відображення деталей лікарського засобу
   private void showMedicineDetails(Medicine medicine) {
     if (medicine != null) {
       nameField.setText(medicine.name());
@@ -109,12 +126,12 @@ public class MedicineManagementController {
       purposeField.setText(medicine.purpose());
       if (medicine.image() != null) {
         imageView.setImage(new Image(new ByteArrayInputStream(medicine.image())));
-        selectedImageBytes = medicine.image(); // Ensure the selected image is the current one
+        selectedImageBytes = medicine.image();
       } else {
-          imageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
-          selectedImageBytes = null; // Зображення не вибрано
+        imageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
+        selectedImageBytes = null; // Зображення не вибрано
       }
-      // Set selected categories
+      // Встановлення вибраних категорій
       categoryComboBox.getCheckModel().clearChecks();
       List<Category> medicineCategories = medicinesRepository.getCategoriesByMedicineId(medicine.id());
       for (Category category : medicineCategories) {
@@ -125,6 +142,7 @@ public class MedicineManagementController {
     }
   }
 
+  // Обробник кнопки "Додати"
   @FXML
   private void handleAddAction() {
     Medicine newMedicine = new Medicine(
@@ -136,6 +154,13 @@ public class MedicineManagementController {
         purposeField.getText(),
         selectedImageBytes
     );
+
+    // Валідація нового лікарського засобу
+    if (!MedicinesValidator.validateMedicine(newMedicine)) {
+      AlertController.showAlert("Помилка", "Будь ласка, заповніть усі поля.");
+      return;
+    }
+
     List<Category> selectedCategories = categoryComboBox.getCheckModel().getCheckedItems();
     try {
       int newMedicineId = medicinesRepository.addMedicine(newMedicine);
@@ -145,7 +170,6 @@ public class MedicineManagementController {
           medicinesRepository.addCategoryToMedicine(newMedicineId, category.id());
         }
       }
-
       loadMedicines();
       clearFields();
 
@@ -154,6 +178,7 @@ public class MedicineManagementController {
     }
   }
 
+  // Обробник кнопки "Редагувати"
   @FXML
   private void handleEditAction() {
     Medicine selectedMedicine = medicineTable.getSelectionModel().getSelectedItem();
@@ -179,13 +204,14 @@ public class MedicineManagementController {
         }
         loadMedicines();
       } catch (EntityNotFoundException e) {
-        showAlert("Error", "Medicine not found!");
+        AlertController.showAlert("Помилка", "Лікарський засіб не знайдено!");
       }
     } else {
-      showAlert("Error", "No medicine selected for editing.");
+      AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для редагування.");
     }
   }
 
+  // Обробник кнопки "Видалити"
   @FXML
   private void handleDeleteAction() {
     Medicine selectedMedicine = medicineTable.getSelectionModel().getSelectedItem();
@@ -199,17 +225,18 @@ public class MedicineManagementController {
         loadMedicines();
         clearFields();
       } catch (EntityNotFoundException e) {
-        showAlert("Error", "Medicine not found!");
+        AlertController.showAlert("Помилка", "Лікарський засіб не знайдено!");
       }
     } else {
-      showAlert("Error", "No medicine selected for deletion.");
+      AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для видалення.");
     }
   }
 
+  // Обробник кнопки вибору зображення
   @FXML
   private void handleSelectImageAction() {
     FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Зображення", "*.png", "*.jpg", "*.jpeg"));
     File selectedFile = fileChooser.showOpenDialog(null);
     if (selectedFile != null) {
       try (FileInputStream fis = new FileInputStream(selectedFile)) {
@@ -223,6 +250,7 @@ public class MedicineManagementController {
     }
   }
 
+  // Метод для очищення полів вводу
   private void clearFields() {
     nameField.clear();
     descriptionArea.clear();
@@ -232,13 +260,5 @@ public class MedicineManagementController {
     imageView.setImage(null);
     selectedImageBytes = null;
     categoryComboBox.getCheckModel().clearChecks();
-  }
-
-  private void showAlert(String title, String message) {
-    Alert alert = new Alert(AlertType.ERROR);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 }

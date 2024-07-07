@@ -1,6 +1,6 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-import com.kudelych.medicalguide.persistence.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.entity.UserRole;
 import java.io.IOException;
@@ -26,14 +26,19 @@ public class MainMenuController {
 
   @FXML
   private Button medicinesButton;
+
   @FXML
   private Button savedMedicineButton;
+
   @FXML
   private Button categoryButton;
+
   @FXML
   private Button manageMedicinesButton;
+
   @FXML
   private Button closeButton;
+
   @FXML
   private Button minimazeButton;
 
@@ -42,8 +47,10 @@ public class MainMenuController {
 
   @FXML
   private StackPane stackPane;
+
   @FXML
   private StackPane contentArea;
+
   @FXML
   private Label userName;
 

@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MainMenuController">
    <children>
-      <AnchorPane fx:id="sidebar" layoutY="45.0" prefHeight="663.0" prefWidth="186.0" style="-fx-background-color: #006666;">
+      <AnchorPane layoutY="45.0" prefHeight="663.0" prefWidth="186.0" style="-fx-background-color: #006666;">
          <children>
             <Line endX="78.40000915527344" endY="-1.0" layoutX="81.0" layoutY="115.0" startX="-67.0" startY="-1" stroke="WHITE" />
             <Button fx:id="medicinesButton" layoutX="-1.0" layoutY="185.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="182.0" styleClass="side-btn" stylesheets="@../design/style.css" text="Лікарські засоби" textFill="WHITE">
@@ -83,7 +83,7 @@
                </image></ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="contentContainer" layoutX="182.4" layoutY="44.8" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <AnchorPane layoutX="182.4" layoutY="44.8" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
          <children>
             <StackPane fx:id="contentArea" prefHeight="663.0" prefWidth="924.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>

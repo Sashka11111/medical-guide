@@ -1,4 +1,4 @@
-package com.kudelych.medicalguide.domain;
+package com.kudelych.medicalguide.domain.security;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

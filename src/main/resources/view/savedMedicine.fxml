@@ -25,12 +25,12 @@
     </ScrollPane>
     <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" styleClass="info-pane" stylesheets="@../design/style.css">
       <children>
-        <Button fx:id="deleteSaveMedicineButton" layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
+        <Button layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
           <font>
             <Font size="16.0" />
           </font>
         </Button>
-        <VBox fx:id="medicineDetailsBox" layoutY="145.0" prefHeight="451.0" prefWidth="260.0" spacing="10.0">
+        <VBox layoutY="145.0" prefHeight="451.0" prefWidth="260.0" spacing="10.0">
           <children>
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="271.0" style="-fx-font-weight: bold;" text="Назва" />
             <Label fx:id="medicineName" alignment="CENTER" prefHeight="51.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
@@ -46,7 +46,7 @@
             <TextFlow fx:id="medicineCategoriesTextFlow" prefHeight="46.0" prefWidth="260.0" textAlignment="CENTER" />
           </children>
         </VBox>
-        <ImageView fx:id="medicineImage" fitHeight="113.0" fitWidth="184.0" layoutX="75.0" layoutY="14.0" preserveRatio="true">
+        <ImageView fitHeight="113.0" fitWidth="184.0" layoutX="75.0" layoutY="14.0" preserveRatio="true">
           <image>
             <Image url="@../data/icon.png" />
           </image>

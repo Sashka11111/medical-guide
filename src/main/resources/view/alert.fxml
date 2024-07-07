@@ -15,7 +15,7 @@
             <Image url="@../data/icon.png" />
          </image></ImageView>
     <Label fx:id="messageLabel" alignment="CENTER" layoutX="7.0" layoutY="67.0" prefHeight="58.0" prefWidth="374.0" style="-fx-text-fill: #3c763d; -fx-font-size: 16px;" textAlignment="CENTER" wrapText="true" />
-    <Button fx:id="okButton" layoutX="145.0" layoutY="158.0" onAction="#handleOkAction" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #004C4C; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="OK">
+    <Button  layoutX="145.0" layoutY="158.0" onAction="#handleOkAction" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #004C4C; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="OK">
          <font>
             <Font size="18.0" />
          </font></Button>

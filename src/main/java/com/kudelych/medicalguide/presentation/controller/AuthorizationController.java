@@ -1,8 +1,8 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-import com.kudelych.medicalguide.domain.PasswordHashing;
+import com.kudelych.medicalguide.domain.security.PasswordHashing;
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
-import com.kudelych.medicalguide.persistence.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.contract.UserRepository;

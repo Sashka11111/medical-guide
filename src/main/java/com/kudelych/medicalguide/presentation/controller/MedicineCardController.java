@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.ByteArrayInputStream;
-import javafx.scene.input.MouseEvent;
 
 public class MedicineCardController {
 
@@ -18,7 +17,7 @@ public class MedicineCardController {
   private Label medicineName;
 
   private MedicinesController parentController;
-  private Medicine medicine;
+
   public void setMedicine(Medicine medicine) {
     medicineName.setText(medicine.name());
 

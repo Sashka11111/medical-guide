@@ -1,7 +1,7 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
-import com.kudelych.medicalguide.persistence.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
@@ -51,12 +51,14 @@ public class SavedMedicinesController {
     loadSavedMedicines();
   }
 
+  // Завантаження збережених ліків для поточного користувача
   private void loadSavedMedicines() {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     List<Medicine> savedMedicines = medicinesRepository.findSavedMedicinesByUserId(currentUser.id());
     displaySavedMedicineCards(savedMedicines);
   }
 
+  // Відображення карток збережених ліків
   private void displaySavedMedicineCards(List<Medicine> medicines) {
     savedMedicinesGridPane.getChildren().clear();
     if (medicines.isEmpty()) {
@@ -70,18 +72,21 @@ public class SavedMedicinesController {
     savedMedicinesGridPane.getColumnConstraints().clear();
     savedMedicinesGridPane.getRowConstraints().clear();
 
+    // Налаштування стовпців для сітки збережених ліків
     for (int i = 0; i < cardsPerRow; i++) {
       ColumnConstraints columnConstraints = new ColumnConstraints();
       columnConstraints.setPercentWidth(100.0 / cardsPerRow);
       savedMedicinesGridPane.getColumnConstraints().add(columnConstraints);
     }
 
+    // Налаштування рядків для сітки збережених ліків
     for (int i = 0; i < (int) Math.ceil((double) medicines.size() / cardsPerRow); i++) {
       RowConstraints rowConstraints = new RowConstraints();
       rowConstraints.setMinHeight(200);
       savedMedicinesGridPane.getRowConstraints().add(rowConstraints);
     }
 
+    // Додавання карток ліків до сітки
     for (Medicine medicine : medicines) {
       AnchorPane card = loadMedicineCard(medicine);
       if (card != null) {
@@ -93,11 +98,12 @@ public class SavedMedicinesController {
           row++;
         }
       } else {
-        System.err.println("Error loading card for medicine: " + medicine.name());
+        System.err.println("Помилка завантаження карти для лікарського засобу: " + medicine.name());
       }
     }
   }
 
+  // Завантаження карти лікарського засобу
   private AnchorPane loadMedicineCard(Medicine medicine) {
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/medicineCard.fxml"));
@@ -107,16 +113,17 @@ public class SavedMedicinesController {
         controller.setMedicine(medicine);
         return card;
       } else {
-        System.err.println("MedicineCardController is null");
+        System.err.println("Помилка: Об'єкт контролера MedicineCardController є null");
         return null;
       }
     } catch (IOException e) {
       e.printStackTrace();
-      System.err.println("Error loading medicineCard.fxml");
+      System.err.println("Помилка завантаження medicineCard.fxml");
       return null;
     }
   }
 
+  // Обробник події видалення лікарського засобу
   @FXML
   private void handleDeleteAction() {
     if (selectedMedicine != null) {
@@ -126,19 +133,20 @@ public class SavedMedicinesController {
     }
   }
 
+  // Видалення лікарського засобу зі списку збережених
   public void deleteMedicine(Medicine medicine) {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     try {
       medicinesRepository.removeSavedMedicine(currentUser.id(), medicine.id());
       AlertController.showAlert("Видалення лікарського засобу", "Лікарський засіб: "+ medicine.name() + " успішно видалено");
       loadSavedMedicines();
-      // Очищуємо інформаційні поля
       clearMedicineDetails();
     } catch (EntityNotFoundException e) {
       AlertController.showAlert("Помилка видалення", "Не вдалося знайти лікарський засіб для видалення.");
     }
   }
 
+  // Очищення полів з інформацією про лікарський засіб
   private void clearMedicineDetails() {
     selectedMedicine = null;
     medicineName.setText("");
@@ -146,8 +154,10 @@ public class SavedMedicinesController {
     medicineManufacturer.setText("");
     medicineForm.setText("");
     medicinePurpose.setText("");
+    medicineCategoriesTextFlow.getChildren().clear();
   }
 
+  // Відображення деталей обраного лікарського засобу
   private void displayMedicineDetails(Medicine medicine) {
     selectedMedicine = medicine;
     medicineName.setText(medicine.name());
@@ -156,6 +166,7 @@ public class SavedMedicinesController {
     medicineForm.setText(medicine.form());
     medicinePurpose.setText(medicine.purpose());
 
+    // Відображення категорій лікарського засобу
     List<Category> categories = medicinesRepository.getCategoriesByMedicineId(medicine.id());
     String categoriesText = categories.stream()
         .map(Category::name)

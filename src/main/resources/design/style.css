@@ -4,24 +4,29 @@
   -fx-border-color:  #004C4C;
   -fx-border-width: 0px 0px .4px 0px;
 }
+
 .textfield:focused{
   -fx-border-color:#000000;
   -fx-border-width: 0px 0px 1px 0px;
 }
+
 .combo-box{
   -fx-background-color: transparent;
   -fx-border-color:  #004C4C;
   -fx-border-width: 0px 0px .4px 0px;
 }
+
 .side-btn {
   -fx-background-color: transparent;
   -fx-border-radius: 5px; /* Округлені кути */
   -fx-cursor: hand; /* Зміна курсора при наведенні */
 }
+
 .side-btn:hover {
   -fx-background-color: rgba(255, 255, 255, 0.2); /* Прозорий колір фону при наведенні */
   -fx-cursor: hand;
 }
+
 .close-button {
   -fx-background-color: transparent; /* Колір фону кнопки */
   -fx-border-color: transparent; /* Колір межі кнопки */
@@ -37,6 +42,7 @@
   -fx-border-width: 0;
   -fx-border-radius: 2;
 }
+
 /* Стиль кнопки для згортання */
 .minimize-button {
   -fx-background-color: transparent;
@@ -45,7 +51,6 @@
 .minimize-button:hover {
   -fx-background-color: rgba(255, 255, 255, 0.2); /* Прозорий колір фону при наведенні */
 }
-
 
 .card {
   -fx-background-color: white;

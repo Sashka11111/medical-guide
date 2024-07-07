@@ -36,10 +36,8 @@ public class UserRepositoryImpl implements UserRepository {
   public User findByUsername(String username) throws EntityNotFoundException {
     String query = "SELECT * FROM Users WHERE username = ?";
     User user = null;
-
     try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
       preparedStatement.setString(1, username);
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         if (resultSet.next()) {

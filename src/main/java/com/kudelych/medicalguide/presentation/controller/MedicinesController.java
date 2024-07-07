@@ -1,11 +1,10 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-import com.kudelych.medicalguide.persistence.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
-import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,32 +26,40 @@ public class MedicinesController {
 
   @FXML
   private GridPane medicinesGridPane;
+
   @FXML
   private Label medicineName;
+
   @FXML
   private Label medicineDescription;
+
   @FXML
   private Label medicineManufacturer;
+
   @FXML
   private Label medicineForm;
+
   @FXML
   private Label medicinePurpose;
+
   @FXML
   private TextField searchTextField;
+
   @FXML
   private Label errorLabel;
+
   @FXML
   private ScrollPane medicinesScrollPane;
+
   @FXML
   private TextFlow medicineCategoriesTextFlow;
+
   private MedicinesRepositoryImpl medicinesRepository;
-  private CategoryRepositoryImpl categoryRepository;
   private Medicine selectedMedicine;
   private List<Medicine> savedMedicines;
 
   public MedicinesController() {
     this.medicinesRepository = new MedicinesRepositoryImpl(new DatabaseConnection().getDataSource());
-    this.categoryRepository = new CategoryRepositoryImpl(new DatabaseConnection().getDataSource());  // Initialize the CategoryRepository
   }
 
   @FXML

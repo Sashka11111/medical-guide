@@ -1,6 +1,6 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-import com.kudelych.medicalguide.domain.PasswordHashing;
+import com.kudelych.medicalguide.domain.security.PasswordHashing;
 import com.kudelych.medicalguide.domain.validation.UserValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.User;

@@ -18,11 +18,12 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     this.dataSource = dataSource;
   }
 
+  // Додати медикамент
   @Override
   public int addMedicine(Medicine medicine) {
     String query = "INSERT INTO Medicines (name, description, manufacturer, form, purpose, image) VALUES (?, ?, ?, ?, ?, ?)";
     try (Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
       preparedStatement.setString(1, medicine.name());
       preparedStatement.setString(2, medicine.description());
       preparedStatement.setString(3, medicine.manufacturer());
@@ -34,7 +35,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
         if (generatedKeys.next()) {
           return generatedKeys.getInt(1);
         } else {
-          throw new SQLException("Creating goal failed, no ID obtained.");
+          throw new SQLException("Помилка при створенні, не отримано ID.");
         }
       }
     } catch (SQLException e) {
@@ -43,6 +44,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
+  // Оновити медикамент
   @Override
   public void updateMedicine(Medicine medicine) throws EntityNotFoundException {
     String query = "UPDATE Medicines SET name = ?, description = ?, manufacturer = ?, form = ?, purpose = ?, image = ? WHERE medicine_id = ?";
@@ -64,6 +66,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
+  // Видалити медикамент за ідентифікатором
   @Override
   public void deleteMedicine(int id) throws EntityNotFoundException {
     String query = "DELETE FROM Medicines WHERE medicine_id = ?";
@@ -79,24 +82,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
-  @Override
-  public Medicine findById(int id) throws EntityNotFoundException {
-    String query = "SELECT * FROM Medicines WHERE medicine_id = ?";
-    try (Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-      preparedStatement.setInt(1, id);
-      try (ResultSet resultSet = preparedStatement.executeQuery()) {
-        if (resultSet.next()) {
-          return mapMedicine(resultSet);
-        } else {
-          throw new EntityNotFoundException("Медикамент з ідентифікатором " + id + " не знайдено");
-        }
-      }
-    } catch (SQLException e) {
-      throw new EntityNotFoundException("Помилка під час отримання медикаменту з ідентифікатором: " + id, e);
-    }
-  }
-
+  // Знайти всі медикаменти
   @Override
   public List<Medicine> findAll() {
     String query = "SELECT * FROM Medicines";
@@ -113,7 +99,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     return medicines;
   }
 
-  // Method to add a saved medicine for a user
+  // Додати збережений медикамент для користувача
   public void addSavedMedicine(int userId, int medicineId) {
     String query = "INSERT INTO SavedMedicine (user_id, medicine_id) VALUES (?, ?)";
     try (Connection connection = dataSource.getConnection();
@@ -126,11 +112,11 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
-  // Method to find all saved medicines for a user
+  // Знайти всі збережені медикаменти для користувача
   public List<Medicine> findSavedMedicinesByUserId(int userId) {
-    String query = "SELECT m.* FROM Medicines m " +
-        "JOIN SavedMedicine sm ON m.medicine_id = sm.medicine_id " +
-        "WHERE sm.user_id = ?";
+    String query = "SELECT * FROM Medicines " +
+        "JOIN SavedMedicine ON Medicines.medicine_id = SavedMedicine.medicine_id " +
+        "WHERE SavedMedicine.user_id = ?";
     List<Medicine> medicines = new ArrayList<>();
     try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -145,7 +131,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     return medicines;
   }
 
-  // Method to remove a saved medicine for a user
+  // Видалити збережений медикамент для користувача
   public void removeSavedMedicine(int userId, int medicineId) throws EntityNotFoundException {
     String query = "DELETE FROM SavedMedicine WHERE user_id = ? AND medicine_id = ?";
     try (Connection connection = dataSource.getConnection();
@@ -154,14 +140,14 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
       preparedStatement.setInt(2, medicineId);
       int affectedRows = preparedStatement.executeUpdate();
       if (affectedRows == 0) {
-        throw new EntityNotFoundException("Saved medicine not found for user_id: " + userId + " and medicine_id: " + medicineId);
+        throw new EntityNotFoundException("Збережений медикамент не знайдено для user_id: " + userId + " та medicine_id: " + medicineId);
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
-  // Methods to manage the many-to-many relationship with categories
+  // Додати категорію до медикаменту
   public void addCategoryToMedicine(int medicineId, int categoryId) throws EntityNotFoundException {
     String query = "INSERT INTO MedicineCategories (medicine_id, category_id) VALUES (?, ?)";
     try (Connection connection = dataSource.getConnection();
@@ -177,6 +163,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
+  // Видалити категорію з медикаменту
   public void removeCategoryFromMedicine(int medicineId, int categoryId) throws EntityNotFoundException {
     String query = "DELETE FROM MedicineCategories WHERE medicine_id = ? AND category_id = ?";
     try (Connection connection = dataSource.getConnection();
@@ -192,10 +179,11 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     }
   }
 
+  // Отримати категорії за ідентифікатором медикаменту
   public List<Category> getCategoriesByMedicineId(int medicineId) {
-    String query = "SELECT c.* FROM Categories c " +
-        "JOIN MedicineCategories mc ON c.category_id = mc.category_id " +
-        "WHERE mc.medicine_id = ?";
+    String query = "SELECT * FROM Categories " +
+        "JOIN MedicineCategories ON Categories.category_id = MedicineCategories.category_id " +
+        "WHERE MedicineCategories.medicine_id = ?";
     List<Category> categories = new ArrayList<>();
     try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -212,6 +200,7 @@ public class MedicinesRepositoryImpl implements MedicinesRepository {
     return categories;
   }
 
+  // Метод для маппінгу рядка ResultSet на об'єкт Medicine
   private Medicine mapMedicine(ResultSet resultSet) throws SQLException {
     int id = resultSet.getInt("medicine_id");
     String name = resultSet.getString("name");

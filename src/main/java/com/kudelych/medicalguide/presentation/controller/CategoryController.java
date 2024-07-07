@@ -1,13 +1,13 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.domain.validation.CategoryValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.repository.contract.CategoryRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
-import com.kudelych.medicalguide.presentation.viewmodel.CategoryViewModel;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,20 +16,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
 import java.util.List;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CategoryController {
 
   @FXML
-  private TableColumn<CategoryViewModel, Integer> Category_col_IdCategory;
+  private TableColumn<Category, Integer> Category_col_IdCategory;
 
   @FXML
-  private TableColumn<CategoryViewModel, String> Category_col_NameCategory;
+  private TableColumn<Category, String> Category_col_NameCategory;
 
   @FXML
-  private TableView<CategoryViewModel> Category_tableView;
+  private TableView<Category> Category_tableView;
 
   @FXML
   private TextField addCategory;
@@ -47,22 +45,20 @@ public class CategoryController {
   @FXML
   private Label errorMessage;
   private final CategoryRepository categoryRepository;
-  //private final GoalRepository goalRepository;
 
   public CategoryController() {
     this.categoryRepository = new CategoryRepositoryImpl(new DatabaseConnection().getDataSource());
-   // this.goalRepository = new GoalRepositoryImpl(new DatabaseConnection().getDataSource());
   }
 
   @FXML
   void initialize() {
-    Category_col_IdCategory.setCellValueFactory(cellData -> cellData.getValue().idCategoryProperty().asObject());
-    Category_col_NameCategory.setCellValueFactory(cellData -> cellData.getValue().nameCategoryProperty());
+    Category_col_IdCategory.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().id()).asObject());
+    Category_col_NameCategory.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
     loadCategories();
     Category_tableView.getSelectionModel().selectedItemProperty().addListener(
         (observable, oldValue, newValue) -> {
           if (newValue != null) {
-            addCategory.setText(newValue.getNameCategory());
+            addCategory.setText(newValue.name());
           }
         }
     );
@@ -74,8 +70,8 @@ public class CategoryController {
 
   private void loadCategories() {
     List<Category> categories = categoryRepository.getAllCategories();
-    ObservableList<CategoryViewModel> categoryViewModels = FXCollections.observableArrayList();
-    categories.forEach(category -> categoryViewModels.add(new CategoryViewModel(category)));
+    ObservableList<Category> categoryViewModels = FXCollections.observableArrayList();
+    categoryViewModels.setAll(categoryRepository.getAllCategories());
     Category_tableView.setItems(categoryViewModels);
   }
 
@@ -99,35 +95,37 @@ public class CategoryController {
 
   private void onClearClicked() {
     addCategory.clear();
+    errorMessage.setText("");
   }
 
   private void onDeleteClicked() {
-    CategoryViewModel selectedCategoryViewModel = Category_tableView.getSelectionModel().getSelectedItem();
-    if (selectedCategoryViewModel != null) {
-     /* try {
-        int categoryId = selectedCategoryViewModel.getIdCategory();
-        List<Integer> associatedGoals = goalRepository.getGoalsByCategoryId(categoryId);
-        if (associatedGoals.isEmpty()) {
+    Category selectedCategory = Category_tableView.getSelectionModel().getSelectedItem();
+    if (selectedCategory != null) {
+      try {
+        int categoryId = selectedCategory.id();
+        List<Integer> byCategoryId = categoryRepository.getMedicineByCategoryId(categoryId);
+        if (byCategoryId.isEmpty()) {
           categoryRepository.deleteCategory(categoryId);
           loadCategories();
+          onClearClicked();
         } else {
           errorMessage.setText("Ця категорія має пов'язані елементи і не може бути видалена.");
         }
       } catch (EntityNotFoundException e) {
         e.printStackTrace();
-      }*/
+      }
     }
   }
 
   private void onEditClicked() {
-    CategoryViewModel selectedCategoryViewModel = Category_tableView.getSelectionModel().getSelectedItem();
-    if (selectedCategoryViewModel != null) {
+    Category selectedCategory = Category_tableView.getSelectionModel().getSelectedItem();
+    if (selectedCategory != null) {
       String newName = addCategory.getText().trim();
       List<Category> existingCategories = categoryRepository.getAllCategories();
       String validationMessage = CategoryValidator.validateCategoryName(newName, existingCategories);
       if (validationMessage == null) {
         try {
-          Category updatedCategory = new Category(selectedCategoryViewModel.getIdCategory(), newName);
+          Category updatedCategory = new Category(selectedCategory.id(), newName);
           categoryRepository.updateCategory(updatedCategory);
           loadCategories();
           addCategory.clear();
