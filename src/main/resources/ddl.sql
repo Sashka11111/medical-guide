@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS SavedMedicine;
 CREATE TABLE Medicines (
     medicine_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(100) NOT NULL,-- Назва лікарського засобу
-    description TEXT, -- Опис
+    description VARCHAR(255), -- Опис
     manufacturer VARCHAR(200) NOT NULL,-- Виробник
     form VARCHAR(100) NOT NULL,-- Форма випуску
     purpose VARCHAR(200) NOT NULL,-- Призначення
@@ -33,9 +33,9 @@ CREATE TABLE MedicineCategories (
 -- Таблиця користувачів
 CREATE TABLE Users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username VARCHAR(100) UNIQUE NOT NULL,-- Ім'я користувача, унікальне
+    username VARCHAR(50) UNIQUE NOT NULL,-- Ім'я користувача, унікальне
     password VARCHAR(20) NOT NULL,-- Пароль
-    role TEXT DEFAULT 'USER' NOT NULL CHECK(role IN ('USER', 'ADMIN')) -- Роль користувача: 'user' або 'admin', за замовчуванням 'user'
+    role VARCHAR(20) DEFAULT 'USER' NOT NULL CHECK(role IN ('USER', 'ADMIN')) -- Роль користувача: 'user' або 'admin', за замовчуванням 'user'
 );
 
 -- Таблиця збережених ліків

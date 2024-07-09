@@ -203,8 +203,9 @@ public class MedicineManagementController {
           categoryRepository.addCategoryToMedicine(updatedMedicine.id(), category.id());
         }
         loadMedicines();
+        clearFields();
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert("Помилка", "Лікарський засіб не знайдено!");
+        AlertController.showAlert("Повідомлення", "Лікарський засіб успішно редаговано!");
       }
     } else {
       AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для редагування.");

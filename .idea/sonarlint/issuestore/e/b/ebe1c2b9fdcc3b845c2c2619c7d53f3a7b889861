@@ -1,0 +1,12 @@
+
+©	java:S116"bRename this field "Category_col_IdCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±±¾µýÿÿÿÿ8´ˆéˆ2J$9570002b-3f04-4a4f-9df9-841159520a42
+«	java:S116"dRename this field "Category_col_NameCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÑóÈùÿÿÿÿ8µˆéˆ2J$9b495767-2ccd-450e-8fe7-e7a6ad83091e
+¤	java:S116"]Rename this field "Category_tableView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†À×Œÿÿÿÿÿ8µˆéˆ2J$ec3f4092-e65f-4f4d-a287-f5416007ddab
+”	java:S116$"RRename this field "btn_add" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆåÚ”8µˆéˆ2J$900309bb-7198-48e0-9357-f76f793f4540
+–	java:S116'"TRename this field "btn_clear" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åŒáï8µˆéˆ2J$da9c0139-f62e-481a-a61d-f4c69191fd16
+–	java:S116*"URename this field "btn_delete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù€°f8µˆéˆ2J$585dec58-511f-4f37-a16a-e054ea41044d
+•	java:S116,"SRename this field "btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñåší8µˆéˆ2J$922fbe69-835e-493f-a01b-9ac8560023e7
+†
+java:S1854H">Remove this useless assignment to local variable "categories".(í¡–Ëøÿÿÿÿ8™û éˆ2J$85b9567e-fd18-49e7-910f-5ad43535c8c4
+w
+java:S1481H"/Remove this unused "categories" local variable.(í¡–Ëøÿÿÿÿ8šû éˆ2J$372f2f9e-33c5-4fea-8bc4-c14a5b60d595

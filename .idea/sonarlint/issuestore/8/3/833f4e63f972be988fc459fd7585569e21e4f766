@@ -1,0 +1,10 @@
+
+	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8“Ίύτ†2J$a8b99ff1-072d-4bbe-ae03-5f1bb3ff7002
+	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8“Ίύτ†2J$1ca643ae-daa2-4540-9616-374e55a664af
+΅	java:S116"ZRename this field "SignUpHyperlink" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Τ»ΜΩÿÿÿÿÿ8Ό¬¥ς†2J$7f651614-1ccd-419b-aa04-7b50cba2f72c
+™	java:S116"WRename this field "SignInButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Δ®8³³€ο†2J$a04912f1-5611-4a3d-b4d3-22fa22252ff6
+›	java:S116%"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Γ¤ύώÿÿÿÿ8›§ύτ†2J$1b17f8dd-39e7-42d8-9b90-d1cb8fc753eb
+
+java:S37760"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(χ‹Ύ†ÿÿÿÿÿ8Ίύτ†2J$28b11e50-8d30-4887-8001-4f53d22211a2
+t
+java:S16021",Remove useless curly braces around statement(ηωϊωÿÿÿÿ8®‚ώτ†2J$c9d6330a-69b5-4436-b7f3-2dd79ee0b18a

@@ -6,11 +6,14 @@ import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
+import java.io.ByteArrayInputStream;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -47,6 +50,9 @@ public class MedicinesController {
 
   @FXML
   private Label errorLabel;
+
+  @FXML
+  private ImageView medicineImageView;
 
   @FXML
   private ScrollPane medicinesScrollPane;
@@ -185,5 +191,12 @@ public class MedicinesController {
     Text categoriesTextElement = new Text(categoriesText);
     medicineCategoriesTextFlow.getChildren().clear();
     medicineCategoriesTextFlow.getChildren().add(categoriesTextElement);
+    byte[] imageBytes = medicine.image();
+    if (imageBytes != null && imageBytes.length > 0) {
+      Image image = new Image(new ByteArrayInputStream(imageBytes));
+      medicineImageView.setImage(image);
+    } else {
+      medicineImageView.setImage(null);
+    }
   }
 }

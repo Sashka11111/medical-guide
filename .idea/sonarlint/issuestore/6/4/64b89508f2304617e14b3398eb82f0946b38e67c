@@ -1,0 +1,9 @@
+
+	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8şïÆõ†2J$aa61c44e-a780-45df-8e00-f81389ed3499
+›	java:S116)"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¤ışÿÿÿÿ8ÿïÆõ†2J$5b3a2ead-57f2-43ae-9a3e-053a59ba95c2
+š
+java:S37764"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8…ğÆõ†2J$a6b1ef1a-c6e8-4d3f-88a6-d75a5ce28b2c
+t
+java:S16025",Remove useless curly braces around statement(çùúŠùÿÿÿÿ8†ğÆõ†2J$4a702895-ecb8-4205-bec0-151b0d2a5a6f
+t
+java:S1481:"1Remove this unused "currentScene" local variable.(òíÂ†8ˆğÆõ†2J$c1cfa2d2-1436-417d-aae2-c545374da5b9

@@ -46,7 +46,7 @@
             <TextFlow fx:id="medicineCategoriesTextFlow" prefHeight="46.0" prefWidth="260.0" textAlignment="CENTER" />
           </children>
         </VBox>
-        <ImageView fitHeight="113.0" fitWidth="184.0" layoutX="75.0" layoutY="14.0" preserveRatio="true">
+        <ImageView fx:id="medicineImageView" fitHeight="113.0" fitWidth="184.0" layoutX="75.0" layoutY="14.0" preserveRatio="true">
           <image>
             <Image url="@../data/icon.png" />
           </image>

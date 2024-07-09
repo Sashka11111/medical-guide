@@ -1,0 +1,6 @@
+
+Ž	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ú«õÀ‰2J$8e87a4b9-547c-403f-b613-dfbdf9c599b3
+˜
+java:S1192 "ODefine a constant instead of duplicating this literal "ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°" 4 times.(ÐùÇ¬øÿÿÿÿ8Ü«õÀ‰2J$211416b9-64e3-487b-97e8-3288209da891
+‰
+java:S2147ø"ECombine this catch with the one at line 246, which has the same body.(ï­£Ä8‹¬õÀ‰2J$d6f91944-c369-473b-bc32-699e459bd22c

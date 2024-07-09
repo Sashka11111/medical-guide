@@ -1,24 +1,23 @@
 package com.kudelych.medicalguide.domain.validation;
 
 import com.kudelych.medicalguide.persistence.entity.Medicine;
-import java.util.regex.Pattern;
 
 public class MedicinesValidator {
 
-  // Регулярний вираз для валідації назви лікарського засобу
-  private static final Pattern NAME_PATTERN = Pattern.compile("^[A-Za-z0-9 ]{1,50}$");
+  // Максимальна довжина для назви лікарського засобу
+  private static final int MAX_NAME_LENGTH = 100;
 
-  // Регулярний вираз для валідації назви виробника
-  private static final Pattern MANUFACTURER_PATTERN = Pattern.compile("^[A-Za-z0-9 ]{1,50}$");
+  // Максимальна довжина для назви виробника
+  private static final int MAX_MANUFACTURER_LENGTH = 200;
 
-  // Регулярний вираз для валідації форми
-  private static final Pattern FORM_PATTERN = Pattern.compile("^[A-Za-z ]{1,30}$");
+  // Максимальна довжина для форми лікарського засобу
+  private static final int MAX_FORM_LENGTH = 100;
 
-  // Регулярний вираз для валідації призначення
-  private static final Pattern PURPOSE_PATTERN = Pattern.compile("^[A-Za-z0-9 ]{1,100}$");
+  // Максимальна довжина для призначення лікарського засобу
+  private static final int MAX_PURPOSE_LENGTH = 200;
 
-  // Максимальна довжина для опису
-  private static final int MAX_DESCRIPTION_LENGTH = 500;
+  // Максимальна довжина для опису лікарського засобу
+  private static final int MAX_DESCRIPTION_LENGTH = 255;
 
   /**
    * Метод для валідації об'єкта Medicine.
@@ -31,7 +30,8 @@ public class MedicinesValidator {
         validateDescription(medicine.description()) &&
         validateManufacturer(medicine.manufacturer()) &&
         validateForm(medicine.form()) &&
-        validatePurpose(medicine.purpose());
+        validatePurpose(medicine.purpose()) &&
+        validateImage(medicine.image());
   }
 
   /**
@@ -41,7 +41,7 @@ public class MedicinesValidator {
    * @return true, якщо назва валідна, інакше false
    */
   public static boolean validateName(String name) {
-    return name != null && NAME_PATTERN.matcher(name).matches();
+    return name != null && name.length() <= MAX_NAME_LENGTH;
   }
 
   /**
@@ -61,7 +61,7 @@ public class MedicinesValidator {
    * @return true, якщо назва виробника валідна, інакше false
    */
   public static boolean validateManufacturer(String manufacturer) {
-    return manufacturer != null && MANUFACTURER_PATTERN.matcher(manufacturer).matches();
+    return manufacturer != null && manufacturer.length() <= MAX_MANUFACTURER_LENGTH;
   }
 
   /**
@@ -71,7 +71,7 @@ public class MedicinesValidator {
    * @return true, якщо форма валідна, інакше false
    */
   public static boolean validateForm(String form) {
-    return form != null && FORM_PATTERN.matcher(form).matches();
+    return form != null && form.length() <= MAX_FORM_LENGTH;
   }
 
   /**
@@ -81,6 +81,16 @@ public class MedicinesValidator {
    * @return true, якщо призначення валідне, інакше false
    */
   public static boolean validatePurpose(String purpose) {
-    return purpose != null && PURPOSE_PATTERN.matcher(purpose).matches();
+    return purpose != null && purpose.length() <= MAX_PURPOSE_LENGTH;
+  }
+
+  /**
+   * Метод для валідації зображення лікарського засобу.
+   *
+   * @param image зображення лікарського засобу
+   * @return true, якщо зображення є null або що зображення не пусте
+   */
+  public static boolean validateImage(byte[] image) {
+    return image == null || image.length > 0;
   }
 }

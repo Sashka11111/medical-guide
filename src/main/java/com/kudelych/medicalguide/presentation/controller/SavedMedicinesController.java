@@ -7,10 +7,13 @@ import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
+import java.io.ByteArrayInputStream;
 import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -25,20 +28,30 @@ public class SavedMedicinesController {
 
   @FXML
   private GridPane savedMedicinesGridPane;
+
   @FXML
   private Label medicineName;
+
   @FXML
   private Label medicineDescription;
+
   @FXML
   private Label medicineManufacturer;
+
   @FXML
   private Label medicineForm;
+
   @FXML
   private Label medicinePurpose;
+
   @FXML
   private Label errorLabel;
+
   @FXML
   private TextFlow medicineCategoriesTextFlow;
+
+  @FXML
+  private ImageView medicineImageView;
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
 
@@ -155,6 +168,8 @@ public class SavedMedicinesController {
     medicineForm.setText("");
     medicinePurpose.setText("");
     medicineCategoriesTextFlow.getChildren().clear();
+    Image defaultImage = new Image(getClass().getResourceAsStream("/data/icon.png"));
+    medicineImageView.setImage(defaultImage);
   }
 
   // Відображення деталей обраного лікарського засобу
@@ -174,5 +189,12 @@ public class SavedMedicinesController {
     Text categoriesTextElement = new Text(categoriesText);
     medicineCategoriesTextFlow.getChildren().clear();
     medicineCategoriesTextFlow.getChildren().add(categoriesTextElement);
+    byte[] imageBytes = medicine.image();
+    if (imageBytes != null && imageBytes.length > 0) {
+      Image image = new Image(new ByteArrayInputStream(imageBytes));
+      medicineImageView.setImage(image);
+    } else {
+      medicineImageView.setImage(null);
+    }
   }
 }
