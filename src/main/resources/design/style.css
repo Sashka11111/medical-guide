@@ -96,3 +96,43 @@
   -fx-background-radius: 16;
   -fx-border-radius: 16;
 }
+
+/* Style for the ToggleSwitch */
+.toggle-switch {
+  -fx-background-color: transparent;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-border-radius: 15px;
+}
+
+.toggle-switch:selected {
+  -fx-background-color: #006666; /* matches the sidebar color */
+  -fx-text-fill: white;
+}
+
+.toggle-switch .thumb {
+  -fx-background-color: #00cc99; /* light green to match design */
+  -fx-background-insets: 1;
+  -fx-background-radius: 15px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 4, 0, 0, 1);
+}
+
+.toggle-switch:selected .thumb {
+  -fx-background-color: #004d4d; /* darker green to match design */
+}
+
+/* Style for the ToggleSwitch track */
+.toggle-switch .track {
+  -fx-background-color: #005050; /* matches the sidebar color */
+  -fx-background-radius: 15px;
+}
+
+/* Style for the ToggleSwitch thumb */
+.toggle-switch .thumb {
+  -fx-background-color: #00cc99; /* light green */
+  -fx-background-radius: 15px;
+}
+
+.root-pane {
+  -fx-background-color: -fx-background;
+}

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="669.0" prefWidth="918.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.CategoryController">
+<AnchorPane prefHeight="669.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.CategoryController">
   <children>
     <AnchorPane layoutX="520.0" layoutY="184.0" prefHeight="237.0" prefWidth="346.0" style="-fx-background-color: transparent; -fx-border-color: #004C4C; -fx-border-radius: 8; -fx-border-width: 2;">
       <children>

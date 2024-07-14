@@ -33,7 +33,7 @@
             <Line endX="100.0" layoutX="155.0" layoutY="177.0" startX="-100.0" startY="-1.52587890625E-5" stroke="#f2f2f2" />
          </children>
       </AnchorPane>
-    <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F2F2F2;">
+    <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0">
       <children>
         <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="200.0" prefHeight="34.0" prefWidth="222.0" promptText="Пароль" styleClass="textfield" stylesheets="@../design/style.css">
                <font>

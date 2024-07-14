@@ -1,8 +1,12 @@
 
-	java:S100|"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‘“Í8‘Ş²èˆ2J$254eb4c6-0e70-4f3f-9280-9366ef59e6ec
+‘	java:S100™"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‘“Í8ÍÂ’“‹2J$cd16971e-8c30-461a-8ad8-b072bdff981b
 ‹
-java:S1854€"GRemove this useless assignment to local variable "medicinesController".(ğÖú8‘Ş²èˆ2J$7e5bd5cd-d63a-462b-a5ba-336044fbf875
+java:S1854"GRemove this useless assignment to local variable "medicinesController".(ğÖú8ÍÂ’“‹2J$568c0720-e62d-40af-93e0-81f6a93ad7a5
 |
-java:S1481€"8Remove this unused "medicinesController" local variable.(ğÖú8™Ş²èˆ2J$08ef3496-2898-4a23-90df-fc1e3703afe5
+java:S1481"8Remove this unused "medicinesController" local variable.(ğÖú8ĞÂ’“‹2J$313c5a86-791d-475c-9464-5688bfd18dd1
 ‚
-java:S1117–"9Rename "stage" which hides the field declared at line 57.(áıÉ§øÿÿÿÿ8Ş²èˆ2J$0c6f5641-6b5b-426a-bc9a-f033d5d4aa73
+java:S1117³"9Rename "stage" which hides the field declared at line 71.(áıÉ§øÿÿÿÿ8ÓÂ’“‹2J$2ded5383-b5c4-4273-ab8e-5053a693ec65
+w
+java:S1874î".Remove this use of "Locale"; it is deprecated.(äÉ¢şÿÿÿÿ8ëÂ’“‹2J$fb6dfd68-a610-488a-b886-5ca9b39cb8ab
+w
+java:S1874ğ".Remove this use of "Locale"; it is deprecated.(È»î”úÿÿÿÿ8ìÂ’“‹2J$5b7cdd7f-18e5-4d2c-ba3d-86412d28c79f

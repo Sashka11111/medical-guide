@@ -148,3 +148,5 @@ w
 G.idea/sonarlint/issuestore/d/d/dd36d2eda79524796bf2076a0c8741f13d71733a,6\f\6f060fe692364a795a7be4cfac177c0fbcb88d3d
 Å
 Q.idea/sonarlint/securityhotspotstore/7/a/7a09ef8c86604d098c2b37ef8d533093264a081e,4\3\4347139b71e1b03d6dd7e2b4b96cbfe1bce6ee0b
+Ñ
+Tsrc/main/java/com/kudelych/medicalguide/presentation/controller/ThemeController.java,2\f\2fc02496ecb25dc3b38bd2b5124b9db5963a4bdc
