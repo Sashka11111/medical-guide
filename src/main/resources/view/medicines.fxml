@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="924.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MedicinesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.MedicinesController">
    <children>
-      <ScrollPane fx:id="medicinesScrollPane" layoutX="1.0" layoutY="92.0" prefHeight="570.0" prefWidth="631.0" style="-fx-background-color: transparent;">
+      <ScrollPane fx:id="medicinesScrollPane" layoutX="1.0" layoutY="92.0" prefHeight="570.0" prefWidth="631.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.6000000000000227" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="92.0">
          <content>
             <GridPane fx:id="medicinesGridPane" hgap="20.0" prefHeight="0.0" prefWidth="45.0" style="-fx-padding: 20;" vgap="20.0">
                <columnConstraints>
@@ -25,7 +25,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <HBox layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="526.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-padding: 8;">
+      <HBox layoutX="54.0" layoutY="14.0" prefHeight="36.0" prefWidth="526.0" style="-fx-background-radius: 40; -fx-padding: 8; -fx-border-color: #808080; -fx-border-radius: 40;" AnchorPane.leftAnchor="54.0" AnchorPane.topAnchor="14.0">
          <children>
             <TextField fx:id="searchTextField" prefHeight="35.0" prefWidth="458.0" promptText="Натисніть тут для пошуку" style="-fx-background-color: transparent;">
                <font>
@@ -46,9 +46,9 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" styleClass="info-pane" stylesheets="@../design/style.css">
+      <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" style="-fx-border-color: #004C4C; -fx-border-radius: 15; -fx-background-color: transparent;" AnchorPane.bottomAnchor="9.399999999999977" AnchorPane.rightAnchor="6.600000000000023" AnchorPane.topAnchor="8.0">
          <children>
-            <Button layoutX="53.0" layoutY="596.0" onAction="#handleSaveAction" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Додати у збережені" textFill="WHITE">
+            <Button layoutX="40.0" layoutY="596.0" onAction="#handleSaveAction" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Додати у збережені" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -69,7 +69,7 @@
                   <TextFlow fx:id="medicineCategoriesTextFlow" prefHeight="46.0" prefWidth="260.0" textAlignment="CENTER" />
                </children>
             </VBox>
-            <ImageView fx:id="medicineImageView" fitHeight="122.0" fitWidth="155.0" layoutX="69.0" layoutY="14.0" preserveRatio="true">
+            <ImageView fx:id="medicineImageView" fitHeight="122.0" fitWidth="155.0" layoutX="70.0" layoutY="14.0" preserveRatio="true">
                <image>
                   <Image url="@../data/icon.png" />
                </image>

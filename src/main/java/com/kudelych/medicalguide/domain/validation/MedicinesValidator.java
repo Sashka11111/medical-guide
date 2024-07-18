@@ -1,6 +1,7 @@
 package com.kudelych.medicalguide.domain.validation;
 
 import com.kudelych.medicalguide.persistence.entity.Medicine;
+import java.util.List;
 
 public class MedicinesValidator {
 
@@ -25,12 +26,13 @@ public class MedicinesValidator {
    * @param medicine об'єкт Medicine для валідації
    * @return true, якщо всі поля об'єкта валідні, інакше false
    */
-  public static boolean validateMedicine(Medicine medicine) {
+  public static boolean validateMedicine(Medicine medicine, List<Medicine> existingMedicines) {
     return validateName(medicine.name()) &&
         validateDescription(medicine.description()) &&
         validateManufacturer(medicine.manufacturer()) &&
         validateForm(medicine.form()) &&
         validatePurpose(medicine.purpose()) &&
+        isMedicineNameDuplicate(medicine.name(), existingMedicines) &&
         validateImage(medicine.image());
   }
 
@@ -83,7 +85,10 @@ public class MedicinesValidator {
   public static boolean validatePurpose(String purpose) {
     return purpose != null && purpose.length() <= MAX_PURPOSE_LENGTH;
   }
-
+  // Метод для перевірки наявності лікарського засобу з заданою назвою
+  public static boolean isMedicineNameDuplicate(String name, List<Medicine> existingMedicines) {
+    return existingMedicines.stream().anyMatch(medicine -> medicine.name().equalsIgnoreCase(name));
+  }
   /**
    * Метод для валідації зображення лікарського засобу.
    *

@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 
 public class UserRepositoryImpl implements UserRepository {
@@ -17,7 +19,22 @@ public class UserRepositoryImpl implements UserRepository {
   public UserRepositoryImpl(DataSource dataSource) {
     this.dataSource = dataSource;
   }
-
+  @Override
+  public List<User> findAll() {
+    List<User> users = new ArrayList<>();
+    String query = "SELECT * FROM Users";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery()) {
+      while (resultSet.next()) {
+        User user = mapUser(resultSet);
+        users.add(user);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return users;
+  }
   @Override
   public void addUser(User user) {
     String query = "INSERT INTO Users (username, password, role) VALUES (?, ?, ?)";
@@ -68,6 +85,35 @@ public class UserRepositoryImpl implements UserRepository {
       e.printStackTrace();
     }
     return false;
+  }
+
+  public void updateUserRole(String username, UserRole newRole) throws EntityNotFoundException {
+    String query = "UPDATE Users SET role = ? WHERE username = ?";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setString(1, newRole.toString());
+      preparedStatement.setString(2, username);
+      int affectedRows = preparedStatement.executeUpdate();
+      if (affectedRows == 0) {
+        throw new EntityNotFoundException("Користувача з ім'ям " + username + " не знайдено");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteUser(String username) throws EntityNotFoundException {
+    String query = "DELETE FROM Users WHERE username = ?";
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setString(1, username);
+      int affectedRows = preparedStatement.executeUpdate();
+      if (affectedRows == 0) {
+        throw new EntityNotFoundException("Користувача з ім'ям " + username + " не знайдено");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   private User mapUser(ResultSet resultSet) throws SQLException {

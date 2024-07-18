@@ -1,6 +1,7 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
+import com.kudelych.medicalguide.domain.validation.CategoryValidator;
 import com.kudelych.medicalguide.domain.validation.MedicinesValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
@@ -156,8 +157,14 @@ public class MedicineManagementController {
     );
 
     // Валідація нового лікарського засобу
-    if (!MedicinesValidator.validateMedicine(newMedicine)) {
+    List<Medicine> existingMedicines = medicinesRepository.findAll();
+    if (!MedicinesValidator.validateMedicine(newMedicine, existingMedicines)) {
       AlertController.showAlert("Помилка", "Будь ласка, заповніть усі поля.");
+      return;
+    }
+
+    if (MedicinesValidator.isMedicineNameDuplicate(newMedicine.name(), existingMedicines)) {
+      AlertController.showAlert("Помилка", "Лікарський засіб з такою назвою вже існує.");
       return;
     }
 
@@ -193,6 +200,14 @@ public class MedicineManagementController {
           selectedImageBytes != null ? selectedImageBytes : selectedMedicine.image()
       );
 
+      List<Medicine> existingMedicines = medicinesRepository.findAll();
+      existingMedicines.removeIf(medicine -> medicine.id() == selectedMedicine.id());
+
+      if (MedicinesValidator.isMedicineNameDuplicate(updatedMedicine.name(), existingMedicines)) {
+        AlertController.showAlert("Помилка", "Лікарський засіб з такою назвою вже існує.");
+        return;
+      }
+
       try {
         medicinesRepository.updateMedicine(updatedMedicine);
         List<Integer> categoryIds = categoryRepository.getCategoriesByMedicineId(updatedMedicine.id());
@@ -203,13 +218,13 @@ public class MedicineManagementController {
           categoryRepository.addCategoryToMedicine(updatedMedicine.id(), category.id());
         }
         loadMedicines();
-        clearFields();
       } catch (EntityNotFoundException e) {
         AlertController.showAlert("Повідомлення", "Лікарський засіб успішно редаговано!");
       }
     } else {
       AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для редагування.");
     }
+    clearFields();
   }
 
   // Обробник кнопки "Видалити"
@@ -224,13 +239,13 @@ public class MedicineManagementController {
         }
         medicinesRepository.deleteMedicine(selectedMedicine.id());
         loadMedicines();
-        clearFields();
       } catch (EntityNotFoundException e) {
         AlertController.showAlert("Помилка", "Лікарський засіб не знайдено!");
       }
     } else {
       AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для видалення.");
     }
+    clearFields();
   }
 
   // Обробник кнопки вибору зображення
@@ -258,7 +273,7 @@ public class MedicineManagementController {
     manufacturerField.clear();
     formField.clear();
     purposeField.clear();
-    imageView.setImage(null);
+    imageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
     selectedImageBytes = null;
     categoryComboBox.getCheckModel().clearChecks();
   }

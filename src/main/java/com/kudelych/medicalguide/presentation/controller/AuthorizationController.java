@@ -3,12 +3,14 @@ package com.kudelych.medicalguide.presentation.controller;
 import com.kudelych.medicalguide.domain.security.PasswordHashing;
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.security.ThemeManager;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.contract.UserRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.UserRepositoryImpl;
 import com.kudelych.medicalguide.presentation.animation.Shake;
 import java.io.IOException;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -50,6 +52,8 @@ public class AuthorizationController {
 
   @FXML
   void initialize() {
+    // Збереження теми в ThemeManager перед переходом
+    ThemeManager.setCurrentTheme(Application.getUserAgentStylesheet());
     btn_close.setOnAction(event -> {
       System.exit(0);
     });

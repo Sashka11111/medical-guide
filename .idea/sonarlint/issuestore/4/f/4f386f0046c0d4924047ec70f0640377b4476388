@@ -1,6 +1,8 @@
 
-Ž	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ú«õÀ‰2J$9108efe8-b1cc-4f21-969d-b1debd7591a2
+Ž	java:S112¸"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ØÌ÷£Œ2J$5435999f-bcdb-4d62-ad04-4c9dbb9dca8c
 ˜
-java:S1192 "ODefine a constant instead of duplicating this literal "ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°" 4 times.(ÐùÇ¬øÿÿÿÿ8Ü«õÀ‰2J$d5a2a14d-20be-4731-adee-878423a37c7f
+java:S1192¢"ODefine a constant instead of duplicating this literal "ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°" 6 times.(ÐùÇ¬øÿÿÿÿ8Ü«õÀ‰2J$305a36df-9e41-46bb-b00a-259026bdfff8
 ‰
-java:S2147ø"ECombine this catch with the one at line 246, which has the same body.(ï­£Ä8‹¬õÀ‰2J$78c1b5bd-cecc-4030-9b7b-6fbeadbf07fd
+java:S2147‡"ECombine this catch with the one at line 261, which has the same body.(ï­£Ä8‹¬õÀ‰2J$6ff7f998-f9bd-4e3b-86c6-326ca40f70db
+¢
+java:S1128"ZRemove this unused import 'com.kudelych.medicalguide.domain.validation.CategoryValidator'.(­°ú­ýÿÿÿÿ8ýó‚¤Œ2J$ebefaa7c-eedd-4759-ac21-fd57a6fce425

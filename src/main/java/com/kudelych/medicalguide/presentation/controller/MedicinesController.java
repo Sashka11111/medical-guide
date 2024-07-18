@@ -196,7 +196,7 @@ public class MedicinesController {
       Image image = new Image(new ByteArrayInputStream(imageBytes));
       medicineImageView.setImage(image);
     } else {
-      medicineImageView.setImage(null);
+      medicineImageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
     }
   }
 }

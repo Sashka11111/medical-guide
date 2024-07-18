@@ -1,12 +1,12 @@
 
-©	java:S116"bRename this field "Category_col_IdCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±±¾µýÿÿÿÿ8´ˆéˆ2J$469cb11f-bd38-48a1-999d-4fbe627353a3
-«	java:S116"dRename this field "Category_col_NameCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÑóÈùÿÿÿÿ8µˆéˆ2J$d071fa0b-a17b-481f-bb42-4aede3307159
-¤	java:S116"]Rename this field "Category_tableView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†À×Œÿÿÿÿÿ8µˆéˆ2J$9bef84c5-7659-48eb-92dc-29e4cdf59d8e
-”	java:S116$"RRename this field "btn_add" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆåÚ”8µˆéˆ2J$2acba6f9-766a-49ac-8201-fb8b04fd17b5
-–	java:S116'"TRename this field "btn_clear" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åŒáï8µˆéˆ2J$79083876-0512-4f14-b53f-dc08c58b2a4b
-–	java:S116*"URename this field "btn_delete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù€°f8µˆéˆ2J$7521d9bc-11c6-4507-a51f-10ed58b130c3
-•	java:S116,"SRename this field "btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñåší8µˆéˆ2J$0f85714f-39cb-4afc-8b66-38d59329dcf8
+©	java:S116"bRename this field "Category_col_IdCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±±¾µýÿÿÿÿ8´ˆéˆ2J$eb05b111-537c-428f-945d-0a74d65cd31e
+«	java:S116"dRename this field "Category_col_NameCategory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÑóÈùÿÿÿÿ8µˆéˆ2J$c5a0c4dd-a3dc-42b9-87c8-786aaae59214
+¤	java:S116"]Rename this field "Category_tableView" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†À×Œÿÿÿÿÿ8µˆéˆ2J$2cf52063-0fab-43be-b579-737533fd0223
+”	java:S116$"RRename this field "btn_add" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆåÚ”8µˆéˆ2J$ec5dea98-01c3-4f3d-90b4-aef9e513abbe
+–	java:S116'"TRename this field "btn_clear" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åŒáï8µˆéˆ2J$585661c6-4d08-455f-8021-c850fcbcec1f
+–	java:S116*"URename this field "btn_delete" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ù€°f8µˆéˆ2J$1bbb0d13-2fff-479c-a441-0c5bd631c322
+•	java:S116,"SRename this field "btn_edit" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñåší8µˆéˆ2J$7e9f7b8a-ce93-4a95-b2e0-4a5c31ba03fa
 †
-java:S1854H">Remove this useless assignment to local variable "categories".(í¡–Ëøÿÿÿÿ8™û éˆ2J$ffa1e81d-e701-40f8-8463-ca74144a2b15
+java:S1854H">Remove this useless assignment to local variable "categories".(í¡–Ëøÿÿÿÿ8™û éˆ2J$1937ec91-4881-46c5-bce0-992ba9539dc1
 w
-java:S1481H"/Remove this unused "categories" local variable.(í¡–Ëøÿÿÿÿ8šû éˆ2J$242e7617-8a44-4e90-8fc7-2fe44e30e5db
+java:S1481H"/Remove this unused "categories" local variable.(í¡–Ëøÿÿÿÿ8šû éˆ2J$8d16276b-9901-431e-94e4-3642815cfedb

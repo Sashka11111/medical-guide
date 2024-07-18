@@ -148,5 +148,9 @@ w
 G.idea/sonarlint/issuestore/d/d/dd36d2eda79524796bf2076a0c8741f13d71733a,6\f\6f060fe692364a795a7be4cfac177c0fbcb88d3d
 Å
 Q.idea/sonarlint/securityhotspotstore/7/a/7a09ef8c86604d098c2b37ef8d533093264a081e,4\3\4347139b71e1b03d6dd7e2b4b96cbfe1bce6ee0b
-Ñ
-Tsrc/main/java/com/kudelych/medicalguide/presentation/controller/ThemeController.java,2\f\2fc02496ecb25dc3b38bd2b5124b9db5963a4bdc
+y
+Isrc/main/java/com/kudelych/medicalguide/domain/security/ThemeManager.java,3\6\368424eae4b365338624a0ea9f1daabca6c3d8f0
+á
+Wsrc/main/java/com/kudelych/medicalguide/presentation/controller/SettingsController.java,d\a\dafba066ad32831ee59ffb3c9bc95f579de9cdc3
+é
+^src/main/java/com/kudelych/medicalguide/presentation/controller/UsersManagementController.java,a\7\a7654308f60ef6aba7f44943765632a4b591acb7

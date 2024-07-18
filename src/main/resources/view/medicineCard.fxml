@@ -12,6 +12,6 @@
             <Image url="@../data/icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="medicineName" alignment="CENTER" layoutX="4.0" layoutY="128.0" prefHeight="50.0" prefWidth="174.0" style="-fx-wrap-text: true;" textAlignment="CENTER" />
+      <Label fx:id="medicineName" alignment="CENTER" layoutX="4.0" layoutY="128.0" prefHeight="50.0" prefWidth="174.0" style="-fx-wrap-text: true; -fx-text-fill: black;" textAlignment="CENTER" />
    </children>
 </AnchorPane>

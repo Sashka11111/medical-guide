@@ -23,7 +23,7 @@
         </GridPane>
       </content>
     </ScrollPane>
-    <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" styleClass="info-pane" stylesheets="@../design/style.css">
+    <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" style="-fx-border-color: #004C4C; -fx-border-radius: 15; -fx-background-color: transparent;">
       <children>
         <Button layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
           <font>

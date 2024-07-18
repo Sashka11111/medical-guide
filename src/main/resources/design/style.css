@@ -1,6 +1,5 @@
 .textfield{
   -fx-background-color: transparent;
-  -fx-text-fill: #000000;
   -fx-border-color:  #004C4C;
   -fx-border-width: 0px 0px .4px 0px;
 }
@@ -36,8 +35,6 @@
 .close-button:hover {
   -fx-background-color: #ff0000; /* Колір фону кнопки при наведенні */
   -fx-background-radius: 3;
-  -fx-padding: 5 10;
-  -fx-font-size: 14px;
   -fx-border-color: transparent;
   -fx-border-width: 0;
   -fx-border-radius: 2;
@@ -57,7 +54,6 @@
   -fx-border-color: white;
   -fx-background-radius: 16px;
   -fx-border-radius: 16px;
-  -fx-border-width: 2px;
   -fx-padding: 10px;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
   -fx-wrap-text: true; /* Автоматичне перенесення тексту */
@@ -65,7 +61,7 @@
 }
 
 .table-view {
-  -fx-background-color: white;
+  -fx-background-color: transparent;
   -fx-border-color: linear-gradient(to bottom, #004C4C, #006666);
   -fx-border-width: 2px;
   -fx-border-radius: 8px;
@@ -92,12 +88,11 @@
 
 .info-pane {
   -fx-background-color: #E0E0E0;
-  -fx-border-color: #E0E0E0;
+  -fx-border-color: linear-gradient(to bottom, #004C4C, #006666);
   -fx-background-radius: 16;
   -fx-border-radius: 16;
 }
 
-/* Style for the ToggleSwitch */
 .toggle-switch {
   -fx-background-color: transparent;
   -fx-text-fill: white;
@@ -131,8 +126,4 @@
 .toggle-switch .thumb {
   -fx-background-color: #00cc99; /* light green */
   -fx-background-radius: 15px;
-}
-
-.root-pane {
-  -fx-background-color: -fx-background;
 }

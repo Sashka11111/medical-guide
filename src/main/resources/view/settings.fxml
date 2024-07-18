@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="663.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kudelych.medicalguide.presentation.controller.SettingsController">
+   <children>
+      <Button fx:id="changeAccountButton" layoutX="743.0" layoutY="595.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" styleClass="side-btn" stylesheets="@../design/style.css" text="Змінити акаунт" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="themesLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="22.0" prefHeight="40.0" prefWidth="94.0" text="Тема">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="48.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+           <RadioButton fx:id="darkThemeRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Primer Dark">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="48.0" layoutY="69.0" prefHeight="40.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+           <!-- Theme Selection -->
+           <RadioButton fx:id="lightThemeRadioButton" layoutX="9.0" layoutY="4.0" prefHeight="40.0" prefWidth="223.0" text="Primer Light">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <Label fx:id="languageLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="238.0" prefHeight="27.0" prefWidth="94.0" text="Мова">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="ukCard" layoutX="47.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+           <RadioButton fx:id="ukrainianRadioButton" alignment="BOTTOM_LEFT" layoutX="4.0" layoutY="122.0" prefHeight="29.0" prefWidth="234.0" text="Українська">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="112.0" fitWidth="129.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/ukraine.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="engCard" layoutX="339.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+      
+           <!-- Language Selection -->
+           <RadioButton fx:id="englishRadioButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="English">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="112.0" fitWidth="129.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/english.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="339.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+            <RadioButton fx:id="nordDarkThemeRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Nord Dark">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="gerCard" layoutX="632.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+            <RadioButton fx:id="germanRadioButton" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="9.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="Deutsch">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="112.0" fitWidth="129.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/germany.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="632.0" layoutY="69.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+            <RadioButton fx:id="cupertinoDarkRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Cupertino Dark">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="339.0" layoutY="69.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+            <RadioButton fx:id="nordLightRadioButton" layoutX="9.0" layoutY="9.0" prefHeight="35.0" prefWidth="223.0" text="Nord Light">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="632.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+         <children>
+            <RadioButton fx:id="draculaRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Dracula">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
