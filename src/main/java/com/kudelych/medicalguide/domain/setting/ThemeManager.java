@@ -1,4 +1,4 @@
-package com.kudelych.medicalguide.domain.security;
+package com.kudelych.medicalguide.domain.setting;
 
 public class ThemeManager {
   private static String currentTheme;

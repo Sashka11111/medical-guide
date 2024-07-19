@@ -1,6 +1,9 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.domain.validation.CategoryValidator;
 import com.kudelych.medicalguide.domain.validation.MedicinesValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
@@ -8,6 +11,7 @@ import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
+import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +26,7 @@ import javafx.util.StringConverter;
 import java.io.*;
 import java.util.List;
 
-public class MedicineManagementController {
+public class MedicineManagementController implements LanguageUpdatable {
 
   @FXML
   private TextField nameField;
@@ -78,6 +82,8 @@ public class MedicineManagementController {
 
   @FXML
   private void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     // Налаштування властивостей для колонок таблиці
     nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
     descriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().description()));
@@ -277,4 +283,16 @@ public class MedicineManagementController {
     selectedImageBytes = null;
     categoryComboBox.getCheckModel().clearChecks();
   }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+
+    clearFieldsButton.setText(bundle.getString("button.clearFields"));
+    nameColumn.setText(bundle.getString("column.name"));
+    descriptionColumn.setText(bundle.getString("column.description"));
+    manufacturerColumn.setText(bundle.getString("column.manufacturer"));
+    formColumn.setText(bundle.getString("column.form"));
+    purposeColumn.setText(bundle.getString("column.purpose"));
+  }
+
 }

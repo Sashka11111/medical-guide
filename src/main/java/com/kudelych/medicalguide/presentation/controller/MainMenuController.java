@@ -1,8 +1,13 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.entity.UserRole;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,7 +23,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainMenuController {
+public class MainMenuController implements LanguageUpdatable {
 
   @FXML
   private Button medicinesButton;
@@ -45,6 +50,12 @@ public class MainMenuController {
   private Button settingsButton;
 
   @FXML
+  private Label midicalGuide;
+
+  @FXML
+  private Label welcomeLabel;
+
+  @FXML
   private StackPane stackPane;
 
   @FXML
@@ -58,6 +69,8 @@ public class MainMenuController {
   private double yOffset = 0;
   @FXML
   void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     closeButton.setOnAction(event -> System.exit(0));
     minimazeButton.setOnAction(event -> minimizeWindow());
     Medicines();
@@ -159,5 +172,17 @@ public class MainMenuController {
       stage.setX(event.getScreenX() - xOffset);
       stage.setY(event.getScreenY() - yOffset);
     });
+  }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    medicinesButton.setText(bundle.getString("button.medicines"));
+    savedMedicineButton.setText(bundle.getString("button.savedMedicine"));
+    categoryButton.setText(bundle.getString("button.category"));
+    manageMedicinesButton.setText(bundle.getString("button.manageMedicines"));
+    settingsButton.setText(bundle.getString("button.setting"));
+    usersManagementButton.setText(bundle.getString("button.users"));
+    welcomeLabel.setText(bundle.getString("label.welcome"));
+    midicalGuide.setText(bundle.getString("label.medicalGuide"));
   }
 }

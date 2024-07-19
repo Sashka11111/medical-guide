@@ -1,4 +1,6 @@
 
-‘	java:S100…"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‘“Í8–×ùƒŒ2J$d8953dd6-ed9f-4a37-a16e-18c73b88f080
+‘	java:S100’"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‘“Í8Ò£°ÕŒ2J$7422c22a-3402-4b03-8aef-e8d346373745
 ‚
-java:S1117ž"9Rename "stage" which hides the field declared at line 56.(áýÉ§øÿÿÿÿ8™×ùƒŒ2J$86aa8331-f625-47ff-ae6d-d917ffa1e118
+java:S1117«"9Rename "stage" which hides the field declared at line 67.(áýÉ§øÿÿÿÿ8Õ£°ÕŒ2J$d454e8b4-166b-4544-8ffc-bd38c7ba212c
+u
+java:S1128	"-Remove this unused import 'java.util.Locale'.(åð×±ûÿÿÿÿ8Ø£°ÕŒ2J$3d5df215-7a67-4cc2-90af-402340e74a74

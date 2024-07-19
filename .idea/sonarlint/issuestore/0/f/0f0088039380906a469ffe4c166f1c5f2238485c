@@ -1,5 +1,5 @@
 
 ½
-java:S1192¤"yDefine a constant instead of duplicating this literal "Ğ—Ğ±ĞµÑ€ĞµĞ¶ĞµĞ½Ğ½Ñ Ğ»Ñ–ĞºĞ°Ñ€ÑÑŒĞºĞ¾Ğ³Ğ¾ Ğ·Ğ°ÑĞ¾Ğ±Ñƒ" 3 times.( ­—«8€ƒí²‰2J$0c1a791f-9b47-4093-a6ad-8ef59bda7092
+java:S1192ª"yDefine a constant instead of duplicating this literal "Ğ—Ğ±ĞµÑ€ĞµĞ¶ĞµĞ½Ğ½Ñ Ğ»Ñ–ĞºĞ°Ñ€ÑÑŒĞºĞ¾Ğ³Ğ¾ Ğ·Ğ°ÑĞ¾Ğ±Ñƒ" 3 times.( ­—«8€ƒí²‰2J$d1dbb7d7-64c8-4977-b08e-fefa06d8ba6a
 ¾
-java:S6204›"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8Îµñ²‰2J$b65adf37-da4e-4b67-92f5-4d90445f2e17
+java:S6204¡"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8Îµñ²‰2J$481cc626-707f-4b22-80de-cf7afa0b6879

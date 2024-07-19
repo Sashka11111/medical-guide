@@ -15,16 +15,11 @@
   <children>
       <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #006666;">
          <children>
-           <Label layoutX="53.0" layoutY="191.0" text="Медичний посібник" textFill="#f2f2f2">
+           <Label fx:id="medGuide" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="187.0" prefHeight="78.0" prefWidth="286.0" style="-fx-wrap-text: true;" text="Медичний посібник лікарських засобів" textAlignment="CENTER" textFill="#f2f2f2">
              <font>
                <Font size="22.0" />
              </font>
            </Label>
-            <Label layoutX="61.0" layoutY="223.0" prefHeight="14.0" prefWidth="187.0" text="лікарських засобів" textFill="#f2f2f2">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="117.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../data/drugs.png" />
@@ -44,7 +39,7 @@
                   <Font size="14.0" />
                </font></TextField>
         <Button fx:id="SignInButton" layoutX="69.0" layoutY="258.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="161.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Зареєструватися" textFill="WHITE" />
-        <Label layoutX="62.0" layoutY="51.0" prefHeight="54.0" prefWidth="178.0" text="Реєстрація">
+        <Label fx:id="regLabel" alignment="CENTER" layoutX="5.0" layoutY="51.0" prefHeight="54.0" prefWidth="287.0" text="Реєстрація" textAlignment="CENTER">
           <font>
             <Font size="36.0" />
           </font>
@@ -53,7 +48,7 @@
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <Label layoutX="40.0" layoutY="326.0" prefHeight="27.0" prefWidth="133.0" text="Вже зареєстровані?">
+            <Label fx:id="regQuestion" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="326.0" prefHeight="27.0" prefWidth="155.0" text="Вже зареєстровані?">
                <font>
                   <Font size="14.0" />
                </font>

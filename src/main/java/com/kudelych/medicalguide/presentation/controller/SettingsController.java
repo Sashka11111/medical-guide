@@ -1,22 +1,17 @@
 package com.kudelych.medicalguide.presentation.controller;
 
-import atlantafx.base.theme.NordDark;
-import atlantafx.base.theme.NordLight;
-import atlantafx.base.theme.PrimerDark;
-import atlantafx.base.theme.PrimerLight;
-import atlantafx.base.theme.CupertinoDark;
-import atlantafx.base.theme.Dracula;
-import com.kudelych.medicalguide.domain.security.ThemeManager;
+import atlantafx.base.theme.*;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
+import com.kudelych.medicalguide.domain.setting.ThemeManager;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -29,7 +24,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SettingsController {
+public class SettingsController implements LanguageUpdatable {
 
   @FXML
   private Button changeAccountButton;
@@ -66,8 +61,10 @@ public class SettingsController {
 
   @FXML
   private Label themesLabel;
+
   @FXML
   private AnchorPane gerCard;
+
   @FXML
   private AnchorPane ukCard;
 
@@ -75,7 +72,6 @@ public class SettingsController {
   private AnchorPane engCard;
 
   private String theme;
-  private ResourceBundle bundle;
   private ToggleGroup themeToggleGroup;
   private ToggleGroup languageToggleGroup;
 
@@ -84,25 +80,31 @@ public class SettingsController {
     theme = ThemeManager.getCurrentTheme() != null ?
         ThemeManager.getCurrentTheme() :
         new PrimerLight().getUserAgentStylesheet();
-
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     setInitialTheme();
     setupThemeToggleGroup();
     setupLanguageToggleGroup();
+
     // Обробники подій для карток
     ukCard.setOnMouseClicked(event -> selectLanguage(ukrainianRadioButton));
     engCard.setOnMouseClicked(event -> selectLanguage(englishRadioButton));
     gerCard.setOnMouseClicked(event -> selectLanguage(germanRadioButton));
 
-    bundle = ResourceBundle.getBundle("messages_uk", new Locale("uk", "UA"));
-    ukrainianRadioButton.setSelected(true);
+    Locale locale = LanguageManager.getCurrentLocale() != null ?
+        LanguageManager.getCurrentLocale() :
+        new Locale("uk", "UA"); // Встановлюємо мову за замовчуванням
 
+    setInitialLanguage(locale);
     themeToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> applyTheme());
     languageToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> applyLanguage());
     changeAccountButton.setOnAction(event -> handleChangeAccountAction());
   }
+
   private void selectLanguage(RadioButton radioButton) {
     languageToggleGroup.selectToggle(radioButton);
   }
+
   private void setInitialTheme() {
     if (theme.equals(new PrimerDark().getUserAgentStylesheet())) {
       darkThemeRadioButton.setSelected(true);
@@ -136,6 +138,16 @@ public class SettingsController {
     germanRadioButton.setToggleGroup(languageToggleGroup);
   }
 
+  private void setInitialLanguage(Locale currentLanguage) {
+    if (currentLanguage.equals(new Locale("en", "US"))) {
+      englishRadioButton.setSelected(true);
+    } else if (currentLanguage.equals(new Locale("uk", "UA"))) {
+      ukrainianRadioButton.setSelected(true);
+    } else if (currentLanguage.equals(new Locale("de", "DE"))) {
+      germanRadioButton.setSelected(true);
+    }
+  }
+
   private void applyTheme() {
     String selectedTheme = switch ((RadioButton) themeToggleGroup.getSelectedToggle()) {
       case RadioButton rb when rb == lightThemeRadioButton -> new PrimerLight().getUserAgentStylesheet();
@@ -157,20 +169,23 @@ public class SettingsController {
   }
 
   private void applyLanguage() {
-    bundle = switch ((RadioButton) languageToggleGroup.getSelectedToggle()) {
-      case RadioButton rb when rb == englishRadioButton -> ResourceBundle.getBundle("messages_en", new Locale("en", "US"));
-      case RadioButton rb when rb == ukrainianRadioButton -> ResourceBundle.getBundle("messages_uk", new Locale("uk", "UA"));
-      case RadioButton rb when rb == germanRadioButton -> ResourceBundle.getBundle("messages_de", new Locale("de", "DE"));
-      default -> ResourceBundle.getBundle("messages_uk", new Locale("uk", "UA"));
+    Locale selectedLocale = switch ((RadioButton) languageToggleGroup.getSelectedToggle()) {
+      case RadioButton rb when rb == englishRadioButton -> new Locale("en", "US");
+      case RadioButton rb when rb == ukrainianRadioButton -> new Locale("uk", "UA");
+      case RadioButton rb when rb == germanRadioButton -> new Locale("de", "DE");
+      default -> new Locale("uk", "UA");
     };
-    updateLanguage();
+    LanguageManager.setBundle(selectedLocale);
+    ControllerManager.notifyAllControllers();
   }
 
-  private void updateLanguage() {
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
     changeAccountButton.setText(bundle.getString("button.changeAccount"));
     themesLabel.setText(bundle.getString("label.changeThemes"));
-   // languageLabel.setText(bundle.getString("label.changeLanguage"));
-
+    languageLabel.setText(bundle.getString("label.changeLanguage"));
+    // Оновити всі інші текстові елементи у цьому контролері
   }
 
   private void handleChangeAccountAction() {
@@ -188,6 +203,7 @@ public class SettingsController {
 
   private void loadNewScene(Stage currentStage) {
     try {
+      ResourceBundle bundle = LanguageManager.getBundle();
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/authorization.fxml"), bundle);
       Parent root = loader.load();
 

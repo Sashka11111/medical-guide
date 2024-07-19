@@ -1,6 +1,10 @@
 package com.kudelych.medicalguide.presentation.controller;
 
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AlertController {
+public class AlertController implements LanguageUpdatable {
 
   @FXML
   private ImageView icon;
@@ -20,7 +24,11 @@ public class AlertController {
   private Label messageLabel;
 
   private Stage stage;
-
+  @FXML
+  void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
+  }
   @FXML
   private void handleOkAction() {
     stage.close();
@@ -55,5 +63,10 @@ public class AlertController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    messageLabel.setText(bundle.getString("label.message"));
   }
 }

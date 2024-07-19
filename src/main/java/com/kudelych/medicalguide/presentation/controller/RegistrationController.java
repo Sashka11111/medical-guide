@@ -1,6 +1,9 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.security.PasswordHashing;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.domain.validation.UserValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.User;
@@ -9,6 +12,7 @@ import com.kudelych.medicalguide.persistence.repository.contract.UserRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.UserRepositoryImpl;
 import com.kudelych.medicalguide.presentation.animation.Shake;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,25 +23,35 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class RegistrationController {
-
-  @FXML
-  private Hyperlink SignUpHyperlink;
+public class RegistrationController implements LanguageUpdatable {
 
   @FXML
   private Button SignInButton;
 
   @FXML
-  private TextField loginField;
-
-  @FXML
-  private PasswordField passwordField;
+  private Hyperlink SignUpHyperlink;
 
   @FXML
   private Button btn_close;
 
   @FXML
   private Label errorMessageLabel;
+
+  @FXML
+  private TextField loginField;
+
+  @FXML
+  private Label medGuide;
+
+  @FXML
+  private PasswordField passwordField;
+
+  @FXML
+  private Label regLabel;
+
+  @FXML
+  private Label regQuestion;
+
 
   private UserRepository userRepository;
 
@@ -46,6 +60,8 @@ public class RegistrationController {
   }
   @FXML
   void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     btn_close.setOnAction(event -> {
       System.exit(0);
     });
@@ -103,5 +119,16 @@ public class RegistrationController {
         userPassAnim.playAnim();
       }
     });
+  }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    loginField.setPromptText(bundle.getString("field.loginField"));
+    passwordField.setPromptText(bundle.getString("field.passwordField"));
+    SignUpHyperlink.setText(bundle.getString("hyperLink.SignUpHyperlink"));
+    SignInButton.setText(bundle.getString("label.SignInButton"));
+    medGuide.setText(bundle.getString("label.medicalGuide"));
+    regLabel.setText(bundle.getString("label.reg"));
+    regQuestion.setText(bundle.getString("label.regQuestion"));
   }
 }

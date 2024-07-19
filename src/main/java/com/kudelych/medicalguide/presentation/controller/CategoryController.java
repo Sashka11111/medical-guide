@@ -1,11 +1,15 @@
 package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.domain.validation.CategoryValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.repository.contract.CategoryRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
+import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,7 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import java.util.List;
 
-public class CategoryController {
+public class CategoryController implements LanguageUpdatable {
 
   @FXML
   private TableColumn<Category, Integer> Category_col_IdCategory;
@@ -31,6 +35,9 @@ public class CategoryController {
 
   @FXML
   private TextField addCategory;
+
+  @FXML
+  private Label categoryLabel;
 
   @FXML
   private Button btn_add;
@@ -52,6 +59,8 @@ public class CategoryController {
 
   @FXML
   void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     Category_col_IdCategory.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().id()).asObject());
     Category_col_NameCategory.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
     loadCategories();
@@ -137,4 +146,17 @@ public class CategoryController {
       }
     }
   }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    categoryLabel.setText(bundle.getString("label.category"));
+    btn_add.setText(bundle.getString("button.add"));
+    btn_clear.setText(bundle.getString("button.clear"));
+    btn_delete.setText(bundle.getString("button.delete"));
+    btn_edit.setText(bundle.getString("button.edit"));
+    Category_col_IdCategory.setText(bundle.getString("column.id"));
+    Category_col_NameCategory.setText(bundle.getString("column.name"));
+    errorMessage.setText(""); // Очистити повідомлення про помилку при зміні мови
+  }
+
 }

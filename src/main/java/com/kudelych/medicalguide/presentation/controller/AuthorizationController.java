@@ -3,13 +3,17 @@ package com.kudelych.medicalguide.presentation.controller;
 import com.kudelych.medicalguide.domain.security.PasswordHashing;
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
-import com.kudelych.medicalguide.domain.security.ThemeManager;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
+import com.kudelych.medicalguide.domain.setting.ThemeManager;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.contract.UserRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.UserRepositoryImpl;
 import com.kudelych.medicalguide.presentation.animation.Shake;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +29,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AuthorizationController {
+public class AuthorizationController implements LanguageUpdatable {
 
   @FXML
   private Hyperlink authSignInHyperlink;
@@ -43,6 +47,13 @@ public class AuthorizationController {
   private Button btn_close;
   @FXML
   private Label errorMessageLabel;
+  @FXML
+  private Label medGuide;
+  @FXML
+  private Label authLabel;
+
+  @FXML
+  private Label authQuestion;
   private UserRepository userRepository; // Змінна для зберігання UserRepository
 
   // Параметризований конструктор, який приймає userRepository
@@ -52,8 +63,12 @@ public class AuthorizationController {
 
   @FXML
   void initialize() {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     // Збереження теми в ThemeManager перед переходом
     ThemeManager.setCurrentTheme(Application.getUserAgentStylesheet());
+    // Збереження мови у LanguageManager перед переходом
+    LanguageManager.setBundle(LanguageManager.getCurrentLocale());
     btn_close.setOnAction(event -> {
       System.exit(0);
     });
@@ -119,5 +134,16 @@ public class AuthorizationController {
         userPassAnim.playAnim();
       }
     });
+  }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    authSignInHyperlink.setText(bundle.getString("hyperLink.authSignInHyperlink"));
+    authSingUpButton.setText(bundle.getString("button.authSingUpButton"));
+    loginField.setPromptText(bundle.getString("field.loginField"));
+    passwordField.setPromptText(bundle.getString("field.passwordField"));
+    medGuide.setText(bundle.getString("label.medicalGuide"));
+    authLabel.setText(bundle.getString("label.auth"));
+    authQuestion.setText(bundle.getString("label.authQuestion"));
   }
 }

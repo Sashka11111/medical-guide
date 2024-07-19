@@ -14,7 +14,7 @@
   <children>
     <AnchorPane layoutX="520.0" layoutY="184.0" prefHeight="237.0" prefWidth="346.0" style="-fx-background-color: transparent; -fx-border-color: #004C4C; -fx-border-radius: 8; -fx-border-width: 2;">
       <children>
-        <Label layoutX="114.0" layoutY="27.0" prefHeight="38.0" prefWidth="117.0" text="Категорія">
+        <Label fx:id="categoryLabel" layoutX="114.0" layoutY="27.0" prefHeight="38.0" prefWidth="117.0" text="Категорія">
           <font>
             <Font size="26.0" />
           </font>

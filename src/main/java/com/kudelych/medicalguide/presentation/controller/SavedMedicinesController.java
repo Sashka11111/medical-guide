@@ -2,12 +2,16 @@ package com.kudelych.medicalguide.presentation.controller;
 
 import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.domain.security.AuthenticatedUser;
+import com.kudelych.medicalguide.domain.setting.ControllerManager;
+import com.kudelych.medicalguide.domain.setting.LanguageManager;
+import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import java.io.ByteArrayInputStream;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +28,7 @@ import java.util.List;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-public class SavedMedicinesController {
+public class SavedMedicinesController implements LanguageUpdatable {
 
   @FXML
   private GridPane savedMedicinesGridPane;
@@ -60,7 +64,10 @@ public class SavedMedicinesController {
   }
 
   @FXML
-  public void initialize() {
+  public void initialize()
+  {
+    ControllerManager.registerController(this);
+    ControllerManager.notifyAllControllers();
     loadSavedMedicines();
   }
 
@@ -197,4 +204,16 @@ public class SavedMedicinesController {
       medicineImageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
     }
   }
+  @Override
+  public void updateLanguage() {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    // Оновлення тексту для полів, що показують інформацію про лікарський засіб
+    medicineName.setText(bundle.getString("label.name"));
+    medicineDescription.setText(bundle.getString("label.description"));
+    medicineManufacturer.setText(bundle.getString("label.manufacturer"));
+    medicineForm.setText(bundle.getString("label.form"));
+    medicinePurpose.setText(bundle.getString("label.purpose"));
+    // Додайте інші елементи, які потребують локалізації
+  }
+
 }

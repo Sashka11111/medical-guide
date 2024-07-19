@@ -16,7 +16,7 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="themesLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="22.0" prefHeight="40.0" prefWidth="94.0" text="Тема">
+      <Label fx:id="themesLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="22.0" prefHeight="40.0" prefWidth="217.0" text="Тема">
          <font>
             <Font size="24.0" />
          </font>
@@ -40,7 +40,7 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <Label fx:id="languageLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="238.0" prefHeight="27.0" prefWidth="94.0" text="Мова">
+      <Label fx:id="languageLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="238.0" prefHeight="35.0" prefWidth="223.0" text="Мова">
          <font>
             <Font size="24.0" />
          </font>

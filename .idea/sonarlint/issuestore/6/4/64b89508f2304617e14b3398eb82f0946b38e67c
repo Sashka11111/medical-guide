@@ -1,9 +1,9 @@
 
-g	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ñÖ¯¹‹2
-u	java:S116+"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¤ışÿÿÿÿ8ôÖ¯¹‹2
+	java:S112X"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ïç›àŒ2J$8601e8e1-6d08-4c9d-8c13-2d29d0cb82a9
+›	java:S116/"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¤ışÿÿÿÿ8Ñç›àŒ2J$c4aee97c-56c4-440d-9154-5b91548df8ac
+š
+java:S3776A"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8Öç›àŒ2J$92c04c89-64bd-4b4f-9525-5f5ba9185e5d
 t
-java:S37766"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8×¯¹‹2
-N
-java:S16029",Remove useless curly braces around statement(çùúŠùÿÿÿÿ8‚×¯¹‹2
-N
-java:S1481>"1Remove this unused "currentScene" local variable.(òíÂ†8†×¯¹‹2
+java:S1602H",Remove useless curly braces around statement(çùúŠùÿÿÿÿ8×ç›àŒ2J$843f2b11-a42b-4d2f-b25d-1fe254a0fc5c
+t
+java:S1481M"1Remove this unused "currentScene" local variable.(òíÂ†8Øç›àŒ2J$06bf5aed-0326-43b7-8804-4e81842ebbe5

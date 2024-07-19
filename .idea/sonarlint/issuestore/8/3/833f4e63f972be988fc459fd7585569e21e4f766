@@ -1,10 +1,10 @@
 
-	java:S112;"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“ºýô†2J$b6ffbe37-1433-4849-a271-ab3b698500aa
-	java:S112["FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“ºýô†2J$39d25061-d495-431b-9dd3-6fc91ef39d0d
-¡	java:S116"ZRename this field "SignUpHyperlink" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô»ÌÙÿÿÿÿÿ8¼¬¥ò†2J$96d578da-7280-4e8e-b0aa-7e9b4be84b24
-™	java:S116"WRename this field "SignInButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Ä®8³³€ï†2J$81483481-1560-42de-b31e-ae7c4b97c874
-›	java:S116%"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¤ýþÿÿÿÿ8›§ýô†2J$3e8b1049-8bb3-447d-a0bb-d70038bfd015
+	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“ºýô†2J$dd48b505-d678-4511-894c-257077a52b9f
+	java:S112k"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8“ºýô†2J$868af6e2-da4e-43e5-95e2-85d42c06799e
+™	java:S116"WRename this field "SignInButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Ä®8±“»àŒ2J$e25fb3f2-7e6a-4488-ba8a-c77c2ce4980f
+¡	java:S116 "ZRename this field "SignUpHyperlink" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô»ÌÙÿÿÿÿÿ8²“»àŒ2J$c1aadf24-d436-4fbe-b4cb-9708d39916d5
+›	java:S116#"TRename this field "btn_close" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¤ýþÿÿÿÿ8²“»àŒ2J$f5c8e7f4-a4ad-4451-ac44-70a236afab6c
 š
-java:S37760"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8˜ºýô†2J$24d9689f-3a5c-4e1c-995e-4d76723fe090
+java:S3776>"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8˜ºýô†2J$738d7c98-77b7-4407-bbca-4394fa06cc4b
 t
-java:S16021",Remove useless curly braces around statement(çùúŠùÿÿÿÿ8®‚þô†2J$c8f86c9f-e42f-4128-9993-cfd96bf1ed1e
+java:S1602A",Remove useless curly braces around statement(çùúŠùÿÿÿÿ8®‚þô†2J$f179b3d0-8cc3-4e56-842b-a1dc74bc822e
