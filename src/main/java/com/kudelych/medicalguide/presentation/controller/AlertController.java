@@ -22,6 +22,8 @@ public class AlertController implements LanguageUpdatable {
   private ImageView icon;
   @FXML
   private Label messageLabel;
+  @FXML
+  private Label message;
 
   private Stage stage;
   @FXML
@@ -67,6 +69,6 @@ public class AlertController implements LanguageUpdatable {
   @Override
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
-    messageLabel.setText(bundle.getString("label.message"));
+    message.setText(bundle.getString("label.message"));
   }
 }

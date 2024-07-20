@@ -15,9 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.util.List;
-import javafx.scene.image.Image;
 
 public class UsersManagementController implements LanguageUpdatable {
 
@@ -37,6 +35,10 @@ public class UsersManagementController implements LanguageUpdatable {
   private TextField usernameField;
   @FXML
   private Button deleteButton;
+  @FXML
+  private Label roleLabel;
+  @FXML
+  private Label userLabel;
 
   private final UserRepository userRepository;
 
@@ -80,48 +82,52 @@ public class UsersManagementController implements LanguageUpdatable {
   private void changeRole() {
     String username = usernameField.getText();
     UserRole newRole = roleComboBox.getValue();
+    ResourceBundle bundle = LanguageManager.getBundle();
+
     if (username != null && !username.isEmpty() && newRole != null) {
       try {
         userRepository.updateUserRole(username, newRole);
-        AlertController.showAlert("Успіх","Роль користувача змінено");
+        AlertController.showAlert(bundle.getString("label.message"), bundle.getString("success.changeRole"));
         loadUsers();
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert("Помилка", e.getMessage());
+        AlertController.showAlert(bundle.getString("label.message"), bundle.getString("error.userNotFound"));
       }
     } else {
-      AlertController.showAlert("Попередження", "Будь ласка, заповніть всі поля");
+      AlertController.showAlert(bundle.getString("label.message"), bundle.getString("warning.fillFields"));
     }
     clearFields();
   }
 
   private void deleteUser() {
     String username = usernameField.getText();
+    ResourceBundle bundle = LanguageManager.getBundle();
+
     if (username != null && !username.isEmpty()) {
       try {
         userRepository.deleteUser(username);
-        AlertController.showAlert("Успіх", "Користувача видалено");
+        AlertController.showAlert(bundle.getString("label.message"), bundle.getString("success.deleteUser"));
         loadUsers();
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert("Помилка", e.getMessage());
+        AlertController.showAlert(bundle.getString("label.message"), bundle.getString("error.userNotFound"));
       }
     } else {
-      AlertController.showAlert("Попередження", "Будь ласка, введіть ім'я користувача");
+      AlertController.showAlert(bundle.getString("label.message"), bundle.getString("warning.enterUsername"));
     }
     clearFields();
   }
+
   private void clearFields() {
     usernameField.clear();
     roleComboBox.setValue(null);
   }
+
   @Override
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
     changeRoleButton.setText(bundle.getString("button.changeRole"));
     deleteButton.setText(bundle.getString("button.deleteUser"));
-    usernameField.setPromptText(bundle.getString("field.username"));
     roleComboBox.setPromptText(bundle.getString("comboBox.role"));
-    usernameColumn.setText(bundle.getString("column.username"));
-    roleColumn.setText(bundle.getString("column.role"));
+    userLabel.setText(bundle.getString("label.username"));
+    roleLabel.setText(bundle.getString("label.role"));
   }
-
 }

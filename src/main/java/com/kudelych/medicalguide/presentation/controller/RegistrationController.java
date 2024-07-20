@@ -52,12 +52,12 @@ public class RegistrationController implements LanguageUpdatable {
   @FXML
   private Label regQuestion;
 
-
   private UserRepository userRepository;
 
   public RegistrationController() {
     this.userRepository = new UserRepositoryImpl(new DatabaseConnection().getDataSource());
   }
+
   @FXML
   void initialize() {
     ControllerManager.registerController(this);
@@ -80,7 +80,7 @@ public class RegistrationController implements LanguageUpdatable {
       String username = loginField.getText();
       String password = passwordField.getText();
       if (username.isEmpty() || password.isEmpty()) {
-        errorMessageLabel.setText("Логін та пароль не повинен бути пустим");
+        errorMessageLabel.setText(getLocalizedMessage("error.empty.fields"));
         Shake userLoginAnim = new Shake(loginField);
         Shake userPassAnim = new Shake(passwordField);
         userLoginAnim.playAnim();
@@ -107,12 +107,12 @@ public class RegistrationController implements LanguageUpdatable {
             throw new RuntimeException(e);
           }
         } else {
-          errorMessageLabel.setText("Логін з ім'ям " + username + " уже існує");
+          errorMessageLabel.setText(getLocalizedMessage("error.username.exists", username));
           Shake userLoginAnim = new Shake(loginField);
           userLoginAnim.playAnim();
         }
       } else {
-        errorMessageLabel.setText("Пароль має мати велику, маленьку букву та цифру.\n" + "Мінімальна довжина: 6 символів. Максимальна: 20.");
+        errorMessageLabel.setText(getLocalizedMessage("error.password.invalid"));
         Shake userLoginAnim = new Shake(loginField);
         Shake userPassAnim = new Shake(passwordField);
         userLoginAnim.playAnim();
@@ -120,6 +120,7 @@ public class RegistrationController implements LanguageUpdatable {
       }
     });
   }
+
   @Override
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
@@ -130,5 +131,10 @@ public class RegistrationController implements LanguageUpdatable {
     medGuide.setText(bundle.getString("label.medicalGuide"));
     regLabel.setText(bundle.getString("label.reg"));
     regQuestion.setText(bundle.getString("label.regQuestion"));
+  }
+
+  private String getLocalizedMessage(String key, Object... args) {
+    ResourceBundle bundle = LanguageManager.getBundle();
+    return String.format(bundle.getString(key), args);
   }
 }

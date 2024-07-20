@@ -62,9 +62,5 @@
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
     </TableView>
-    <Label fx:id="errorMessage" alignment="CENTER" layoutX="106.0" layoutY="5.0" prefHeight="18.0" prefWidth="533.0" textFill="RED" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="74.79999999999995">
-         <font>
-            <Font size="13.0" />
-         </font></Label>
   </children>
 </AnchorPane>

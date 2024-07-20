@@ -25,24 +25,24 @@
     </ScrollPane>
     <AnchorPane layoutX="655.0" layoutY="8.0" prefHeight="645.0" prefWidth="262.0" style="-fx-border-color: #004C4C; -fx-border-radius: 15; -fx-background-color: transparent;">
       <children>
-        <Button layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
+        <Button fx:id="deleteFromSaved" layoutX="33.0" layoutY="596.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #808080; -fx-background-radius: 20;" text="Видалити зі збережених" textFill="WHITE">
           <font>
             <Font size="16.0" />
           </font>
         </Button>
         <VBox layoutY="145.0" prefHeight="451.0" prefWidth="260.0" spacing="10.0">
           <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="271.0" style="-fx-font-weight: bold;" text="Назва" />
+            <Label fx:id="medicineNameLabel" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" style="-fx-font-weight: bold;" text="Назва" />
             <Label fx:id="medicineName" alignment="CENTER" prefHeight="51.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="258.0" style="-fx-font-weight: bold;" text="Опис" />
+            <Label fx:id="medicineDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="258.0" style="-fx-font-weight: bold;" text="Опис" />
             <Label fx:id="medicineDescription" alignment="CENTER" prefHeight="78.0" prefWidth="298.0" textAlignment="CENTER" wrapText="true" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="264.0" style="-fx-font-weight: bold;" text="Виробник" />
+            <Label fx:id="medicineManufacturerLabel" alignment="CENTER" prefHeight="18.0" prefWidth="264.0" style="-fx-font-weight: bold;" text="Виробник" />
             <Label fx:id="medicineManufacturer" alignment="CENTER" prefHeight="51.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Форма" />
+            <Label fx:id="medicineFormLabel" alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Форма" />
             <Label fx:id="medicineForm" alignment="CENTER" prefHeight="57.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Призначення" />
+            <Label fx:id="medicinePurposeLabel" alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Призначення" />
             <Label fx:id="medicinePurpose" alignment="CENTER" prefHeight="54.0" prefWidth="260.0" textAlignment="CENTER" wrapText="true" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Категорії" />
+            <Label fx:id="medicineCategoryLabel" alignment="CENTER" prefHeight="18.0" prefWidth="262.0" style="-fx-font-weight: bold;" text="Категорії" />
             <TextFlow fx:id="medicineCategoriesTextFlow" prefHeight="46.0" prefWidth="260.0" textAlignment="CENTER" />
           </children>
         </VBox>

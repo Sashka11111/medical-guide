@@ -10,10 +10,6 @@ public class ControllerManager {
     controllers.add(controller);
   }
 
-  public static void unregisterController(LanguageUpdatable controller) {
-    controllers.remove(controller);
-  }
-
   public static void notifyAllControllers() {
     for (LanguageUpdatable controller : controllers) {
       controller.updateLanguage();

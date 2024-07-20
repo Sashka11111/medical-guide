@@ -10,9 +10,11 @@ import com.kudelych.medicalguide.persistence.entity.Medicine;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.repository.impl.MedicinesRepositoryImpl;
 import java.io.ByteArrayInputStream;
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -32,37 +34,58 @@ import javafx.scene.text.TextFlow;
 public class MedicinesController implements LanguageUpdatable {
 
   @FXML
-  private GridPane medicinesGridPane;
+  private Label errorLabel;
 
   @FXML
-  private Label medicineName;
+  private TextFlow medicineCategoriesTextFlow;
+
+  @FXML
+  private Label medicineCategoryLabel;
 
   @FXML
   private Label medicineDescription;
 
   @FXML
-  private Label medicineManufacturer;
+  private Label medicineDescriptionLabel;
 
   @FXML
   private Label medicineForm;
 
   @FXML
-  private Label medicinePurpose;
-
+  private Label medicineFormLabel;
   @FXML
-  private TextField searchTextField;
-
-  @FXML
-  private Label errorLabel;
+  private Button addToSaved;
 
   @FXML
   private ImageView medicineImageView;
 
   @FXML
+  private Label medicineManufacturer;
+
+  @FXML
+  private Label medicineManufacturerLabel;
+
+  @FXML
+  private Label medicineName;
+
+  @FXML
+  private Label medicineNameLabel;
+
+  @FXML
+  private Label medicinePurpose;
+
+  @FXML
+  private Label medicinePurposeLabel;
+
+  @FXML
+  private GridPane medicinesGridPane;
+
+  @FXML
   private ScrollPane medicinesScrollPane;
 
   @FXML
-  private TextFlow medicineCategoriesTextFlow;
+  private TextField searchTextField;
+
 
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
@@ -164,20 +187,22 @@ public class MedicinesController implements LanguageUpdatable {
 
   @FXML
   private void handleSaveAction() {
+    ResourceBundle bundle = LanguageManager.getBundle();
     if (selectedMedicine != null) {
-      saveMedicine(selectedMedicine);
+      saveMedicine(selectedMedicine, bundle);
     } else {
-      AlertController.showAlert("Збереження лікарського засобу", "Ви не вибрали лікарський засіб.");
+      AlertController.showAlert(bundle.getString("save.medicine.title"), bundle.getString("save.medicine.no.selection"));
     }
   }
 
-  public void saveMedicine(Medicine medicine) {
+  public void saveMedicine(Medicine medicine, ResourceBundle bundle) {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     if (savedMedicines.stream().anyMatch(savedMedicine -> savedMedicine.id() == medicine.id())) {
-      AlertController.showAlert("Збереження лікарського засобу", "Цей лікарський засіб збережено.");
+      AlertController.showAlert(bundle.getString("save.medicine.title"), bundle.getString("save.medicine.exists"));
     } else {
       medicinesRepository.addSavedMedicine(currentUser.id(), medicine.id());
-      AlertController.showAlert("Збереження лікарського засобу", "Лікарський засіб " + medicine.name()+" збережено.");
+      String successMessage = MessageFormat.format(bundle.getString("save.medicine.success"), medicine.name());
+      AlertController.showAlert(bundle.getString("save.medicine.title"), successMessage);
       loadMedicines(); // Оновлення списку збережених ліків
     }
   }
@@ -209,11 +234,12 @@ public class MedicinesController implements LanguageUpdatable {
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
     searchTextField.setPromptText(bundle.getString("field.search"));
-    medicineName.setText(bundle.getString("label.name"));
-    medicineDescription.setText(bundle.getString("label.description"));
-    medicineManufacturer.setText(bundle.getString("label.manufacturer"));
-    medicineForm.setText(bundle.getString("label.form"));
-    medicinePurpose.setText(bundle.getString("label.purpose"));
-
+    medicineNameLabel.setText(bundle.getString("label.name"));
+    medicineDescriptionLabel.setText(bundle.getString("label.description"));
+    medicineManufacturerLabel.setText(bundle.getString("label.manufacturer"));
+    medicineFormLabel.setText(bundle.getString("label.form"));
+    medicinePurposeLabel.setText(bundle.getString("label.purpose"));
+    medicineCategoryLabel.setText(bundle.getString("label.category"));
+    addToSaved.setText(bundle.getString("button.addToSaved"));
   }
 }

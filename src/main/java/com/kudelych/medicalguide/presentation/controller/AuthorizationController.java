@@ -91,6 +91,7 @@ public class AuthorizationController implements LanguageUpdatable {
 
 
     authSingUpButton.setOnAction(event -> {
+      ResourceBundle bundle = LanguageManager.getBundle();
       String loginText = loginField.getText().trim();
       String loginPassword = passwordField.getText().trim();
 
@@ -112,28 +113,24 @@ public class AuthorizationController implements LanguageUpdatable {
               stage.initStyle(StageStyle.UNDECORATED);
               stage.showAndWait();
             } else {
-              errorMessageLabel.setText("Невірний логін або пароль");
-              Shake userLoginAnim = new Shake(loginField);
-              Shake userPassAnim = new Shake(passwordField);
-              userLoginAnim.playAnim();
-              userPassAnim.playAnim();
+              showError(bundle.getString("error.invalidLoginOrPassword"));
             }
           }
         } catch (EntityNotFoundException | IOException e) {
-          errorMessageLabel.setText("Невірний логін або пароль");
-          Shake userLoginAnim = new Shake(loginField);
-          Shake userPassAnim = new Shake(passwordField);
-          userLoginAnim.playAnim();
-          userPassAnim.playAnim();
+          showError(bundle.getString("error.invalidLoginOrPassword"));
         }
       } else {
-        errorMessageLabel.setText("Логін та пароль не повинен бути пустим");
-        Shake userLoginAnim = new Shake(loginField);
-        Shake userPassAnim = new Shake(passwordField);
-        userLoginAnim.playAnim();
-        userPassAnim.playAnim();
+        showError(bundle.getString("error.emptyLoginOrPassword"));
       }
     });
+  }
+
+  private void showError(String message) {
+    errorMessageLabel.setText(message);
+    Shake userLoginAnim = new Shake(loginField);
+    Shake userPassAnim = new Shake(passwordField);
+    userLoginAnim.playAnim();
+    userPassAnim.playAnim();
   }
   @Override
   public void updateLanguage() {

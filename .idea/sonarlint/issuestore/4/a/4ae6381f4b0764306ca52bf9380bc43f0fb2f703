@@ -1,8 +1,8 @@
 
-b	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(ø…ú“8±Ã‰çˆ2
-g	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(©ñíÀıÿÿÿÿ8±Ã‰çˆ2
-b	java:S112q"FDefine and throw a dedicated exception instead of using a generic one.(çğíÂ8±Ã‰çˆ2
-h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(£››úÿÿÿÿ8²Ã‰çˆ2
-c	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(‡”Á—8²Ã‰çˆ2
-A
-java:S6905H"Don't use the query "SELECT *".(ó¿…ºÿÿÿÿÿ8¿Ã‰çˆ2
+ˆ	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(ø…ú“8±Ã‰çˆ2J$ae751cbd-33ef-4a57-8aa5-f1b36729a708
+	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(©ñíÀıÿÿÿÿ8±Ã‰çˆ2J$dec5f92b-3593-4d07-ad38-cc82ced6f077
+ˆ	java:S112q"FDefine and throw a dedicated exception instead of using a generic one.(çğíÂ8±Ã‰çˆ2J$3faf1d7d-3636-47a7-9b29-dfc23cf66e6a
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(£››úÿÿÿÿ8²Ã‰çˆ2J$b4aefd15-b302-455c-845e-3c0edcf69581
+‰	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(‡”Á—8²Ã‰çˆ2J$502916c3-384d-4091-9dea-092272b29f72
+g
+java:S6905H"Don't use the query "SELECT *".(ó¿…ºÿÿÿÿÿ8¿Ã‰çˆ2J$17d6291b-5383-4af4-9e90-02c471a71dc9

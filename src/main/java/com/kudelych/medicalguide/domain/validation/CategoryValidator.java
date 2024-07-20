@@ -8,11 +8,11 @@ public class CategoryValidator {
   // Метод для перевірки назви категорії
   public static String validateCategoryName(String name, List<Category> existingCategories) {
     if (name == null || name.trim().isEmpty()) {
-      return "Назва категорії не може бути порожня";
+      return "error.categoryNameEmpty";
     } else if (name.length() > 50) {
-      return "Назва категорії занадто довга";
+      return "error.categoryNameTooLong";
     } else if (isCategoryNameDuplicate(name, existingCategories)) {
-      return "Категорія з такою назвою вже існує";
+      return "error.categoryNameDuplicate";
     } else {
       return null; // Якщо назва валідна, повертаємо null
     }

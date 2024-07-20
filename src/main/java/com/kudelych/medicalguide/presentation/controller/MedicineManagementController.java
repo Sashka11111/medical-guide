@@ -4,7 +4,6 @@ import com.kudelych.medicalguide.domain.exception.EntityNotFoundException;
 import com.kudelych.medicalguide.domain.setting.ControllerManager;
 import com.kudelych.medicalguide.domain.setting.LanguageManager;
 import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
-import com.kudelych.medicalguide.domain.validation.CategoryValidator;
 import com.kudelych.medicalguide.domain.validation.MedicinesValidator;
 import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Medicine;
@@ -65,15 +64,49 @@ public class MedicineManagementController implements LanguageUpdatable {
   private TableColumn<Medicine, String> purposeColumn;
 
   @FXML
+  private Button editButton;
+
+  @FXML
+  private Button deleteButton;
+
+  @FXML
+  private Button addButton;
+
+  @FXML
   private ImageView imageView;
 
   @FXML
   private CheckComboBox<Category> categoryComboBox;
 
+  @FXML
+  private Label categoryLabel;
+
+  @FXML
+  private Button chooseButton;
+
+  @FXML
+  private Label descriptionLabel;
+
+  @FXML
+  private Label formLabel;
+
+  @FXML
+  private Label manufacturerLabel;
+
+  @FXML
+  private Label nameLabel;
+
+  @FXML
+  private Label photoLabel;
+
+  @FXML
+  private Label purposeLabel;
+
   private MedicinesRepositoryImpl medicinesRepository;
   private CategoryRepositoryImpl categoryRepository;
   private ObservableList<Medicine> medicineData = FXCollections.observableArrayList();
   private byte[] selectedImageBytes;
+  private ResourceBundle bundle;
 
   public MedicineManagementController() {
     this.medicinesRepository = new MedicinesRepositoryImpl(new DatabaseConnection().getDataSource());
@@ -82,6 +115,7 @@ public class MedicineManagementController implements LanguageUpdatable {
 
   @FXML
   private void initialize() {
+    bundle = LanguageManager.getBundle(); // Ініціалізація ResourceBundle
     ControllerManager.registerController(this);
     ControllerManager.notifyAllControllers();
     // Налаштування властивостей для колонок таблиці
@@ -165,12 +199,12 @@ public class MedicineManagementController implements LanguageUpdatable {
     // Валідація нового лікарського засобу
     List<Medicine> existingMedicines = medicinesRepository.findAll();
     if (!MedicinesValidator.validateMedicine(newMedicine, existingMedicines)) {
-      AlertController.showAlert("Помилка", "Будь ласка, заповніть усі поля.");
+      AlertController.showAlert(bundle.getString("error.title"), bundle.getString("error.fill.all.fields"));
       return;
     }
 
     if (MedicinesValidator.isMedicineNameDuplicate(newMedicine.name(), existingMedicines)) {
-      AlertController.showAlert("Помилка", "Лікарський засіб з такою назвою вже існує.");
+      AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.duplicate.name"));
       return;
     }
 
@@ -210,7 +244,7 @@ public class MedicineManagementController implements LanguageUpdatable {
       existingMedicines.removeIf(medicine -> medicine.id() == selectedMedicine.id());
 
       if (MedicinesValidator.isMedicineNameDuplicate(updatedMedicine.name(), existingMedicines)) {
-        AlertController.showAlert("Помилка", "Лікарський засіб з такою назвою вже існує.");
+        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.duplicate.name"));
         return;
       }
 
@@ -224,11 +258,12 @@ public class MedicineManagementController implements LanguageUpdatable {
           categoryRepository.addCategoryToMedicine(updatedMedicine.id(), category.id());
         }
         loadMedicines();
+        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("success.medicine.updated"));
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert("Повідомлення", "Лікарський засіб успішно редаговано!");
+        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.entity.not.found"));
       }
     } else {
-      AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для редагування.");
+      AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.select.medicine"));
     }
     clearFields();
   }
@@ -246,10 +281,10 @@ public class MedicineManagementController implements LanguageUpdatable {
         medicinesRepository.deleteMedicine(selectedMedicine.id());
         loadMedicines();
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert("Помилка", "Лікарський засіб не знайдено!");
+        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.entity.not.found"));
       }
     } else {
-      AlertController.showAlert("Помилка", "Не вибрано лікарський засіб для видалення.");
+      AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.select.medicine"));
     }
     clearFields();
   }
@@ -258,7 +293,7 @@ public class MedicineManagementController implements LanguageUpdatable {
   @FXML
   private void handleSelectImageAction() {
     FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Зображення", "*.png", "*.jpg", "*.jpeg"));
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(getLocalizedMessage("button.choose"), "*.png", "*.jpg", "*.jpeg"));
     File selectedFile = fileChooser.showOpenDialog(null);
     if (selectedFile != null) {
       try (FileInputStream fis = new FileInputStream(selectedFile)) {
@@ -283,16 +318,31 @@ public class MedicineManagementController implements LanguageUpdatable {
     selectedImageBytes = null;
     categoryComboBox.getCheckModel().clearChecks();
   }
+
   @Override
   public void updateLanguage() {
-    ResourceBundle bundle = LanguageManager.getBundle();
+    bundle = LanguageManager.getBundle(); // Оновлення ResourceBundle
 
     clearFieldsButton.setText(bundle.getString("button.clearFields"));
+    addButton.setText(bundle.getString("button.add"));
+    deleteButton.setText(bundle.getString("button.delete"));
+    editButton.setText(bundle.getString("button.edit"));
     nameColumn.setText(bundle.getString("column.name"));
     descriptionColumn.setText(bundle.getString("column.description"));
     manufacturerColumn.setText(bundle.getString("column.manufacturer"));
     formColumn.setText(bundle.getString("column.form"));
     purposeColumn.setText(bundle.getString("column.purpose"));
+    categoryLabel.setText(bundle.getString("label.category"));
+    chooseButton.setText(bundle.getString("button.choose"));
+    descriptionLabel.setText(bundle.getString("label.description"));
+    formLabel.setText(bundle.getString("label.form"));
+    manufacturerLabel.setText(bundle.getString("label.manufacturer"));
+    nameLabel.setText(bundle.getString("label.name"));
+    photoLabel.setText(bundle.getString("label.photo"));
+    purposeLabel.setText(bundle.getString("label.purpose"));
   }
 
+  private String getLocalizedMessage(String key) {
+    return bundle.getString(key);
+  }
 }

@@ -9,7 +9,6 @@ import com.kudelych.medicalguide.persistence.connection.DatabaseConnection;
 import com.kudelych.medicalguide.persistence.entity.Category;
 import com.kudelych.medicalguide.persistence.repository.contract.CategoryRepository;
 import com.kudelych.medicalguide.persistence.repository.impl.CategoryRepositoryImpl;
-import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -21,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class CategoryController implements LanguageUpdatable {
 
@@ -47,10 +47,10 @@ public class CategoryController implements LanguageUpdatable {
 
   @FXML
   private Button btn_delete;
+
   @FXML
   private Button btn_edit;
-  @FXML
-  private Label errorMessage;
+
   private final CategoryRepository categoryRepository;
 
   public CategoryController() {
@@ -80,7 +80,7 @@ public class CategoryController implements LanguageUpdatable {
   private void loadCategories() {
     List<Category> categories = categoryRepository.getAllCategories();
     ObservableList<Category> categoryViewModels = FXCollections.observableArrayList();
-    categoryViewModels.setAll(categoryRepository.getAllCategories());
+    categoryViewModels.setAll(categories);
     Category_tableView.setItems(categoryViewModels);
   }
 
@@ -95,16 +95,16 @@ public class CategoryController implements LanguageUpdatable {
         loadCategories();
         addCategory.clear();
       } catch (EntityNotFoundException e) {
+        AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), LanguageManager.getBundle().getString("error.addingCategory"));
         e.printStackTrace();
       }
     } else {
-      errorMessage.setText(validationMessage);
+      AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), validationMessage);
     }
   }
 
   private void onClearClicked() {
     addCategory.clear();
-    errorMessage.setText("");
   }
 
   private void onDeleteClicked() {
@@ -118,9 +118,10 @@ public class CategoryController implements LanguageUpdatable {
           loadCategories();
           onClearClicked();
         } else {
-          errorMessage.setText("Ця категорія має пов'язані елементи і не може бути видалена.");
+          AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), LanguageManager.getBundle().getString("error.deleteCategoryHasItems"));
         }
       } catch (EntityNotFoundException e) {
+        AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), LanguageManager.getBundle().getString("error.deletingCategory"));
         e.printStackTrace();
       }
     }
@@ -139,24 +140,23 @@ public class CategoryController implements LanguageUpdatable {
           loadCategories();
           addCategory.clear();
         } catch (EntityNotFoundException e) {
+          AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), LanguageManager.getBundle().getString("error.updatingCategory"));
           e.printStackTrace();
         }
       } else {
-        errorMessage.setText(validationMessage);
+        AlertController.showAlert(LanguageManager.getBundle().getString("error.title"), validationMessage);
       }
     }
   }
+
   @Override
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
     categoryLabel.setText(bundle.getString("label.category"));
     btn_add.setText(bundle.getString("button.add"));
-    btn_clear.setText(bundle.getString("button.clear"));
     btn_delete.setText(bundle.getString("button.delete"));
     btn_edit.setText(bundle.getString("button.edit"));
     Category_col_IdCategory.setText(bundle.getString("column.id"));
     Category_col_NameCategory.setText(bundle.getString("column.name"));
-    errorMessage.setText(""); // Очистити повідомлення про помилку при зміні мови
   }
-
 }

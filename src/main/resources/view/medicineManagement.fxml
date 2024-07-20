@@ -17,54 +17,54 @@
   <children>
     <AnchorPane layoutX="12.0" layoutY="18.0" prefHeight="279.0" prefWidth="902.0" style="-fx-background-color: transparent; -fx-border-color: #004C4C; -fx-border-radius: 8;" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="9.600000000000023" AnchorPane.topAnchor="18.0">
       <children>
-    <Label layoutX="30.0" layoutY="21.0" text="Назва ліків:">
+    <Label fx:id="nameLabel" layoutX="30.0" layoutY="21.0" text="Назва ліків:">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
     <TextField fx:id="nameField" layoutX="134.0" layoutY="21.0" prefHeight="26.0" prefWidth="269.0" styleClass="textfield" stylesheets="@../design/style.css" />
 
-    <Label layoutX="30.0" layoutY="116.0" text="Опис:">
+    <Label fx:id="descriptionLabel" layoutX="30.0" layoutY="116.0" text="Опис:">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
 
-    <Label layoutX="432.0" layoutY="23.0" text="Виробник:">
+    <Label fx:id="manufacturerLabel" layoutX="432.0" layoutY="23.0" text="Виробник:">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
     <TextField fx:id="manufacturerField" layoutX="526.0" layoutY="23.0" prefHeight="26.0" prefWidth="224.0" styleClass="textfield" stylesheets="@../design/style.css" />
 
-    <Label layoutX="432.0" layoutY="77.0" text="Форма:">
+    <Label fx:id="formLabel" layoutX="432.0" layoutY="77.0" text="Форма:">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
     <TextField fx:id="formField" layoutX="503.0" layoutY="77.0" prefHeight="26.0" prefWidth="246.0" styleClass="textfield" stylesheets="@../design/style.css" />
 
-    <Label layoutX="432.0" layoutY="130.0" text="Призначення:">
+    <Label fx:id="purposeLabel" layoutX="432.0" layoutY="130.0" text="Призначення:">
       <font>
         <Font size="18.0" />
       </font>
     </Label>
     <TextField fx:id="purposeField" layoutX="561.0" layoutY="130.0" prefHeight="26.0" prefWidth="188.0" styleClass="textfield" stylesheets="@../design/style.css" />
 
-    <Button layoutX="445.0" layoutY="176.0" onAction="#handleAddAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Додати" textFill="WHITE">
+    <Button fx:id="addButton" layoutX="445.0" layoutY="176.0" onAction="#handleAddAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Додати" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
-    <Button layoutX="445.0" layoutY="223.0" onAction="#handleEditAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Редагувати" textFill="WHITE">
+    <Button fx:id="editButton" layoutX="445.0" layoutY="223.0" onAction="#handleEditAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Редагувати" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
-    <Button layoutX="568.0" layoutY="223.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Видалити" textFill="WHITE">
+    <Button fx:id="deleteButton" layoutX="568.0" layoutY="223.0" onAction="#handleDeleteAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Видалити" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
       <TextArea fx:id="descriptionArea" layoutX="24.0" layoutY="156.0" prefHeight="102.0" prefWidth="398.0" style="-fx-background-color: transparent; -fx-border-color: #004C4C; -fx-border-radius: 3;" />
-      <Label layoutX="30.0" layoutY="76.0" text="Категорії:">
+      <Label fx:id="categoryLabel" layoutX="30.0" layoutY="76.0" text="Категорії:">
          <font>
             <Font size="18.0" />
          </font>
@@ -74,12 +74,12 @@
                <image>
                   <Image url="@../data/icon.png" />
                </image></ImageView>
-      <Label layoutX="807.0" layoutY="9.0" text="Фото" AnchorPane.rightAnchor="53.799999999999976" AnchorPane.topAnchor="9.0">
+      <Label fx:id="photoLabel" layoutX="807.0" layoutY="9.0" text="Фото" AnchorPane.rightAnchor="53.799999999999976" AnchorPane.topAnchor="9.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="772.0" layoutY="176.0" onAction="#handleSelectImageAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Вибрати фото" textFill="WHITE" AnchorPane.rightAnchor="15.199999999999974">
+      <Button fx:id="chooseButton" layoutX="772.0" layoutY="176.0" onAction="#handleSelectImageAction" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: #004C4C;" styleClass="side-btn" stylesheets="@../design/style.css" text="Вибрати фото" textFill="WHITE" AnchorPane.rightAnchor="15.199999999999974">
                <font>
                   <Font size="14.0" />
                </font></Button>

@@ -15,7 +15,7 @@
             <Image url="@../data/icon.png" />
          </image></ImageView>
       <Line endX="283.0" endY="-7.62939453125E-6" layoutX="101.0" layoutY="41.0" startX="-100.0" />
-      <Label layoutX="132.0" layoutY="6.0" text="Повідомлення">
+      <Label fx:id="message" layoutX="132.0" layoutY="6.0" text="Повідомлення">
          <font>
             <Font size="18.0" />
          </font>

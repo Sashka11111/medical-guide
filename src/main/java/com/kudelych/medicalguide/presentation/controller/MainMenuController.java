@@ -6,7 +6,6 @@ import com.kudelych.medicalguide.domain.setting.LanguageManager;
 import com.kudelych.medicalguide.domain.setting.LanguageUpdatable;
 import com.kudelych.medicalguide.persistence.entity.User;
 import com.kudelych.medicalguide.persistence.entity.UserRole;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;

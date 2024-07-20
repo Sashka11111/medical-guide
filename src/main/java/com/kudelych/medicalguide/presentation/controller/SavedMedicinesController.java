@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,33 +30,52 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class SavedMedicinesController implements LanguageUpdatable {
-
-  @FXML
-  private GridPane savedMedicinesGridPane;
-
-  @FXML
-  private Label medicineName;
-
-  @FXML
-  private Label medicineDescription;
-
-  @FXML
-  private Label medicineManufacturer;
-
-  @FXML
-  private Label medicineForm;
-
-  @FXML
-  private Label medicinePurpose;
-
   @FXML
   private Label errorLabel;
+  @FXML
+  private Button deleteFromSaved;
 
   @FXML
   private TextFlow medicineCategoriesTextFlow;
 
   @FXML
+  private Label medicineCategoryLabel;
+
+  @FXML
+  private Label medicineDescription;
+
+  @FXML
+  private Label medicineDescriptionLabel;
+
+  @FXML
+  private Label medicineForm;
+
+  @FXML
+  private Label medicineFormLabel;
+
+  @FXML
   private ImageView medicineImageView;
+
+  @FXML
+  private Label medicineManufacturer;
+
+  @FXML
+  private Label medicineManufacturerLabel;
+
+  @FXML
+  private Label medicineName;
+
+  @FXML
+  private Label medicineNameLabel;
+
+  @FXML
+  private Label medicinePurpose;
+
+  @FXML
+  private Label medicinePurposeLabel;
+
+  @FXML
+  private GridPane savedMedicinesGridPane;
   private MedicinesRepositoryImpl medicinesRepository;
   private Medicine selectedMedicine;
 
@@ -208,12 +228,13 @@ public class SavedMedicinesController implements LanguageUpdatable {
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
     // Оновлення тексту для полів, що показують інформацію про лікарський засіб
-    medicineName.setText(bundle.getString("label.name"));
-    medicineDescription.setText(bundle.getString("label.description"));
-    medicineManufacturer.setText(bundle.getString("label.manufacturer"));
-    medicineForm.setText(bundle.getString("label.form"));
-    medicinePurpose.setText(bundle.getString("label.purpose"));
-    // Додайте інші елементи, які потребують локалізації
+    medicineNameLabel.setText(bundle.getString("label.name"));
+    medicineDescriptionLabel.setText(bundle.getString("label.description"));
+    medicineManufacturerLabel.setText(bundle.getString("label.manufacturer"));
+    medicineFormLabel.setText(bundle.getString("label.form"));
+    medicinePurposeLabel.setText(bundle.getString("label.purpose"));
+    medicineCategoryLabel.setText(bundle.getString("label.category"));
+    deleteFromSaved.setText(bundle.getString("button.deleteFromSaved"));
   }
 
 }
