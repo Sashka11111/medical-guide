@@ -113,7 +113,8 @@ public class MedicinesController implements LanguageUpdatable {
   private void displayMedicineCards(List<Medicine> medicines) {
     medicinesGridPane.getChildren().clear();
     if (medicines.isEmpty()) {
-      errorLabel.setText("На жаль, таких ліків немає");
+      ResourceBundle bundle = LanguageManager.getBundle();
+      errorLabel.setText(bundle.getString("message.noSavedMedicines"));
       medicinesScrollPane.setVisible(false);
       return;
     } else {
@@ -241,5 +242,7 @@ public class MedicinesController implements LanguageUpdatable {
     medicinePurposeLabel.setText(bundle.getString("label.purpose"));
     medicineCategoryLabel.setText(bundle.getString("label.category"));
     addToSaved.setText(bundle.getString("button.addToSaved"));
-  }
+    if (errorLabel.getText().equals("На жаль, таких ліків немає")) {
+      errorLabel.setText(bundle.getString("message.noMedicines"));
+    }}
 }

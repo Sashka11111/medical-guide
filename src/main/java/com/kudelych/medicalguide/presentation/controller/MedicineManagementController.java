@@ -258,9 +258,8 @@ public class MedicineManagementController implements LanguageUpdatable {
           categoryRepository.addCategoryToMedicine(updatedMedicine.id(), category.id());
         }
         loadMedicines();
-        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("success.medicine.updated"));
       } catch (EntityNotFoundException e) {
-        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.entity.not.found"));
+        AlertController.showAlert(bundle.getString("error.title"),bundle.getString("success.medicine.updated"));
       }
     } else {
       AlertController.showAlert(bundle.getString("error.title"),bundle.getString("error.select.medicine"));

@@ -1,18 +1,22 @@
 package com.kudelych.medicalguide.domain.validation;
 
 import com.kudelych.medicalguide.persistence.entity.Category;
+
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class CategoryValidator {
 
-  // Метод для перевірки назви категорії
-  public static String validateCategoryName(String name, List<Category> existingCategories) {
+  // Метод для перевірки назви категорії з урахуванням мови
+  public static String validateCategoryName(String name, List<Category> existingCategories, Locale locale) {
+    ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
     if (name == null || name.trim().isEmpty()) {
-      return "error.categoryNameEmpty";
+      return bundle.getString("error.categoryNameEmpty");
     } else if (name.length() > 50) {
-      return "error.categoryNameTooLong";
+      return bundle.getString("error.categoryNameTooLong");
     } else if (isCategoryNameDuplicate(name, existingCategories)) {
-      return "error.categoryNameDuplicate";
+      return bundle.getString("error.categoryNameDuplicate");
     } else {
       return null; // Якщо назва валідна, повертаємо null
     }

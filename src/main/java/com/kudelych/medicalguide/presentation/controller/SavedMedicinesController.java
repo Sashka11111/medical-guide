@@ -102,7 +102,8 @@ public class SavedMedicinesController implements LanguageUpdatable {
   private void displaySavedMedicineCards(List<Medicine> medicines) {
     savedMedicinesGridPane.getChildren().clear();
     if (medicines.isEmpty()) {
-      errorLabel.setText("Поки у Вас немає збережених ліків");
+      ResourceBundle bundle = LanguageManager.getBundle();
+      errorLabel.setText(bundle.getString("message.noSavedMedicines"));
       return;
     }
     int column = 0;
@@ -169,7 +170,8 @@ public class SavedMedicinesController implements LanguageUpdatable {
     if (selectedMedicine != null) {
       deleteMedicine(selectedMedicine);
     } else {
-      AlertController.showAlert("Видалення лікарського засобу", "Ви не вибрали лікарський засіб.");
+      ResourceBundle bundle = LanguageManager.getBundle();
+      AlertController.showAlert(bundle.getString("alert.deleteMedicineTitle"), bundle.getString("alert.noMedicineSelected"));
     }
   }
 
@@ -178,11 +180,13 @@ public class SavedMedicinesController implements LanguageUpdatable {
     User currentUser = AuthenticatedUser.getInstance().getCurrentUser();
     try {
       medicinesRepository.removeSavedMedicine(currentUser.id(), medicine.id());
-      AlertController.showAlert("Видалення лікарського засобу", "Лікарський засіб: "+ medicine.name() + " успішно видалено");
+      ResourceBundle bundle = LanguageManager.getBundle();
+      AlertController.showAlert(bundle.getString("alert.deleteMedicineTitle"), bundle.getString("alert.medicineDeleted") + " " + medicine.name());
       loadSavedMedicines();
       clearMedicineDetails();
     } catch (EntityNotFoundException e) {
-      AlertController.showAlert("Помилка видалення", "Не вдалося знайти лікарський засіб для видалення.");
+      ResourceBundle bundle = LanguageManager.getBundle();
+      AlertController.showAlert(bundle.getString("alert.deleteErrorTitle"), bundle.getString("alert.medicineNotFound"));
     }
   }
 
@@ -224,6 +228,7 @@ public class SavedMedicinesController implements LanguageUpdatable {
       medicineImageView.setImage(new Image(getClass().getResourceAsStream("/data/icon.png")));
     }
   }
+
   @Override
   public void updateLanguage() {
     ResourceBundle bundle = LanguageManager.getBundle();
@@ -235,6 +240,8 @@ public class SavedMedicinesController implements LanguageUpdatable {
     medicinePurposeLabel.setText(bundle.getString("label.purpose"));
     medicineCategoryLabel.setText(bundle.getString("label.category"));
     deleteFromSaved.setText(bundle.getString("button.deleteFromSaved"));
+    if (errorLabel.getText().equals("Поки у Вас немає збережених ліків")) {
+      errorLabel.setText(bundle.getString("message.noSavedMedicines"));
+    }
   }
-
 }

@@ -5,21 +5,6 @@ import java.util.List;
 
 public class MedicinesValidator {
 
-  // Максимальна довжина для назви лікарського засобу
-  private static final int MAX_NAME_LENGTH = 100;
-
-  // Максимальна довжина для назви виробника
-  private static final int MAX_MANUFACTURER_LENGTH = 200;
-
-  // Максимальна довжина для форми лікарського засобу
-  private static final int MAX_FORM_LENGTH = 100;
-
-  // Максимальна довжина для призначення лікарського засобу
-  private static final int MAX_PURPOSE_LENGTH = 200;
-
-  // Максимальна довжина для опису лікарського засобу
-  private static final int MAX_DESCRIPTION_LENGTH = 255;
-
   /**
    * Метод для валідації об'єкта Medicine.
    *
@@ -32,7 +17,7 @@ public class MedicinesValidator {
         validateManufacturer(medicine.manufacturer()) &&
         validateForm(medicine.form()) &&
         validatePurpose(medicine.purpose()) &&
-        isMedicineNameDuplicate(medicine.name(), existingMedicines) &&
+        !isMedicineNameDuplicate(medicine.name(), existingMedicines) &&
         validateImage(medicine.image());
   }
 
@@ -43,7 +28,7 @@ public class MedicinesValidator {
    * @return true, якщо назва валідна, інакше false
    */
   public static boolean validateName(String name) {
-    return name != null && name.length() <= MAX_NAME_LENGTH;
+    return name != null;
   }
 
   /**
@@ -53,7 +38,7 @@ public class MedicinesValidator {
    * @return true, якщо опис валідний, інакше false
    */
   public static boolean validateDescription(String description) {
-    return description != null && description.length() <= MAX_DESCRIPTION_LENGTH;
+    return description != null;
   }
 
   /**
@@ -63,7 +48,7 @@ public class MedicinesValidator {
    * @return true, якщо назва виробника валідна, інакше false
    */
   public static boolean validateManufacturer(String manufacturer) {
-    return manufacturer != null && manufacturer.length() <= MAX_MANUFACTURER_LENGTH;
+    return manufacturer != null;
   }
 
   /**
@@ -73,7 +58,7 @@ public class MedicinesValidator {
    * @return true, якщо форма валідна, інакше false
    */
   public static boolean validateForm(String form) {
-    return form != null && form.length() <= MAX_FORM_LENGTH;
+    return form != null;
   }
 
   /**
@@ -83,7 +68,7 @@ public class MedicinesValidator {
    * @return true, якщо призначення валідне, інакше false
    */
   public static boolean validatePurpose(String purpose) {
-    return purpose != null && purpose.length() <= MAX_PURPOSE_LENGTH;
+    return purpose != null ;
   }
   // Метод для перевірки наявності лікарського засобу з заданою назвою
   public static boolean isMedicineNameDuplicate(String name, List<Medicine> existingMedicines) {

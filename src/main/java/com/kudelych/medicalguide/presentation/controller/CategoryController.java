@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -87,7 +88,7 @@ public class CategoryController implements LanguageUpdatable {
   private void onAddClicked() {
     String categoryName = addCategory.getText().trim();
     List<Category> existingCategories = categoryRepository.getAllCategories();
-    String validationMessage = CategoryValidator.validateCategoryName(categoryName, existingCategories);
+    String validationMessage = CategoryValidator.validateCategoryName(categoryName, existingCategories, LanguageManager.getCurrentLocale());
     if (validationMessage == null) {
       Category newCategory = new Category(0, categoryName);
       try {
@@ -132,7 +133,7 @@ public class CategoryController implements LanguageUpdatable {
     if (selectedCategory != null) {
       String newName = addCategory.getText().trim();
       List<Category> existingCategories = categoryRepository.getAllCategories();
-      String validationMessage = CategoryValidator.validateCategoryName(newName, existingCategories);
+      String validationMessage = CategoryValidator.validateCategoryName(newName, existingCategories, LanguageManager.getCurrentLocale());
       if (validationMessage == null) {
         try {
           Category updatedCategory = new Category(selectedCategory.id(), newName);
