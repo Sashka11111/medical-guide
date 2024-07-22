@@ -1,5 +1,5 @@
 
 
-java:S1192Ã"TDefine a constant instead of duplicating this literal "save.medicine.title" 3 times.(´¶³üÿÿÿÿ8Õ¹–†2J$723e3bfc-463c-4bbe-958d-996b11dbac5c
+java:S1192Ã"TDefine a constant instead of duplicating this literal "save.medicine.title" 3 times.(´¶³üÿÿÿÿ8í´×É2J$2477b417-75fa-4e3d-b497-4b7c7e89ec7c
 ¾
-java:S6204¹"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8é¹–†2J$f0b2b2fa-9f02-424e-a0c0-434d5aacf6e8
+java:S6204¹"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹8µ×É2J$b67a36fe-f960-4aae-a035-20ef0ee95480

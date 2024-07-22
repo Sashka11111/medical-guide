@@ -16,12 +16,12 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="themesLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="22.0" prefHeight="40.0" prefWidth="217.0" text="Тема">
+      <Label fx:id="themesLabel" alignment="TOP_LEFT" layoutX="60.0" layoutY="14.0" prefHeight="40.0" prefWidth="217.0" text="Тема">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="48.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="49.0" layoutY="132.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
            <RadioButton fx:id="darkThemeRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Primer Dark">
                <font>
@@ -30,7 +30,7 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="48.0" layoutY="69.0" prefHeight="40.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="49.0" layoutY="54.0" prefHeight="40.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
            <!-- Theme Selection -->
            <RadioButton fx:id="lightThemeRadioButton" layoutX="9.0" layoutY="4.0" prefHeight="40.0" prefWidth="223.0" text="Primer Light">
@@ -40,15 +40,15 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <Label fx:id="languageLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="238.0" prefHeight="35.0" prefWidth="223.0" text="Мова">
+      <Label fx:id="languageLabel" alignment="TOP_LEFT" layoutX="58.0" layoutY="202.0" prefHeight="35.0" prefWidth="223.0" text="Мова">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="ukCard" layoutX="47.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+      <AnchorPane fx:id="ukCard" layoutX="45.0" layoutY="237.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
          <children>
             <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
-           <RadioButton fx:id="ukrainianRadioButton" alignment="BOTTOM_LEFT" layoutX="4.0" layoutY="122.0" prefHeight="29.0" prefWidth="234.0" text="Українська">
+           <RadioButton fx:id="ukrainianRadioButton" alignment="CENTER_LEFT" layoutX="4.0" layoutY="122.0" prefHeight="22.0" prefWidth="234.0" text="Українська">
                <font>
                   <Font size="18.0" />
                </font>
@@ -60,12 +60,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="engCard" layoutX="339.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+      <AnchorPane fx:id="engCard" layoutX="337.0" layoutY="237.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
          <children>
             <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
       
            <!-- Language Selection -->
-           <RadioButton fx:id="englishRadioButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="English">
+           <RadioButton fx:id="englishRadioButton" alignment="CENTER_LEFT" layoutX="10.0" layoutY="124.0" prefHeight="16.0" prefWidth="223.0" text="English">
                <font>
                   <Font size="18.0" />
                </font>
@@ -77,7 +77,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="339.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="340.0" layoutY="132.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
             <RadioButton fx:id="nordDarkThemeRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Nord Dark">
                <font>
@@ -86,10 +86,10 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="gerCard" layoutX="632.0" layoutY="297.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+      <AnchorPane fx:id="gerCard" layoutX="630.0" layoutY="237.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
          <children>
             <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
-            <RadioButton fx:id="germanRadioButton" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="9.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="Deutsch">
+            <RadioButton fx:id="germanRadioButton" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="9.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="Deutsch">
                <font>
                   <Font size="18.0" />
                </font>
@@ -101,7 +101,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="632.0" layoutY="69.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="633.0" layoutY="54.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
             <RadioButton fx:id="cupertinoDarkRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Cupertino Dark">
                <font>
@@ -110,7 +110,7 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="339.0" layoutY="69.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="340.0" layoutY="54.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
             <RadioButton fx:id="nordLightRadioButton" layoutX="9.0" layoutY="9.0" prefHeight="35.0" prefWidth="223.0" text="Nord Light">
                <font>
@@ -119,13 +119,58 @@
             </RadioButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="632.0" layoutY="147.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
+      <AnchorPane layoutX="633.0" layoutY="132.0" prefHeight="54.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2;">
          <children>
             <RadioButton fx:id="draculaRadioButton" layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="223.0" text="Dracula">
                <font>
                   <Font size="18.0" />
                </font>
             </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="plCard" layoutX="44.0" layoutY="417.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+            <RadioButton fx:id="polskaRadioButton" alignment="CENTER_LEFT" layoutX="4.0" layoutY="122.0" prefHeight="22.0" prefWidth="234.0" text="Polska">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/poland.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="slCard" layoutX="336.0" layoutY="417.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+            <RadioButton fx:id="slovenčinaRadioButton" alignment="CENTER_LEFT" layoutX="10.0" layoutY="124.0" prefHeight="16.0" prefWidth="223.0" text="Slovenčina">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="112.0" fitWidth="129.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/slovenia.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="trCard" layoutX="629.0" layoutY="417.0" prefHeight="157.0" prefWidth="242.0" style="-fx-border-color: #004C4C; -fx-border-radius: 10; -fx-border-width: 2; -fx-cursor: hand;">
+         <children>
+            <Line endX="122.99996948242188" endY="-3.0517578125E-5" layoutX="114.0" layoutY="117.0" startX="-108.99999237060547" startY="-3.0517578125E-5" />
+            <RadioButton fx:id="türkçeRadioButton" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="9.0" layoutY="121.0" prefHeight="30.0" prefWidth="223.0" text="Türkçe">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <ImageView fitHeight="105.0" fitWidth="112.0" layoutX="65.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../data/turkey.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

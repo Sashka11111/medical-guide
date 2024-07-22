@@ -27,6 +27,12 @@ import java.util.logging.Logger;
 public class SettingsController implements LanguageUpdatable {
 
   @FXML
+  private RadioButton slovenčinaRadioButton;
+
+  @FXML
+  private RadioButton türkçeRadioButton;
+
+  @FXML
   private Button changeAccountButton;
 
   @FXML
@@ -39,10 +45,19 @@ public class SettingsController implements LanguageUpdatable {
   private RadioButton draculaRadioButton;
 
   @FXML
+  private AnchorPane engCard;
+
+  @FXML
   private RadioButton englishRadioButton;
 
   @FXML
+  private AnchorPane gerCard;
+
+  @FXML
   private RadioButton germanRadioButton;
+
+  @FXML
+  private Label languageLabel;
 
   @FXML
   private RadioButton lightThemeRadioButton;
@@ -54,22 +69,25 @@ public class SettingsController implements LanguageUpdatable {
   private RadioButton nordLightRadioButton;
 
   @FXML
-  private RadioButton ukrainianRadioButton;
+  private AnchorPane plCard;
 
   @FXML
-  private Label languageLabel;
+  private RadioButton polskaRadioButton;
+
+  @FXML
+  private AnchorPane slCard;
 
   @FXML
   private Label themesLabel;
 
   @FXML
-  private AnchorPane gerCard;
+  private AnchorPane trCard;
 
   @FXML
   private AnchorPane ukCard;
 
   @FXML
-  private AnchorPane engCard;
+  private RadioButton ukrainianRadioButton;
 
   private String theme;
   private ToggleGroup themeToggleGroup;
@@ -90,7 +108,9 @@ public class SettingsController implements LanguageUpdatable {
     ukCard.setOnMouseClicked(event -> selectLanguage(ukrainianRadioButton));
     engCard.setOnMouseClicked(event -> selectLanguage(englishRadioButton));
     gerCard.setOnMouseClicked(event -> selectLanguage(germanRadioButton));
-
+    plCard.setOnMouseClicked(event -> selectLanguage(polskaRadioButton));
+    slCard.setOnMouseClicked(event -> selectLanguage(slovenčinaRadioButton));
+    trCard.setOnMouseClicked(event -> selectLanguage(türkçeRadioButton));
     Locale locale = LanguageManager.getCurrentLocale() != null ?
         LanguageManager.getCurrentLocale() :
         new Locale("uk", "UA"); // Встановлюємо мову за замовчуванням
@@ -136,6 +156,9 @@ public class SettingsController implements LanguageUpdatable {
     englishRadioButton.setToggleGroup(languageToggleGroup);
     ukrainianRadioButton.setToggleGroup(languageToggleGroup);
     germanRadioButton.setToggleGroup(languageToggleGroup);
+    polskaRadioButton.setToggleGroup(languageToggleGroup);
+    slovenčinaRadioButton.setToggleGroup(languageToggleGroup);
+    türkçeRadioButton.setToggleGroup(languageToggleGroup);
   }
 
   private void setInitialLanguage(Locale currentLanguage) {
@@ -145,6 +168,12 @@ public class SettingsController implements LanguageUpdatable {
       ukrainianRadioButton.setSelected(true);
     } else if (currentLanguage.equals(new Locale("de", "DE"))) {
       germanRadioButton.setSelected(true);
+    } else if (currentLanguage.equals(new Locale("pl", "PL"))) {
+      polskaRadioButton.setSelected(true);
+    } else if (currentLanguage.equals(new Locale("sk", "SK"))) {
+      slovenčinaRadioButton.setSelected(true);
+    } else if (currentLanguage.equals(new Locale("tr", "TR"))) {
+      türkçeRadioButton.setSelected(true);
     }
   }
 
@@ -173,6 +202,9 @@ public class SettingsController implements LanguageUpdatable {
       case RadioButton rb when rb == englishRadioButton -> new Locale("en", "US");
       case RadioButton rb when rb == ukrainianRadioButton -> new Locale("uk", "UA");
       case RadioButton rb when rb == germanRadioButton -> new Locale("de", "DE");
+      case RadioButton rb when rb == polskaRadioButton -> new Locale("pl", "PL");
+      case RadioButton rb when rb == slovenčinaRadioButton -> new Locale("sk", "SK");
+      case RadioButton rb when rb == türkçeRadioButton -> new Locale("tr", "TR");
       default -> new Locale("uk", "UA");
     };
     LanguageManager.setBundle(selectedLocale);
@@ -185,7 +217,6 @@ public class SettingsController implements LanguageUpdatable {
     changeAccountButton.setText(bundle.getString("button.changeAccount"));
     themesLabel.setText(bundle.getString("label.changeThemes"));
     languageLabel.setText(bundle.getString("label.changeLanguage"));
-    // Оновити всі інші текстові елементи у цьому контролері
   }
 
   private void handleChangeAccountAction() {
