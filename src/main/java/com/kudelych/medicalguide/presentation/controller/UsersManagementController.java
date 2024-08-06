@@ -129,5 +129,7 @@ public class UsersManagementController implements LanguageUpdatable {
     roleComboBox.setPromptText(bundle.getString("comboBox.role"));
     userLabel.setText(bundle.getString("label.username"));
     roleLabel.setText(bundle.getString("label.role"));
+    usernameColumn.setText(bundle.getString("column.name"));
+    roleColumn.setText(bundle.getString("column.role"));
   }
 }

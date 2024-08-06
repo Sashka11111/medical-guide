@@ -321,7 +321,6 @@ public class MedicineManagementController implements LanguageUpdatable {
   @Override
   public void updateLanguage() {
     bundle = LanguageManager.getBundle(); // Оновлення ResourceBundle
-
     clearFieldsButton.setText(bundle.getString("button.clearFields"));
     addButton.setText(bundle.getString("button.add"));
     deleteButton.setText(bundle.getString("button.delete"));
