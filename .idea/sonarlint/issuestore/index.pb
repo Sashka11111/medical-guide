@@ -160,3 +160,5 @@ Hsrc/main/java/com/kudelych/medicalguide/domain/setting/ThemeManager.java,b\b\b
 Msrc/main/java/com/kudelych/medicalguide/domain/setting/LanguageUpdatable.java,5\8\581a021698f3b28480ecee00b96194ef0a523786
 }
 Msrc/main/java/com/kudelych/medicalguide/domain/setting/ControllerManager.java,3\e\3e35ae79b470dbb8a04264b82b778881ddd8e459
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
